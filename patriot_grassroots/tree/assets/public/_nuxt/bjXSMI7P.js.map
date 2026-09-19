@@ -1,0 +1,1 @@
+{"version":3,"file":"bjXSMI7P.js","sources":["../../../../pages/system.vue"],"sourcesContent":["<template>\n  <NuxtPage />\n</template>\n\n<script setup lang=\"ts\">\ndefinePageMeta({\n  roles: ['admin'],\n});\n</script>\n"],"names":["_createBlock","_component_NuxtPage"],"mappings":";;2cACEA,EAAYC,CAAA","debugId":"3d221db5-9273-576c-9ca3-577f3c341ee7"}

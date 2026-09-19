@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="98f7423e-f1ec-5573-95bf-b21a9e3f8248")}catch(e){}}();
+import{s as n}from"./BX0RjXy1.js";import"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},a=new e.Error().stack;a&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[a]="67517f21-81f2-4ca9-a680-0c6414e53a64",e._sentryDebugIdIdentifier="sentry-dbid-67517f21-81f2-4ca9-a680-0c6414e53a64")}catch{}const s={local:{name:"Local",shortName:"Local",badgeVariant:"info"},quick_response_force:{name:"Quick Response Force",shortName:"QRF",badgeVariant:"violet"}};function i(e){return s[e]??{name:n(e),shortName:n(e),badgeVariant:"default"}}const r=Object.entries(s).map(([e,{name:a}])=>({value:e,name:a}));export{r as a,i as g};
+
+//# debugId=98f7423e-f1ec-5573-95bf-b21a9e3f8248

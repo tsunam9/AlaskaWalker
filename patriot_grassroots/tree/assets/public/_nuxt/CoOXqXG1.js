@@ -1,0 +1,10 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="9d7b2fa5-2578-513a-a1e4-5544de1c9bf2")}catch(e){}}();
+import{b_ as r}from"./BYbP5qv3.js";import{R as i}from"./M7UDhxO7.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},n=new e.Error().stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="eb92ba4f-d697-4f36-afed-ea9a737f7e01",e._sentryDebugIdIdentifier="sentry-dbid-eb92ba4f-d697-4f36-afed-ea9a737f7e01")}catch{}/**
+ * @license lucide-vue-next v0.536.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const o=r("coins",[["circle",{cx:"8",cy:"8",r:"6",key:"3yglwk"}],["path",{d:"M18.09 10.37A6 6 0 1 1 10.34 18",key:"t5s6rm"}],["path",{d:"M7 6h1v4",key:"1obek4"}],["path",{d:"m16.71 13.88.7.71-2.82 2.82",key:"1rbuyh"}]]),a={icon:o,title:"No earnings yet",description:"No earnings have been recorded yet. Create an earning to start tracking payments.",actions:[{label:"Create Earning",to:{name:"earnings-create"}}]},t={icon:i,title:"No transactions yet",description:"Payouts and withdrawals across your canvassers will appear here.",actions:[{label:"View Earnings",to:{name:"earnings"}}]},d={canvasser:{icon:o,title:"No earnings yet",description:"Earnings from your completed work will show up here.",actions:[{label:"Browse Upcoming Projects",to:{name:"applications-upcoming"}},{label:"Start a Work Shift",to:{name:"shift"},variant:"outline",mobileOnly:!0}]},admin:a,manager:a},l={canvasser:{icon:i,title:"No transactions yet",description:"Your payouts and withdrawals will appear here.",actions:[{label:"View Balance",to:{name:"earnings-balance"}}]},admin:t,manager:t};export{d as e,l as t};
+
+//# debugId=9d7b2fa5-2578-513a-a1e4-5544de1c9bf2

@@ -1,0 +1,39 @@
+{
+	"appId": "com.patriotgrassroots.validnation",
+	"appName": "Patriot",
+	"webDir": "../frontend/.output/public",
+	"android": {
+		"useLegacyBridge": true,
+		"adjustMarginsForEdgeToEdge": "force"
+	},
+	"plugins": {
+		"SplashScreen": {
+			"launchAutoHide": false
+		},
+		"CapacitorCookies": {
+			"enabled": false
+		},
+		"CapacitorHttp": {
+			"enabled": true
+		},
+		"WebView": {
+			"allowZoom": false,
+			"allowGestureControlledZoom": false
+		},
+		"LiveUpdate": {
+			"readyTimeout": 15000
+		},
+		"SafeArea": {
+			"enabled": true,
+			"statusBarContent": "dark",
+			"navigationBarContent": "dark",
+			"offset": 0
+		},
+		"FirebaseMessaging": {
+			"presentationOptions": []
+		},
+		"CapacitorSQLite": {
+			"androidIsEncryption": false
+		}
+	}
+}

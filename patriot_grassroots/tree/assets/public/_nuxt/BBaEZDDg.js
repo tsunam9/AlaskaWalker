@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="c0d026bd-e9d9-5826-a472-c006f8394f5d")}catch(e){}}();
+import{kc as d}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},n=new e.Error().stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="fe4a2f95-fd6c-4fd2-8dab-54ae580bad04",e._sentryDebugIdIdentifier="sentry-dbid-fe4a2f95-fd6c-4fd2-8dab-54ae580bad04")}catch{}class o extends d{constructor(){super(),this._lastWindow=null}async open(n){this._lastWindow=window.open(n.url,n.windowName||"_blank")}async close(){return new Promise((n,s)=>{this._lastWindow!=null?(this._lastWindow.close(),this._lastWindow=null,n()):s("No active window to close!")})}}const l=new o;export{l as Browser,o as BrowserWeb};
+
+//# debugId=c0d026bd-e9d9-5826-a472-c006f8394f5d

@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="aa0dc57f-b5cf-5931-8b57-14bf44cbbbe7")}catch(e){}}();
+import{_ as i}from"./Da6tnw3o.js";import{M as o}from"./BA5KwF5U.js";import{b$ as d,c5 as r,c3 as s,cb as t}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},a=new e.Error().stack;a&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[a]="5d89801b-245e-4764-b03f-d44adec120e2",e._sentryDebugIdIdentifier="sentry-dbid-5d89801b-245e-4764-b03f-d44adec120e2")}catch{}const b=d({__name:"LabeledEntityCampaign",props:{campaign:{},label:{}},setup(e){return(a,l)=>{var n;return s(),r(i,{to:a.campaign?{name:"recruitment-campaigns-id",params:{id:a.campaign.id}}:void 0,label:a.label||"Campaign",value:(n=a.campaign)==null?void 0:n.name,icon:t(o)},null,8,["to","label","value","icon"])}}});export{b as _};
+
+//# debugId=aa0dc57f-b5cf-5931-8b57-14bf44cbbbe7

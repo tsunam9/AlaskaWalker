@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="@dimen/intercom_toolbar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/wallpaper_image" android:layout_width="fill_parent" android:layout_height="fill_parent" android:contentDescription="Header wallpaper" android:importantForAccessibility="no" style="@style/intercom_wallpaper_image_style" />
+    <RelativeLayout android:id="@id/toolbar_content_container" android:background="@color/intercom_full_transparent_full_black" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ProgressBar android:id="@id/toolbar_progress_bar" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_alignParentBottom="true" android:elevation="8.0dip" style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+        <FrameLayout android:id="@id/intercom_left_item_layout" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_alignParentTop="true" android:layout_alignParentStart="true">
+            <ImageButton android:id="@id/intercom_toolbar_inbox" android:background="?selectableItemBackgroundBorderless" android:visibility="gone" android:layout_width="48.0dip" android:layout_height="fill_parent" android:contentDescription="Navigate back from Inbox" />
+            <ImageView android:id="@id/intercom_toolbar_avatar" android:visibility="gone" android:layout_width="@dimen/intercom_teammate_avatar_size" android:layout_height="@dimen/intercom_teammate_avatar_size" android:layout_marginTop="14.0dip" android:contentDescription="Teammate avatar" android:layout_marginStart="24.0dip" />
+            <View android:id="@id/intercom_toolbar_avatar_active_state" android:visibility="gone" android:layout_width="@dimen/intercom_teammate_active_state_size" android:layout_height="@dimen/intercom_teammate_active_state_size" android:layout_marginTop="38.0dip" android:layout_marginStart="48.0dip" />
+        </FrameLayout>
+        <ImageButton android:id="@id/intercom_toolbar_close" android:background="?selectableItemBackgroundBorderless" android:paddingLeft="16.0dip" android:paddingRight="16.0dip" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/intercom_close" android:layout_alignParentTop="true" android:contentDescription="Close" android:layout_alignParentEnd="true" />
+        <LinearLayout android:orientation="vertical" android:id="@id/intercom_toolbar_title_container" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:layout_centerVertical="true" android:layout_marginStart="16.0dip" android:layout_toStartOf="@id/intercom_toolbar_close" android:layout_toEndOf="@id/intercom_left_item_layout">
+            <TextView android:ellipsize="end" android:gravity="center" android:id="@id/intercom_toolbar_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:maxLines="2" android:includeFontPadding="false" style="@style/intercom_toolbar_inbox_title_style" />
+            <TextView android:gravity="center" android:id="@id/intercom_toolbar_subtitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:includeFontPadding="false" android:alpha="0.0" style="@style/intercom_toolbar_subtitle_style" />
+        </LinearLayout>
+        <View android:id="@id/intercom_toolbar_divider" android:background="@color/intercom_white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_alignParentBottom="true" android:alpha="0.1" />
+    </RelativeLayout>
+</FrameLayout>

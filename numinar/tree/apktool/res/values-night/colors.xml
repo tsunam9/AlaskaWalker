@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fff10028</color>
+    <color name="colorPrimaryDark">#ffa3090e</color>
+    <color name="mapbox_indoor_bg">#ff1e1e1e</color>
+    <color name="mapbox_indoor_selected_bg">#ff3d3d3d</color>
+    <color name="mapbox_indoor_text">#ffe0e0e0</color>
+</resources>

@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="d5f12a8e-20d1-5831-b573-46b072f87406")}catch(e){}}();
+import{b$ as o,cu as i,dc as t,c2 as r,cH as s,c3 as d}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},a=new e.Error().stack;a&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[a]="9b7e995d-00c8-4cac-8114-8eceba098f51",e._sentryDebugIdIdentifier="sentry-dbid-9b7e995d-00c8-4cac-8114-8eceba098f51")}catch{}const u=o({__name:"index",async setup(e){let a,n;const{isCanvasser:c}=i();return c.value?([a,n]=t(()=>s({name:"applications-my"},{replace:!0})),await a,n()):([a,n]=t(()=>s({name:"applications-upcoming"},{replace:!0})),await a,n()),(l,p)=>(d(),r("div"))}});export{u as default};
+
+//# debugId=d5f12a8e-20d1-5831-b573-46b072f87406

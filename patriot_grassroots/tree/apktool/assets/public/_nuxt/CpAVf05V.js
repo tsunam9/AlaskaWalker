@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="93843d64-0bc3-57a5-aa75-8e72c48377ec")}catch(e){}}();
+import{b$ as r,c2 as d,c3 as a,cj as c,cb as n,cA as i,cm as l}from"./BYbP5qv3.js";import{u as f}from"./DPSq-hjp.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},s=new e.Error().stack;s&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[s]="00301268-acd7-4cb0-ab7f-07d8b351897e",e._sentryDebugIdIdentifier="sentry-dbid-00301268-acd7-4cb0-ab7f-07d8b351897e")}catch{}const b=["id"],_=r({__name:"FormDescription",props:{class:{}},setup(e){const s=e,{formDescriptionId:o}=f();return(t,p)=>(a(),d("p",{id:n(o),class:c(n(i)("text-sm text-muted-foreground",s.class))},[l(t.$slots,"default")],10,b))}});export{_};
+
+//# debugId=93843d64-0bc3-57a5-aa75-8e72c48377ec

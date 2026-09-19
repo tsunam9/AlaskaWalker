@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="404797c5-37a0-5978-b7da-eb3d6238ac6b")}catch(e){}}();
+import{cz as y,cg as d,cx as l,dk as b}from"./BYbP5qv3.js";import{d as c,a as i}from"./DHD_yzyo.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},a=new e.Error().stack;a&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[a]="7655858a-d6f5-4c47-927d-d8e51efbd9e7",e._sentryDebugIdIdentifier="sentry-dbid-7655858a-d6f5-4c47-927d-d8e51efbd9e7")}catch{}function p(e,a){const t=y(),o=d(()=>c()),s=d(()=>i(t.query,o.value)),r=d(()=>["system.dashboard",e,s.value]),{data:n,error:u,isLoading:f}=l({key:()=>r.value,query:()=>b({composable:"$fetch",path:{tab:e},query:s}),enabled:()=>t.name===a});return{data:n,error:u,isLoading:f,params:s,defaultDate:o,queryKey:r}}export{p as u};
+
+//# debugId=404797c5-37a0-5978-b7da-eb3d6238ac6b

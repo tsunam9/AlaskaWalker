@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="069d8476-c37c-5b32-8507-7826908b15c0")}catch(e){}}();
+import{G as r}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},n=new e.Error().stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="f40082af-4962-475c-acfc-db544aff1be9",e._sentryDebugIdIdentifier="sentry-dbid-f40082af-4962-475c-acfc-db544aff1be9")}catch{}function t(){return typeof __SENTRY_BROWSER_BUNDLE__<"u"&&!!__SENTRY_BROWSER_BUNDLE__}function s(){return"npm"}function o(){return!t()&&Object.prototype.toString.call(typeof process<"u"?process:0)==="[object process]"}function i(){return typeof window<"u"&&(!o()||f())}function f(){const e=r.process;return(e==null?void 0:e.type)==="renderer"}export{s as g,i};
+
+//# debugId=069d8476-c37c-5b32-8507-7826908b15c0

@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="7768ae89-8681-5ab2-a244-48fc75661e9a")}catch(e){}}();
+import{D as d}from"./rvR1mKPo.js";import{b$ as o,c5 as r,c3 as t,cb as n,cP as c,cQ as i,c9 as l,cm as f}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},a=new e.Error().stack;a&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[a]="90ad1544-e7dc-4441-b4a2-ad25ac16dad6",e._sentryDebugIdIdentifier="sentry-dbid-90ad1544-e7dc-4441-b4a2-ad25ac16dad6")}catch{}const b=o({__name:"DialogTrigger",props:{asChild:{type:Boolean},as:{}},setup(e){const a=e;return(s,p)=>(t(),r(n(d),c(i(a)),{default:l(()=>[f(s.$slots,"default")]),_:3},16))}});export{b as _};
+
+//# debugId=7768ae89-8681-5ab2-a244-48fc75661e9a

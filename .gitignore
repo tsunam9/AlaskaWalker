@@ -1,0 +1,5 @@
+.venv-re/
+java/
+tree/apktool/
+*.keystore
+*.jks

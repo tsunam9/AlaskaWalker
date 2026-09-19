@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="c24cbe55-fa23-51ca-90fd-28e850b20f3e")}catch(e){}}();
+import{cw as r,d4 as n,cJ as a}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},o=new e.Error().stack;o&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[o]="01ea0983-cdf9-47cb-8e8c-b06ae4487c6a",e._sentryDebugIdIdentifier="sentry-dbid-01ea0983-cdf9-47cb-8e8c-b06ae4487c6a")}catch{}const s=()=>{const e=r(!1);let o=null;n(()=>{o&&clearTimeout(o)});async function i(t){if(typeof navigator>"u"||!navigator.clipboard){a(void 0,"Clipboard not available");return}if(t)try{await navigator.clipboard.writeText(t),e.value=!0,o&&clearTimeout(o),o=setTimeout(()=>{e.value=!1},1500)}catch{a(void 0,"Failed to copy")}}return{isCopied:e,copy:i}};export{s as u};
+
+//# debugId=c24cbe55-fa23-51ca-90fd-28e850b20f3e

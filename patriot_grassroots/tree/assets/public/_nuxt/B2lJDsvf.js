@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="ea781074-520c-5fb6-8cbb-b3bd5ba13fe0")}catch(e){}}();
+import{u as s}from"./DPe1z4V_.js";import{P as i}from"./D_mEaccI.js";import{i as n}from"./Bwk6Kbe-.js";import{b$ as d,c5 as l,c3 as p,c9 as f,cm as u,cX as c,cb as o}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]="ea9842a6-e570-412b-a036-ebd98cd9694f",e._sentryDebugIdIdentifier="sentry-dbid-ea9842a6-e570-412b-a036-ebd98cd9694f")}catch{}var _=d({__name:"DialogDescription",props:{asChild:{type:Boolean,required:!1},as:{type:null,required:!1,default:"p"}},setup(e){const t=e;s();const r=n();return(a,b)=>(p(),l(o(i),c(t,{id:o(r).descriptionId}),{default:f(()=>[u(a.$slots,"default")]),_:3},16,["id"]))}}),w=_;export{w as D};
+
+//# debugId=ea781074-520c-5fb6-8cbb-b3bd5ba13fe0

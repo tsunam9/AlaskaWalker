@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="00e4e1a6-6c28-5c78-b41e-f2ed5c6aeeac")}catch(e){}}();
+import{s as t}from"./BX0RjXy1.js";import"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},a=new e.Error().stack;a&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[a]="80f5a782-9368-46d4-a3fa-e3d0e397544f",e._sentryDebugIdIdentifier="sentry-dbid-80f5a782-9368-46d4-a3fa-e3d0e397544f")}catch{}const n={low:{label:"Low",variant:"default"},normal:{label:"Normal",variant:"info"},elevated:{label:"Elevated",variant:"warning"},high:{label:"High",variant:"violet"},critical:{label:"Critical",variant:"destructive"}},i={label:"",variant:"default"};function s(e){return n[e]??{...i,label:t(e)}}const o=Object.keys(n),d=Object.entries(n).map(([e,{label:a}])=>({name:a,value:e}));export{d as a,n as b,o as c,s as g};
+
+//# debugId=00e4e1a6-6c28-5c78-b41e-f2ed5c6aeeac

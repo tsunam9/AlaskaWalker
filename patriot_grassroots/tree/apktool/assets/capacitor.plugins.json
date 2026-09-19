@@ -1,0 +1,122 @@
+[
+	{
+		"pkg": "@aparajita/capacitor-secure-storage",
+		"classpath": "com.aparajita.capacitor.securestorage.SecureStorage"
+	},
+	{
+		"pkg": "@capacitor-community/background-geolocation",
+		"classpath": "com.equimaps.capacitor_background_geolocation.BackgroundGeolocation"
+	},
+	{
+		"pkg": "@capacitor-community/bluetooth-le",
+		"classpath": "com.capacitorjs.community.plugins.bluetoothle.BluetoothLe"
+	},
+	{
+		"pkg": "@capacitor-community/device-security-detect",
+		"classpath": "com.mukha.andrei.plugins.device.secutiry.detect.DeviceSecurityDetectPlugin"
+	},
+	{
+		"pkg": "@capacitor-community/firebase-analytics",
+		"classpath": "com.getcapacitor.community.firebaseanalytics.FirebaseAnalytics"
+	},
+	{
+		"pkg": "@capacitor-community/safe-area",
+		"classpath": "com.getcapacitor.community.safearea.SafeAreaPlugin"
+	},
+	{
+		"pkg": "@capacitor-community/sqlite",
+		"classpath": "com.getcapacitor.community.database.sqlite.CapacitorSQLitePlugin"
+	},
+	{
+		"pkg": "@capacitor-firebase/messaging",
+		"classpath": "io.capawesome.capacitorjs.plugins.firebase.messaging.FirebaseMessagingPlugin"
+	},
+	{
+		"pkg": "@capacitor-firebase/remote-config",
+		"classpath": "io.capawesome.capacitorjs.plugins.firebase.remoteconfig.FirebaseRemoteConfigPlugin"
+	},
+	{
+		"pkg": "@capacitor/app",
+		"classpath": "com.capacitorjs.plugins.app.AppPlugin"
+	},
+	{
+		"pkg": "@capacitor/app-launcher",
+		"classpath": "com.capacitorjs.plugins.applauncher.AppLauncherPlugin"
+	},
+	{
+		"pkg": "@capacitor/browser",
+		"classpath": "com.capacitorjs.plugins.browser.BrowserPlugin"
+	},
+	{
+		"pkg": "@capacitor/camera",
+		"classpath": "com.capacitorjs.plugins.camera.CameraPlugin"
+	},
+	{
+		"pkg": "@capacitor/device",
+		"classpath": "com.capacitorjs.plugins.device.DevicePlugin"
+	},
+	{
+		"pkg": "@capacitor/dialog",
+		"classpath": "com.capacitorjs.plugins.dialog.DialogPlugin"
+	},
+	{
+		"pkg": "@capacitor/local-notifications",
+		"classpath": "com.capacitorjs.plugins.localnotifications.LocalNotificationsPlugin"
+	},
+	{
+		"pkg": "@capacitor/network",
+		"classpath": "com.capacitorjs.plugins.network.NetworkPlugin"
+	},
+	{
+		"pkg": "@capacitor/preferences",
+		"classpath": "com.capacitorjs.plugins.preferences.PreferencesPlugin"
+	},
+	{
+		"pkg": "@capacitor/splash-screen",
+		"classpath": "com.capacitorjs.plugins.splashscreen.SplashScreenPlugin"
+	},
+	{
+		"pkg": "@capawesome/capacitor-live-update",
+		"classpath": "io.capawesome.capacitorjs.plugins.liveupdate.LiveUpdatePlugin"
+	},
+	{
+		"pkg": "@codext/capacitor-wifi",
+		"classpath": "com.lindsor.capacitor.wifi.WifiPlugin"
+	},
+	{
+		"pkg": "@sentry/capacitor",
+		"classpath": "io.sentry.capacitor.SentryCapacitor"
+	},
+	{
+		"pkg": "@transistorsoft/capacitor-background-fetch",
+		"classpath": "com.transistorsoft.bgfetch.capacitor.BackgroundFetchPlugin"
+	},
+	{
+		"pkg": "app-exit-reason-plugin",
+		"classpath": "com.patriotgrassroots.validnation.appexitreason.AppExitReason"
+	},
+	{
+		"pkg": "audio-manager-plugin",
+		"classpath": "validnation.ai.audiomanager.AudioManager"
+	},
+	{
+		"pkg": "capacitor-native-settings",
+		"classpath": "nl.raphael.settings.NativeSettingsPlugin"
+	},
+	{
+		"pkg": "capacitor-udid",
+		"classpath": "com.udid.plugin.UdidPlugin"
+	},
+	{
+		"pkg": "capgo-camera-preview",
+		"classpath": "app.capgo.capacitor.camera.preview.CameraPreview"
+	},
+	{
+		"pkg": "motion-activity-plugin",
+		"classpath": "com.patriotgrassroots.validnation.motionactivity.MotionActivityPlugin"
+	},
+	{
+		"pkg": "permissions-manager-plugin",
+		"classpath": "com.patriotgrassroots.validnation.permissionsmanager.PermissionsManager"
+	}
+]

@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="af6235f3-5229-59e3-bc39-e087e1306fc0")}catch(e){}}();
+import{s as a}from"./BX0RjXy1.js";import"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]="7cbf5c04-2903-463b-8139-71539269cc99",e._sentryDebugIdIdentifier="sentry-dbid-7cbf5c04-2903-463b-8139-71539269cc99")}catch{}const n={active:{label:"Active",color:"bg-green-200 text-green-600"},finished:{label:"Not Active",color:"bg-blue-200 text-blue-600"}},o={label:"",color:"bg-gray-200 text-gray-800"};function f(e){return n[e]??{...o,label:a(e)}}const i=[{name:"All Staffing Statuses",value:"all"},...Object.entries(n).map(([e,{label:t}])=>({value:e,name:t}))];export{f as g,i as p};
+
+//# debugId=af6235f3-5229-59e3-bc39-e087e1306fc0

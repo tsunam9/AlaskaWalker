@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="3046583b-faf8-5b0a-96d9-a69f66653ada")}catch(e){}}();
+import{cg as r,e3 as l,cx as n,fj as f}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]="c9305de6-5041-495e-b8ad-c7ebbd9f3f97",e._sentryDebugIdIdentifier="sentry-dbid-c9305de6-5041-495e-b8ad-c7ebbd9f3f97")}catch{}const u=e=>{const t=r(()=>l(e)),{data:d,error:s,isLoading:o,refetch:a}=n({key:()=>["profile",t.value??""],query:()=>f({composable:"$fetch",path:{user_id:t.value}}),enabled:()=>!!t.value});return{profileDetails:d,error:s,isLoading:o,refetch:a}};export{u};
+
+//# debugId=3046583b-faf8-5b0a-96d9-a69f66653ada

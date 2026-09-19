@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="c679fe54-da7f-58f2-acb5-d41a0f4fdafc")}catch(e){}}();
+import{k0 as i,k1 as r,k2 as f,cH as n}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]="477983c0-16fd-48cd-909e-d076d40fa5f6",e._sentryDebugIdIdentifier="sentry-dbid-477983c0-16fd-48cd-909e-d076d40fa5f6")}catch{}const u=i(async e=>{let t,a;const d=([t,a]=r(()=>f()),t=await t,a(),t);if(e.name==="shift"){if(d)return n({name:"shift-id",params:{id:d}},{replace:!0})}else if(e.name==="shift-id"){const s=e.params.id;if(d!==s)return n({name:"shift"},{replace:!0})}});export{u as default};
+
+//# debugId=c679fe54-da7f-58f2-acb5-d41a0f4fdafc

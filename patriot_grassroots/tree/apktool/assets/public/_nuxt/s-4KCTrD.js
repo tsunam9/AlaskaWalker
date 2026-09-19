@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="fec0bcb6-68a2-5b3b-bc7f-b3e4fcf12f2b")}catch(e){}}();
+import{kc as o}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},n=new e.Error().stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="110a2fbb-81f0-46d4-9b56-52c39716f4fa",e._sentryDebugIdIdentifier="sentry-dbid-110a2fbb-81f0-46d4-9b56-52c39716f4fa")}catch{}class s extends o{async open(){return new Promise((n,r)=>{r(new Error("Not implemented for web."))})}async openAndroid(){return new Promise((n,r)=>{r(new Error("Not implemented for web."))})}async openIOS(){return new Promise((n,r)=>{r(new Error("Not implemented for web."))})}}export{s as NativeSettingsWeb};
+
+//# debugId=fec0bcb6-68a2-5b3b-bc7f-b3e4fcf12f2b

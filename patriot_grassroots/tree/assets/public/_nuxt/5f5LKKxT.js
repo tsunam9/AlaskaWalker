@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="e9d84a6e-0f46-5911-a489-9d5efb652db5")}catch(e){}}();
+import"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},a=new e.Error().stack;a&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[a]="a5e322ba-579c-4a4c-8c3f-1afb2f60e357",e._sentryDebugIdIdentifier="sentry-dbid-a5e322ba-579c-4a4c-8c3f-1afb2f60e357")}catch{}const f=1e3;function b(e,a={}){const i=a.page??1,s=a.size??10,n=Number(Array.isArray(e.page)?e.page[0]:e.page),t=Number(Array.isArray(e.size)?e.size[0]:e.size),o=Number.isFinite(n)&&n>=1?Math.floor(n):i,r=Number.isFinite(t)&&t>=1?Math.min(Math.floor(t),f):s;return{page:o,size:r}}export{b as p};
+
+//# debugId=e9d84a6e-0f46-5911-a489-9d5efb652db5

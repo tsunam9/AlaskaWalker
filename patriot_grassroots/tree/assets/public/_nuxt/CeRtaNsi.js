@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="ec912c96-dd75-5a88-918c-303074e2f756")}catch(e){}}();
+import{b$ as s,c2 as d,c4 as o,c3 as a}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]="011c937b-de43-4c3a-952d-265d55583318",e._sentryDebugIdIdentifier="sentry-dbid-011c937b-de43-4c3a-952d-265d55583318")}catch{}const i={class:"min-h-0 h-full flex flex-1 justify-center items-center"},r=s({__name:"index",props:{chatInfoData:{},isChatInfoLoading:{type:Boolean}},setup(e){return(t,n)=>(a(),d("div",i,[...n[0]||(n[0]=[o("h1",{class:"text-xl font-medium"},"Chats",-1)])]))}});export{r as default};
+
+//# debugId=ec912c96-dd75-5a88-918c-303074e2f756

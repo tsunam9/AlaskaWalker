@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="c520c348-a98e-5604-83de-cc8191964423")}catch(e){}}();
+import{s as n}from"./BX0RjXy1.js";import"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},a=new e.Error().stack;a&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[a]="681a7bb6-6a10-472a-a86f-4988bd9f6e28",e._sentryDebugIdIdentifier="sentry-dbid-681a7bb6-6a10-472a-a86f-4988bd9f6e28")}catch{}const t={applied:{label:"Applied",variant:"info"},approved:{label:"Approved",variant:"success"},rejected:{label:"Rejected",variant:"destructive"}},i={label:"",variant:"default"};function d(e){return t[e]??{...i,label:n(e)}}const o=Object.entries(t).map(([e,{label:a}])=>({value:e,name:a}));export{o as a,d as g};
+
+//# debugId=c520c348-a98e-5604-83de-cc8191964423

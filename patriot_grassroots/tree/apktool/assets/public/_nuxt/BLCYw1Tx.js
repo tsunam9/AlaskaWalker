@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="b830c583-ae19-55a2-822e-5e5628b16984")}catch(e){}}();
+import{s as n}from"./BX0RjXy1.js";import"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]="177dd99e-1265-4253-8f7b-cb5615cec080",e._sentryDebugIdIdentifier="sentry-dbid-177dd99e-1265-4253-8f7b-cb5615cec080")}catch{}const a={active:{label:"Active",variant:"success"},deactivated:{label:"Deactivated",variant:"destructive"}},s={label:"",variant:"default"};function c(e){return a[e]??{...s,label:n(e)}}const r=Object.entries(a).map(([e,{label:t}])=>({value:e,name:t}));export{c as g,r as s};
+
+//# debugId=b830c583-ae19-55a2-822e-5e5628b16984

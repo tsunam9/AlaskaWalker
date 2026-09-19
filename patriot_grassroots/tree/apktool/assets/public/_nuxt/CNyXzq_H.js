@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="ea05554e-dc74-590a-80bb-aa331dd6791a")}catch(e){}}();
+import{b$ as o,cg as l,c5 as r,c3 as c,cb as t,eH as f,cX as i,cA as p,c9 as u,cm as b}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},s=new e.Error().stack;s&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[s]="3d1e6b8e-ea2f-444d-afbf-f416ddfe8105",e._sentryDebugIdIdentifier="sentry-dbid-3d1e6b8e-ea2f-444d-afbf-f416ddfe8105")}catch{}const y=o({__name:"Label",props:{for:{},asChild:{type:Boolean},as:{},class:{}},setup(e){const s=e,n=l(()=>{const{class:a,...d}=s;return d});return(a,d)=>(c(),r(t(f),i(n.value,{class:t(p)("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",s.class)}),{default:u(()=>[b(a.$slots,"default")]),_:3},16,["class"]))}});export{y as _};
+
+//# debugId=ea05554e-dc74-590a-80bb-aa331dd6791a

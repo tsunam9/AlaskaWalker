@@ -1,0 +1,1 @@
+{"version":3,"file":"D2XbHxhn.js","sources":["../../../../pages/verification/ballots/pages/index.vue"],"sourcesContent":["<template>\n  <div />\n</template>\n\n<script setup lang=\"ts\">\ndefinePageMeta({\n  roles: [],\n});\n</script>\n"],"names":["_createElementBlock"],"mappings":";;ibACEA,EAAO,KAAA","debugId":"04eddd22-b8ee-5e81-af28-90711c2f509f"}

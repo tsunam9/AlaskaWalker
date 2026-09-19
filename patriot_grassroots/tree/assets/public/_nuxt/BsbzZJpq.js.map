@@ -1,0 +1,1 @@
+{"version":3,"file":"BsbzZJpq.js","sources":["../../../../utils/amount.ts"],"sourcesContent":["export function formatAmount(amount: number) {\n  return `$${amount.toFixed(2)}`;\n}\n"],"names":["formatAmount","amount"],"mappings":";;+VAAO,SAASA,EAAaC,EAAgB,CAC3C,MAAO,IAAIA,EAAO,QAAQ,CAAC,CAAC,EAC9B","debugId":"3ea0c162-90b4-598d-81b9-633afd8ff2f4"}

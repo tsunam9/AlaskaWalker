@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_gravity="bottom|center" android:orientation="horizontal" android:id="@id/chathead_root" android:clipChildren="false" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginRight="16.0dip" android:layout_marginHorizontal="16.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.compose.ui.platform.ComposeView android:id="@id/chat_snippet_compose_view" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <FrameLayout android:id="@id/parent_card" android:background="@drawable/intercom_card_background" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:elevation="4.0dip">
+        <LinearLayout android:layout_gravity="top" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="16.0dip">
+            <FrameLayout android:layout_gravity="top" android:id="@id/chat_avatar_container" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/intercom_chat_head_bottom_margin">
+                <ImageView android:layout_gravity="bottom" android:id="@id/chathead_avatar" android:layout_width="@dimen/intercom_container_card_avatar_size" android:layout_height="@dimen/intercom_container_card_avatar_size" android:contentDescription="Teammate avatar" />
+                <androidx.compose.ui.platform.ComposeView android:layout_gravity="bottom" android:id="@id/chathead_avatar_compose_view" android:visibility="gone" android:layout_width="@dimen/intercom_container_card_avatar_size" android:layout_height="@dimen/intercom_container_card_avatar_size" />
+            </FrameLayout>
+            <FrameLayout android:layout_gravity="start" android:id="@id/chat_full_body" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:id="@id/chathead_text_container" android:layout_width="fill_parent" android:layout_height="wrap_content" android:paddingStart="8.0dip" android:paddingEnd="8.0dip">
+                    <androidx.compose.ui.platform.ComposeView android:id="@id/ticket_header_compose_view" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="4.0dip" />
+                    <TextView android:textAppearance="?android:textAppearanceMedium" android:textSize="16.0sp" android:textColor="@color/intercom_black" android:ellipsize="end" android:id="@id/chathead_text_body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="2" />
+                    <TextView android:textAppearance="?android:textAppearanceMedium" android:textSize="16.0sp" android:textColor="@color/intercom_grey_600" android:ellipsize="end" android:id="@id/chathead_text_header" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:maxLines="1" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

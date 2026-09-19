@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="70cda4f0-8b0e-5376-9fc4-fbe4d3f6b677")}catch(e){}}();
+import"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},d=new e.Error().stack;d&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[d]="67d13829-fa10-4d8f-b197-6315cdd000bd",e._sentryDebugIdIdentifier="sentry-dbid-67d13829-fa10-4d8f-b197-6315cdd000bd")}catch{}var r=(e=>(e.OldPassword="old_password",e.NewPassword="new_password",e.ConfirmNewPassword="confirm_new_password",e))(r||{});const o=[{label:"Current Password",name:r.OldPassword,placeholder:"Enter your current password"},{label:"New Password",name:r.NewPassword,placeholder:"Enter your new password"},{label:"Confirm New Password",name:r.ConfirmNewPassword,placeholder:"Confirm your new password"}];export{o as p};
+
+//# debugId=70cda4f0-8b0e-5376-9fc4-fbe4d3f6b677

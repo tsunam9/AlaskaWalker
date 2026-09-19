@@ -1,0 +1,5 @@
+
+!function(){try{var e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[n]="2dc19a84-0076-5ad8-a670-8ebae9bc18f0")}catch(e){}}();
+import{kc as t}from"./BYbP5qv3.js";try{let e=typeof window<"u"?window:typeof global<"u"?global:typeof globalThis<"u"?globalThis:typeof self<"u"?self:{},s=new e.Error().stack;s&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[s]="8cd3a6f7-c723-4ceb-b995-6ed819c32d4d",e._sentryDebugIdIdentifier="sentry-dbid-8cd3a6f7-c723-4ceb-b995-6ed819c32d4d")}catch{}class a extends t{async getLastExitReasons(){return{supported:!1,platform:"web",aggregated:!1,reasons:[]}}async getResourceSnapshot(){return{sampledAt:Date.now()}}async getLastResourceSnapshot(){return{snapshot:null}}async claimLaunchReport(){return{firstLaunch:!0}}}export{a as AppExitReasonWeb};
+
+//# debugId=2dc19a84-0076-5ad8-a670-8ebae9bc18f0
