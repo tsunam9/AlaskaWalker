@@ -63,6 +63,23 @@ platform:
     (interaction counts). No audio-presence metric client-side, but
     managers see conversation lists — a recording-project shift with no
     conversations looks anomalous.
+  - **Sensor/scanning deep-dive (2026-09-18)**: batch envelope =
+    `{record_id(uuid), work_shift_id, device_id, sensor_type, started_at,
+    ended_at, sensor_readings[]}`; readings have no per-item time/GPS.
+    WiFi reading: `{bssid, ssid, level, isCurrentWifi, capabilities[]}`;
+    BLE reading: `{device{deviceId,name,uuids}, rssi, txPower,
+    manufacturerData, rawAdvertisement...}` (`allowDuplicates:true`, no
+    client dedup). Cadence: ~120 bursts/type/foreground-hour; scans are
+    SKIPPED while backgrounded (pocket = GPS-only); radio-off silently
+    produces zero records and radio state is sent NOWHERE
+    (`state_payload.permissions` are permission booleans only). Dashboard
+    `surroundings` card soft-flags >1h shifts with <5 BLE and <5 WiFi
+    uniques. Anti-fraud: only `is_root` in `update_info`; no Play
+    Integrity, no cert pinning (but user CAs untrusted on targetSdk 36 →
+    MITM needs root; Pairip blocks repackaging). Real-footprint capture:
+    rooted device + test account + cut network after shift start →
+    unencrypted SQLite `payloads` outbox accumulates byte-exact upload
+    bodies → `adb pull` the db.
   - Wake-word emergency pipeline: fires only when triggered; not auth, not
     proof-of-work → excluded from reimplementation.
 

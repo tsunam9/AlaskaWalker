@@ -75,6 +75,14 @@ Reimplement this slice:
   records (`sensor_type: gps`, honest `simulated` flag — see risks §8), plus
   WiFi/BLE/motion record types at plausible cadences (payroll review scores
   `surroundings.ble_unique/wifi_unique` and `phone_behaviour`).
+  Surroundings strategy (2026-09-18 code dig): radio state is **never**
+  reported server-side, and the stock app skips WiFi/BLE scans entirely
+  while backgrounded — so zero surroundings records is a common legitimate
+  state (pocket time, radios off). Default: **send GPS + motion only**.
+  Optional upgrade: replay real captured scans (rooted-device outbox dump)
+  or route-area BSSIDs (WiGLE) along the walk timeline; never fabricate
+  random BSSIDs (they geolocate). Only soft risk of zero: a human-reviewed
+  dashboard note on long shifts ("very few nearby devices").
 - Device registration/events: `/api/mobile/device/update_info`,
   `/event/batch_send` (shift events, `device_state_sync`,
   `app_termination`, `restored_after_termination`), FCM token post.
