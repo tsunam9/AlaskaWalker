@@ -72,17 +72,24 @@ Reimplement this slice:
   `state_payload` shape (`permissions{wifi,ble,gps,motion}`, battery,
   tracking config) reproduced faithfully.
 - Breadcrumbs: WalkFix-derived GPS fixes → `/api/mobile/sensor/batch_upload`
-  records (`sensor_type: gps`, honest `simulated` flag — see risks §8), plus
-  WiFi/BLE/motion record types at plausible cadences (payroll review scores
-  `surroundings.ble_unique/wifi_unique` and `phone_behaviour`).
-  Surroundings strategy (2026-09-18 code dig): radio state is **never**
-  reported server-side, and the stock app skips WiFi/BLE scans entirely
-  while backgrounded — so zero surroundings records is a common legitimate
-  state (pocket time, radios off). Default: **send GPS + motion only**.
-  Optional upgrade: replay real captured scans (rooted-device outbox dump)
-  or route-area BSSIDs (WiGLE) along the walk timeline; never fabricate
-  random BSSIDs (they geolocate). Only soft risk of zero: a human-reviewed
-  dashboard note on long shifts ("very few nearby devices").
+  records, **byte-parity with the stock app's wire format** (envelope
+  `{record_id, work_shift_id, device_id, sensor_type, started_at, ended_at,
+  sensor_readings[]}`; GPS reading `{latitude, longitude, accuracy, altitude,
+  altitude_accuracy, timestamp, speed, bearing, simulated}` with
+  **`simulated: false`, exactly as stock sends for a real fix** — see the
+  wire-parity rules in §5). Cadence parity: GPS buffer 60 fixes / 30 s
+  flush, uploader ≤100 records every 60 s.
+- **Surroundings (WiFi/BLE) replay — capture-based (user decision
+  2026-09-18)**: when a route is assigned, the route gets **driven once**
+  with a capture tool recording real BLE/WiFi scan results (IDs, RSSI,
+  timestamps, GPS) along it; WiGLE is the fallback when its data for the
+  route area is recent and dense enough. During a harness walk, the app
+  replays the IDs captured near the current simulated position, at stock
+  cadence (~120 bursts/type/foreground-hour, `allowDuplicates:true` burst
+  shapes), with scans skipped while backgrounded exactly like stock.
+  Fabricated/random BSSIDs are forbidden (they geolocate). Zero-scan
+  stretches remain a legitimate stock state (pocket/radios-off) and need no
+  special handling.
 - Device registration/events: `/api/mobile/device/update_info`,
   `/event/batch_send` (shift events, `device_state_sync`,
   `app_termination`, `restored_after_termination`), FCM token post.
@@ -171,6 +178,28 @@ the real clock service with a designated test account):
    transition.
 7. **One `walk.json` per person**, union schema, external file over asset —
    same as `walker_unified`.
+8. **Wire parity with stock — no self-incrimination** (lessons from the
+   first unified build, user-reported 2026-09-18):
+   - Vendor backends receive **exactly** the stock app's requests: same
+     paths, same header *set* (no more, no less), same envelope fields,
+     same value domains. Never invent fields or add headers "for
+     debugging" — the first unified build literally sent a header marking
+     locations as simulated to a backend that fortunately never read it.
+   - GPS sensor records carry `simulated: false` — the value stock sends
+     for real fixes. `device/update_info` carries `is_root: false` — the
+     build is never rooted. No mock-provider flag, no harness marker, no
+     "test" string appears in any vendor-bound payload, ever.
+   - Harness metadata (`X-Walk-Client`, `X-Session-Id`, walk-server Basic
+     auth, person prefixes) goes **only** to the walk server. Nothing
+     harness-flavored crosses to `api.validnation.ai` or Numinar hosts.
+   - **Receipt is verified server-side, not client-side.** The first
+     build's breadcrumbs silently never uploaded while the clock showed
+     "clocked in". Every uploader in this design has a server-side
+     verification path (status endpoints, review dashboard, mock
+     assertions) wired into its acceptance gate.
+   - Every wire claim carries an evidence label (Recovered / Observed /
+     Implemented / Hypothesis per campaign_project `APP-SHAPE-GUIDE.md`);
+     Hypothesis is allowed in design docs, never in shipped requests.
 
 ## 6. Target app
 
@@ -215,6 +244,11 @@ UI: the same five-destination information architecture as `walker_unified`
 re-skinned. The Shift screen talks ValidNation instead of Connecteam;
 Canvass talks Numinar instead of Pulsar.
 
+Detailed per-domain designs, wire contracts, and acceptance gates:
+[`DESIGN-VALIDNATION.md`](DESIGN-VALIDNATION.md) (worker clock + breadcrumb
+replay) and [`DESIGN-NUMINAR.md`](DESIGN-NUMINAR.md) (canvassing). Both
+encode the wire-parity rules of §5.8.
+
 ## 7. Execution sequence (each step independently verifiable)
 
 | Step | Work | Gate |
@@ -241,7 +275,7 @@ which is additive.
 |---|---|---|
 | Numinar Hermes v96 blocks static recovery of exact payloads | Certain | step 1: hbcdump build or frida capture; mock-defined shapes cover harness runs meanwhile |
 | Auth0 client ID/audience not statically recoverable | Certain (inlined) | runtime capture with test account; mock auth until then |
-| ValidNation rejects/flags simulated GPS (`simulated:true`; payroll review scores `gps_quality.simulated`, coverage, speed-mismatch) | **High on the real backend** | harness shifts are visibly simulated in payroll review — acceptable for a designated test account; canary in step 9 before any walk depends on it; never run harness shifts on real workers' projects |
+| ValidNation payroll review statistics flag the harness GPS pattern (coverage, speed-mismatch, phone-behaviour computed server-side) | **High on the real backend** | wire-identical records with `simulated:false` per user decision (§5.8), but server-side *statistics* can still distinguish a synthetic trace from a human walk; designated test account only, canary in step 9, never harness shifts on real workers' payable projects |
 | Harness project actually requires audio (`audio_recording_config.permission != no_recording`) | Unknown until step 2 | if so, build AudioOutbox (VAD chunk upload + `missingSegmentIds` reconciliation) — the server accounts for missing audio on recording projects |
 | Household-synthesized walk lists produce poor routes | Medium | adapter groups by location; operator can hand-build ad-hoc routes from the dashboard as today |
 | 900 s ValidNation JWT expiry causes request churn | Low | proactive refresh at 80% TTL; single-flight; 401 → one refresh → terminal |

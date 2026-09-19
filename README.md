@@ -18,6 +18,8 @@ Alaska_Campaign/
     stock/  BASELINE.md  ANALYSIS.md  tree/  java/
   docs/
     UNIFIED-APP-PLAN.md    the plan: roles, architecture, milestones, risks
+    DESIGN-VALIDNATION.md  worker-clock domain design (wire contracts, gates)
+    DESIGN-NUMINAR.md      canvassing domain design (adapter, latch loop)
   .venv-re/                reverse-engineering python env (hbctool)
 ```
 
