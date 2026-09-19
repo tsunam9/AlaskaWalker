@@ -267,6 +267,13 @@ which is additive.
    project(s) record audio, AudioOutbox is in scope (the server accounts for
    missing segments); if `no_recording`, audio legitimately stays off.
    Determined by step-2 fixtures or by asking the campaign admin.
+   Legal context (2026-09): Alaska is one-party consent (AS 42.20.310);
+   SB 85 (all-party consent) died in committee 2026-05-20. The
+   restricted-ZIP feature targets all-party-consent states, so Alaska ZIPs
+   are unlikely to be restricted — a recording-enabled Alaska project
+   effectively records everywhere. Continuous recording still captures
+   conversations the worker is not a party to, which the statute does not
+   cover — campaign counsel's call, not the app's.
 3. **applicationId/branding** of the unified app (`§5.4` proposal).
 4. Whether the Alaska project gets its own copy of the mock/debugger
    tooling or imports `campaign_project/server` as-is (plan assumes the
