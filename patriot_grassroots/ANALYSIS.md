@@ -41,8 +41,15 @@ platform:
     location/motion/BLE/WiFi permissions (+ mic ONLY when the project's
     `audio_recording_config.permission != "no_recording"`).
   - Continuous shift audio is per-project (`full_recording` /
-    `no_recording` / `full_recording_with_restricted_area`). On
-    `no_recording` projects, zero audio is the normal server-visible state.
+    `no_recording` / `full_recording_with_restricted_area`; admin UI labels
+    them "Full Note-taking" / "No Note-taking" / "Note-taking With
+    Restricted Areas"). On `no_recording` projects, zero audio is the
+    normal server-visible state. Restricted-area mode = record everywhere
+    except admin-configured restricted ZIP polygons
+    (`/api/projects/{id}/restricted_areas`); enforced client-side per VAD
+    segment — segments whose GPS fix lands in a zone are deleted on-device
+    (`releaseSegments`) and never uploaded, and in this mode segments with
+    NO valid GPS fix are dropped too (`AudioManager.java:455` fail-closed).
     On recording projects the server accounts for audio: `missingSegmentIds`
     in `/api/canvasser_voice/receive` responses, zero conversations,
     `data_complete` at `finalize_v2`, `aliveModules` in
