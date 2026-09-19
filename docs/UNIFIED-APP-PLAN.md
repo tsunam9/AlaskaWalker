@@ -42,13 +42,20 @@ pauses within 15 s.
 Reimplement this slice only:
 
 - Auth0 login (`auth.numinar.com`, scope `openid profile email
-  offline_access`) **or** mock-backend session (see §4 decision).
-- Org/project bootstrap: `/v1/my-orgs-mobile`, `/v2/mobile-app/projects/`.
-- Voter/household fetch: `/v1/voters/`, `/v1/nearby-voters`.
+  offline_access`; client_id/audience statically recovered 2026-09-19) **or**
+  mock-backend session (see §4 decision).
+- Org/project bootstrap: `/v1/my-orgs-mobile`, `/v3/projects`.
+- Voter/household fetch: `/v2/mobile-app/projects/{id}/voters`
+  (gzipped `voters_compressed`), `/v1/nearby-voters`.
 - Walk-list synthesis → `POST /<person>/api/walklist` (§3).
 - Doorknock submission: `POST /v1/interactions/batch` with disposition
   mapping; surveys: `/v1/relational-survey/`; tags.
-- Optional breadcrumb analog: `/v1/canvassing-qa/tracking`.
+- **15 s GPS QA beacon: `POST /v1/canvassing-qa/tracking`** — in-scope
+  wire-parity obligation, not optional: it is how Numinar's server sees
+  canvasser liveness/location (GPS + device_id + emulator/geolocation-
+  permission telemetry every 15 s while logged in), so our client must
+  reproduce it or its absence is detectable (`numinar/audit/
+  interactions-surveys.md` §3).
 
 **Left behind**: Twilio Voice calling, relational texting (Bandwidth/SMS
 intent), contact matching, leaderboards, paid-relational payouts, Intercom,
@@ -60,12 +67,19 @@ offline Leaflet WebView map from `walker_unified`).
 Reimplement this slice:
 
 - Auth: `POST /api/auth/token` (FormData username/password → JWT, **900 s
-  expiry**) + `/api/auth/refresh`; token in encrypted prefs.
+  expiry**) + `/api/auth/refresh` (JSON `{refresh_token}`, no Authorization
+  header; proactive refresh at JWT **exp−60 s**, single-flight, plus 30 s
+  pre-request buffer — confirmed via source-map audit
+  `patriot_grassroots/audit/auth-session.md`, 2026-09-19); token in
+  encrypted prefs.
 - **Voice-sample enrollment** (`POST /api/account/voice_sample/`) —
   server-mandated onboarding item (`alerts.banner_alert`,
   `voice_sample_recorded` hiring checkmark); the server uses it to verify
   the enrolled worker against shift audio. Record + upload once, surface
-  status, clear the banner.
+  status, clear the banner. Wire format confirmed 2026-09-19
+  (`patriot_grassroots/audit/audio-voice.md` §1): **JSON, not multipart** —
+  `{audio_data: base64 raw Int16-LE PCM, audio_config:{sample_rate,
+  channels, bits_per_sample, encoding:"linear16"}}`, >30 s minimum.
 - Shift state machine: `generate` (in) → `pause`/`resume` (breaks, with
   per-hour budget) → `finalize_v2` (out, `data_complete` only after the
   upload queue drains); `status_v2` sync; cross-device conflict surfaced;
@@ -78,7 +92,12 @@ Reimplement this slice:
   altitude_accuracy, timestamp, speed, bearing, simulated}` with
   **`simulated: false`, exactly as stock sends for a real fix** — see the
   wire-parity rules in §5). Cadence parity: GPS buffer 60 fixes / 30 s
-  flush, uploader ≤100 records every 60 s.
+  flush; the uploader is event-driven, not periodic — 15-min background
+  fetch (OS floor), foreground resume (15-min throttle), silent push
+  `work_shift_upload_data`, shift lifecycle events, manual sync; ≤100
+  records per request (corrected 2026-09-19 via
+  `patriot_grassroots/audit/sensors-telemetry.md` §5: `UploaderPeriodMs`
+  60 s is dead config).
 - **Surroundings (WiFi/BLE) replay — capture-based (user decision
   2026-09-18)**: when a route is assigned, the route gets **driven once**
   with a capture tool recording real BLE/WiFi scan results (IDs, RSSI,
@@ -130,7 +149,7 @@ The server's route pipeline needs
 Pulsar served that shape natively; Numinar does not. The adapter:
 
 1. Pick a Numinar project → fetch its voter/household set
-   (`/v1/voters/` or mock equivalent).
+   (`/v2/mobile-app/projects/{id}/voters` or mock equivalent).
 2. Group by location (`groupHouseholdsByLocation` logic) → one address per
    household location, `aid` = stable household id, `knocked` from prior
    interaction state.
@@ -150,7 +169,7 @@ the real clock service with a designated test account):
 | Walk server :8765 | **same server, shared instance** | one-line `CURRENT_WALK_CLIENTS` addition |
 | Numinar canvassing | **mock** (`server/numinar-mock/`, Flask, mirrors `harness/backend.py`): login, projects, voters, interactions/batch, surveys | doorknocks never hit the live campaign DB during walks; debugger on its own port |
 | ValidNation clock | **real** `api.validnation.ai`, designated test canvasser account | mirrors Connecteam precedent; clock-ins are real records — canary first |
-| Auth0 (Numinar) | mock issues opaque session tokens; real Auth0 login is a later milestone (needs client ID/audience via runtime capture) | keeps harness runs credential-free |
+| Auth0 (Numinar) | mock issues opaque session tokens; real Auth0 login is a later milestone (client ID/audience statically recovered 2026-09-19; remaining need is a test account) | keeps harness runs credential-free |
 | Pusher | not needed (neither app uses it) | door-blocking/lobby features not ported |
 
 ## 5. Hard constraints (carried over, plus Alaska specifics)
@@ -254,8 +273,8 @@ encode the wire-parity rules of §5.8.
 | Step | Work | Gate |
 |---|---|---|
 | 0 | ✅ Freeze baselines, pull APKs, static analysis (this document) | — |
-| 1 | Numinar payload recovery: build hbcdump for Hermes v96 **or** frida/mitm capture with a test account (needs credentials) | request/response fixtures for the §2 Numinar slice |
-| 2 | ValidNation fixtures: exercise stock app with test account, capture shift + sensor-upload shapes (readable JS already gives most); **record the target project's `audio_recording_config.permission`** — it decides whether AudioOutbox must be built | fixtures for auth, shift lifecycle, batch_upload, voice sample, earnings; audio decision made |
+| 1 | ✅ **DONE (static)** — Numinar payload recovery achieved 2026-09-19 via hermes-decomp (Hermes v96 fully decompiled; fixtures live in `numinar/audit/`). Remaining capture need: runtime behavior/Auth0 login with a test account | request/response fixtures for the §2 Numinar slice (static fixtures done; runtime canary moves to step 9) |
+| 2 | ValidNation fixtures: exercise stock app with test account, capture shift + sensor-upload shapes. **2026-09-19: static shapes now resolved via the source-map audit (`patriot_grassroots/audit/`, six files)** — auth/refresh, shift lifecycle, batch_upload, voice sample and earnings wire shapes are code-confirmed [R]; remaining fixture needs are runtime-only: **the target project's `audio_recording_config.permission`** (decides whether AudioOutbox must be built) and the step-9 canary verification | audio decision made; canary fixtures |
 | 3 | Infra: Alaska GraphHopper graph (docker), `CURRENT_WALK_CLIENTS` string, `server/numinar-mock/` skeleton + debugger port | mock serves login+projects+voters; walk server accepts new client string |
 | 4 | Scaffold `alaska_walker/` from `walker_unified` harness layer (walk/ + core/ unchanged); new applicationId + keystore; build/install | one poller in logcat; readiness posts both roles |
 | 5 | ValidNation domain: auth, voice-sample enrollment, shift machine + `state_payload`, ShiftSync bridge, breadcrumb uploader (gps/wifi/ble/motion), device events, earnings surfaces | shift start on device gates latching on dashboard; breadcrumbs land server-side; voice-sample banner clears |
@@ -273,12 +292,12 @@ which is additive.
 
 | Risk | Likelihood | Mitigation |
 |---|---|---|
-| Numinar Hermes v96 blocks static recovery of exact payloads | Certain | step 1: hbcdump build or frida capture; mock-defined shapes cover harness runs meanwhile |
-| Auth0 client ID/audience not statically recoverable | Certain (inlined) | runtime capture with test account; mock auth until then |
+| ~~Numinar Hermes v96 blocks static recovery of exact payloads~~ **RESOLVED 2026-09-19** | — | hermes-decomp decompiled the v96 bundle in full; confirmed shapes with line cites live in `numinar/audit/` |
+| ~~Auth0 client ID/audience not statically recoverable~~ **RESOLVED 2026-09-19** | — | they are plain string constants in the bundle (decompiled L202372–202374); recovered values in `numinar/audit/auth-session.md` §1 |
 | ValidNation payroll review statistics flag the harness GPS pattern (coverage, speed-mismatch, phone-behaviour computed server-side) | **High on the real backend** | wire-identical records with `simulated:false` per user decision (§5.8), but server-side *statistics* can still distinguish a synthetic trace from a human walk; designated test account only, canary in step 9, never harness shifts on real workers' payable projects |
 | Harness project actually requires audio (`audio_recording_config.permission != no_recording`) | Unknown until step 2 | if so, build AudioOutbox (VAD chunk upload + `missingSegmentIds` reconciliation) — the server accounts for missing audio on recording projects |
 | Household-synthesized walk lists produce poor routes | Medium | adapter groups by location; operator can hand-build ad-hoc routes from the dashboard as today |
-| 900 s ValidNation JWT expiry causes request churn | Low | proactive refresh at 80% TTL; single-flight; 401 → one refresh → terminal |
+| 900 s ValidNation JWT expiry causes request churn | Low | proactive refresh at exp−60 s (stock behavior, audit-confirmed 2026-09-19); single-flight; 401 → one refresh → terminal |
 | Alaska GraphHopper build (extract size, docker disk) | Low | build once, cache volume; document port mapping (§5.5) |
 | Scope creep into surveillance features | Medium | §2 lists are exhaustive; wake-word and manager tooling are explicit non-goals |
 
@@ -303,8 +322,9 @@ which is additive.
 ## 10. Open decisions for the user
 
 1. **Credentials**: a ValidNation test canvasser account and a Numinar test
-   account unblock steps 1–2 and 9. Without them the mock-only path still
-   produces a working harness.
+   account unblock step 2, the step-9 canaries, and the Numinar runtime
+   canary (step-1 static recovery is done). Without them the mock-only path
+   still produces a working harness.
 2. **Target project's `audio_recording_config.permission`**: if the Alaska
    project(s) record audio, AudioOutbox is in scope (the server accounts for
    missing segments); if `no_recording`, audio legitimately stays off.

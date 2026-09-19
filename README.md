@@ -12,10 +12,14 @@ Alaska_Campaign/
     BASELINE.md            frozen install/cert/hash evidence
     ANALYSIS.md            feature/auth/API/location findings
     endpoints.txt          265 extracted API paths
+    audit/                 full endpoint/shape/trigger audit (2026-09-19,
+                           from source-map-recovered original sources)
     tree/                  extracted web build (readable Nuxt JS) + apktool
     java/                  jadx decompilation
   numinar/                 pulled stock app + analysis (canvassing role)
     stock/  BASELINE.md  ANALYSIS.md  tree/  java/
+    audit/                 full endpoint/shape/trigger audit (2026-09-19,
+                           from hermes-decomp decompilation of the v96 bundle)
   docs/
     UNIFIED-APP-PLAN.md    the plan: roles, architecture, milestones, risks
     DESIGN-VALIDNATION.md  worker-clock domain design (wire contracts, gates)
@@ -23,9 +27,17 @@ Alaska_Campaign/
   .venv-re/                reverse-engineering python env (hbctool)
 ```
 
-Status: **planning**. Stock apps analyzed; nothing built yet.
-Next actions are steps 1–3 in `docs/UNIFIED-APP-PLAN.md` (Numinar payload
-recovery, ValidNation fixtures, Alaska GraphHopper graph + mock backend).
+Status: **static recovery complete; ready to build**. Both stock apps are
+fully reverse-engineered to citation grade (all endpoint shapes, triggers,
+cadences, and anti-fraud behavior confirmed in code — see the two `audit/`
+directories); every former hypothesis in the design docs is resolved. Plan
+steps 1–2 (static halves) are done. Nothing built yet.
+
+Next actions are steps 3–4 in `docs/UNIFIED-APP-PLAN.md` (Alaska GraphHopper
+graph + `server/numinar-mock/` + walk-client string, then `alaska_walker/`
+scaffold). Runtime-only leftovers: the target project's
+`audio_recording_config.permission` value and the step-9 live canaries, both
+needing a ValidNation test account.
 
 Sibling project reference: `~/src/campaign_project/` (walk server, mock
 backend pattern, `walker_unified` app this plan mirrors).

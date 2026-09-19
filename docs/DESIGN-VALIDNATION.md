@@ -11,6 +11,15 @@ live, **[H]** hypothesis. Shipped requests may only use [R]/[O] contracts;
 [H] marks what step-2 fixtures must confirm. Source material:
 `../patriot_grassroots/ANALYSIS.md`, `endpoints.txt`, `tree/assets/public/_nuxt/`.
 
+**2026-09-19 source-map recovery**: the complete original frontend source
+(2,518 files) was recovered from the stock app's shipped source maps; six
+line-cited audit files in `../patriot_grassroots/audit/` (index:
+`audit/README.md`) settle the wire shapes previously marked [H] — now
+code-confirmed [R] with audit pointers below. Remaining [H] only where
+`client/types.gen.ts` was unrecoverable (full response schemas beyond
+UI-consumed fields) or where the value is runtime-only (the target project's
+config).
+
 ---
 
 ## 1. Non-negotiable wire-parity rules
@@ -34,9 +43,13 @@ harness header marking locations as simulated was sent to a vendor backend
    asserts the *server's* state (status endpoint / review data / mock
    assertion), not the client's POST result. "200 returned" is not proof of
    receipt; "the review dashboard shows the route" is.
-5. **Stock cadence**: GPS buffer 60 / flush 30 s; uploader ≤100 records /
-   60 s per type [R]. Faster, slower, or bigger batches are detectable
-   fingerprint deviations.
+5. **Stock cadence**: GPS buffer 60 / flush 30 s [R]; the uploader is
+   **event-driven, not periodic** — 15-min background fetch (OS floor),
+   foreground resume throttled to 15 min, silent push
+   (`work_shift_upload_data`), shift lifecycle events, manual sync; ≤100
+   records per request per sensor type [R: audit/sensors-telemetry.md §5;
+   `UploaderPeriodMs` (60 s) is dead config]. Faster, slower, or bigger
+   batches are detectable fingerprint deviations.
 
 ## 2. Auth
 
@@ -44,14 +57,16 @@ harness header marking locations as simulated was sent to a vendor backend
 |---|---|---|
 | Login | `POST /api/auth/token`, `FormData{username, password}` (OAuth2-style form, NOT JSON) | [R] |
 | Token | JWT, response field surfaced as `auth.token`, **maxAge 900 s** | [R] |
-| Refresh | `POST /api/auth/refresh` | [R] — exact request/response shape [H] until fixtures |
-| Profile | `GET /api/auth/profile` — carries `alerts` (incl. `banner_alert: "record_voice_sample"`), identity, org/project assignments | [R] |
+| Refresh | `POST /api/auth/refresh`, JSON `{refresh_token}`, NO `Authorization` header; response consumes `access_token` only (no client-side refresh-token rotation) | [R] — audit/auth-session.md §2 |
+| Profile | `GET /api/auth/profile` — carries `alerts` (incl. `banner_alert: "record_voice_sample"`), identity (`token.user{id,email,first_name,last_name,role}`), `settings.time_zone`; org/project assignments NOT read from here in stock (UNCONFIRMED — audit/auth-session.md §3) | [R] |
 | Logout | `POST /api/auth/logout` | [R] |
 
 Implementation:
 - Token in `EncryptedSharedPreferences` (stock uses Aparajita
   secure-storage — same Keystore backing). Never in logs.
-- Proactive refresh at 80% TTL (720 s); on 401: one refresh retry, then
+- Proactive refresh at JWT **exp−60 s** (stock behavior; not 80% TTL),
+  single-flight, plus a 30 s pre-request expiry buffer before any API call
+  [R: audit/auth-session.md §8]; on 401: one refresh retry, then
   terminal signed-out state. No retry loops on auth failures.
 - Login state machine: `SIGNED_OUT → REQUESTING → AUTHENTICATED →
   REFRESHING`; every state defines its retry budget per
@@ -64,8 +79,11 @@ Server-mandated onboarding [R]: profile `alerts.banner_alert ===
 `voice_sample_recorded`. Not checked by the shift-start gate.
 
 - UI: readiness row + Settings → Accounts card; record short clip, upload
-  `POST /api/account/voice_sample/` (multipart; exact field names [H] until
-  fixtures — stock uses RecordRTC → likely `audio/webm` [H]).
+  `POST /api/account/voice_sample/` — **JSON, not multipart, not webm**
+  [R: audit/audio-voice.md §1]: `{audio_data: base64 raw Int16-LE PCM,
+  audio_config: {sample_rate (device-reported, ~48000), channels,
+  bits_per_sample, encoding: "linear16"}}`; client-side minimum >30 s.
+  The stock RecordRTC webm blob is local preview only.
 - Home readiness board treats a missing sample as SETUP state with a
   deep link, mirroring the stock banner.
 
@@ -75,13 +93,25 @@ Server-mandated onboarding [R]: profile `alerts.banner_alert ===
 IDLE
   → STARTING        POST /api/mobile/work_shift/generate
                     {device_id, project_id, start_time, state_payload, time_zone} [R]
-  → ACTIVE          status_v2 polls; heartbeat to walk bridge
-  → PAUSED          POST .../pause  (break start; budget tracked)
-  → ACTIVE          POST .../resume
+  → ACTIVE          status_v2 sync (no fixed poll: shift start, session
+                    restore, 5-min app poll + every app resume via
+                    checkAndStopIfClosed); heartbeat to walk bridge
+  → PAUSED          outbox shift_break_event {type:"pause"} → POST .../pause
+                    (break start; budget tracked)
+  → ACTIVE          outbox shift_break_event {type:"resume"} → POST .../resume
   → FINALIZING      drain outbox FIRST, then POST .../finalize_v2
-                    [{work_shift_id, end_time, data_complete:true}] [R]
+                    [{work_shift_id, end_time, state_payload,
+                      data_complete:true}] [R]
   → IDLE
 ```
+
+(pause/resume are outbox-routed `shift_break_event` rows, not direct calls;
+the uploader strips `type` and POSTs `{work_shift_id, button_pressed_time}`
+to pause/resume — audit/shift-lifecycle.md §3. finalize_v2 takes an array
+with a fresh `state_payload` per item; `shift_end` rows always upload LAST,
+deferred per-shift until no other outbox rows for that `work_shift_id`
+remain, only then `data_complete:true`; the cross-device interrupt path
+sends `data_complete:null` — audit/shift-lifecycle.md §4–§5.)
 
 Rules reproduced from stock [R]:
 - `state_payload = {permissions:{wifi,ble,gps,motion}, battery, config}`
@@ -95,8 +125,9 @@ Rules reproduced from stock [R]:
   (`allowed_break_minutes_per_hour`, `grace_allowance_minutes`) displayed,
   overrun surfaced like stock.
 - `data_complete` is sent true **only after the upload outbox drains** —
-  this ordering is load-bearing; the server reads it as "all shift data
-  arrived".
+  per-shift: the `shift_end` row is deferred until no other rows for that
+  `work_shift_id` remain (audit/shift-lifecycle.md §4). This ordering is
+  load-bearing; the server reads it as "all shift data arrived".
 - Cross-device conflict ("shift running on another device") is a
   first-class UI state, not a toast.
 - **Clock bridge**: `ShiftSync` mirrors ACTIVE/PAUSED/IDLE to the walk
@@ -114,12 +145,20 @@ WalkFix (500 ms walk-server poll; fail-closed precedence)
        sensor_type: "gps", started_at, ended_at,
        sensor_readings: [{latitude, longitude, accuracy, altitude,
                           altitude_accuracy, timestamp, speed, bearing,
-                          simulated: false}, ...]}
+                          simulated: false,
+                          connection_type: "wifi"|"cellular"|"none"|"unknown"}, ...]}
+      (started_at/ended_at = epoch-ms numbers for gps/IMU/motionActivity;
+       ISO-8601 strings for wifi/ble [R: audit/sensors-telemetry.md §2])
   → SQLite outbox (payloads table equivalent)
-  → uploader: ≤100 records / 60 s → POST /api/mobile/sensor/batch_upload
+  → uploader (event-driven, §1 rule 5): ≤100 records/request →
+    POST /api/mobile/sensor/batch_upload, body {"records": [<envelope>, ...]}
   → delete outbox rows only after success             [stock semantics]
 ```
 
+- Request body is `{"records": [...]}`; success = **HTTP 200 exactly**;
+  rows are deleted only after success; failures re-send rows verbatim, so
+  the server must tolerate duplicate `record_id`s [R:
+  audit/sensors-telemetry.md §1, §6].
 - Only while a shift is ACTIVE [R: stock ties records to `work_shift_id`].
 - Timestamps are coherent wall-clock + the fix's own time; no future/
   stale stamps (server computes speed-mismatch).
@@ -162,20 +201,34 @@ User decision (2026-09-18): replay **real captured IDs**; no fabrication.
 | Contract | When | Evidence |
 |---|---|---|
 | `POST /api/mobile/device/update_info` | first run + changes; carries `permission_{gps,ble,wifi,motion}` booleans, model, os_version, `is_root: false` | [R] |
-| `POST /api/mobile/device/event/send` / `batch_send` | `shift_end`, `shift_break_event`, `device_state_sync` (periodic), `app_termination`, `restored_after_termination` | [R] |
+| `POST /api/mobile/device/event/send` / `batch_send` | `app_state`, `data_upload`, `device_state_sync` (rides uploader ticks, not fixed-period), `app_termination`, `restored_after_termination`, `tracker_state_divergence`, `pause_stop_failed`, `audio_cache_cleanup`, `live_update_*` | [R] — audit/shift-lifecycle.md §7 |
 | `POST /api/mobile/notifications/token` | FCM token registration | [R] |
 
-`tracker_state_divergence` events (with `aliveModules`) are emitted by our
+Catalog correction (audit/shift-lifecycle.md §7): `shift_end`,
+`shift_break_event` and `wake_word_event` are **outbox routing labels** that
+map to `finalize_v2`, `pause`/`resume` and
+`/api/canvasser_voice/wake_word_event` — they never go to `device/event/*`.
+
+`tracker_state_divergence` events (with `alive_modules` — snake_case on the
+wire — and `native_watcher_count`) are emitted by our
 Watchdog when a tracker dies while others live [R semantics].
 
 ## 8. Geofences, earnings, signatory verification
 
 - **Restricted areas**: `POST /api/projects/{id}/restricted_areas` with
-  current position; 50 km fetch radius / 1 km warning [R]. Warning UI only
+  current position; body `{lat, lon, radius_km}` [R: audit/sensors-telemetry.md
+  §11]; 50 km fetch radius / 10 km re-center / 1 km warning / queue-of-4
+  fail-closed gate (all Remote-Config defaults). Warning UI only
   (no audio behavior on `no_recording` projects).
 - **Earnings**: `/api/earnings/totals-by-rate-type/` + earnings list/detail
-  + Branch onboarding status [R endpoints; response shapes [H] until
-  fixtures]. Read-mostly; approval is a manager action we never perform.
+  + Branch onboarding status — response shapes [R: audit/earnings-account-misc.md
+  §1]: totals-by-rate-type = `{bonus:{total,count},
+  increased_rate:{total,count}}`; Branch account = `{status:
+  not_registered|registered|activated|deactivated, onboarding_link}`;
+  balance = `{ready_for_payment, pending, next_payment_date,
+  same_day_payout_enabled}`; amounts integer cents; withdraw = body-less
+  `POST /api/earnings/withdraw`. Read-mostly; approval is a manager action
+  we never perform.
 - **Signatory voice verification** (petition projects): worker-initiated WS
   `wss://api.validnation.ai/api/ws/voice_verification/{id}` → submit at
   `/api/verifications/voice/{id}/submit` [R]. Deferred behind a feature

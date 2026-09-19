@@ -6,11 +6,13 @@ server's `pulsar` role: session liveness, walk-list upload, and doorknock
 submission off the server's latch queue.
 
 Evidence labels: **[R]** recovered from stock app (string/code level),
-**[O]** observed live, **[H]** hypothesis. Numinar's Hermes v96 bundle is not
-decompilable with current tooling — endpoint *names* are [R], but request/
-response *shapes* are [H] until step-1 capture (hbcdump build or runtime
-capture with a test account). The mock backend (§4) defines the harness
-contract meanwhile. Source material: `../numinar/ANALYSIS.md`.
+**[O]** observed live, **[H]** hypothesis. Numinar's Hermes v96 bundle was
+**fully decompiled 2026-09-19** via hermes-decomp — endpoint names *and*
+request/response shapes are now [R], confirmed with line cites in
+`../numinar/audit/` (index: `../numinar/audit/README.md`). Step-1 capture is
+now only needed to verify runtime/server behavior with a test account, not
+shapes. The mock backend (§5) can be built to real parity immediately.
+Source material: `../numinar/ANALYSIS.md`, `../numinar/audit/`.
 
 The same wire-parity rules as the ValidNation domain apply
 (`DESIGN-VALIDNATION.md` §1): no invented fields, no harness metadata toward
@@ -23,26 +25,29 @@ Numinar hosts, server-side receipt verification.
 | Mode | Contract | Evidence |
 |---|---|---|
 | Mock (default for harness) | `POST /api/v1/session` (mock-defined) → opaque token; walk.json carries `mockBackend` + credentials | mock contract |
-| Real (later milestone) | Auth0 `auth.numinar.com`, scope `openid profile email offline_access`, PKCE redirect `com.numinar.numinar.auth0://...` — **client_id/audience inlined away, require runtime capture** | [R] flow, [H] params |
+| Real (later milestone) | Auth0 `auth.numinar.com`, scope `openid profile email offline_access`, PKCE redirect `com.numinar.numinar.auth0://...`; client_id `329jKTvPKBUjOSnY9sYnf0m7Z0gkzTTm`, audience `https://api.numinar.com` (decompiled L202372–202374) | [R] flow, [R] params (`../numinar/audit/auth-session.md` §1–2) |
 
 Token handling: refresh-capable store in encrypted prefs; 401 → one refresh
-→ terminal signed-out. Liveness toward the walk server (`POST /<person>/api/
-client/login` + `/heartbeat` 5 s) is driven by this domain's session state —
-the same way Pulsar Clean did it.
+→ terminal signed-out. (Our store stays encrypted — note stock does **not**:
+it keeps `access_token`/`id_token`/`refresh_token` in plaintext AsyncStorage,
+no expo-secure-store anywhere, L221577–221586.) Liveness toward the walk
+server (`POST /<person>/api/client/login` + `/heartbeat` 5 s) is driven by
+this domain's session state — the same way Pulsar Clean did it.
 
 ## 2. Data bootstrap
 
 | Contract | Purpose | Evidence |
 |---|---|---|
-| `GET /v1/my-orgs-mobile` | orgs the user belongs to | [R] path |
-| `GET /v2/mobile-app/projects/` | projects (canvassing assignments) | [R] path |
-| `GET /v1/voters/` + `/v1/nearby-voters` | voter/household records with geo | [R] paths, [H] shapes |
-| `GET /v1/projects/sse/updates` | SSE change notifications (optional; polling fallback) | [R] path |
+| `GET /v1/my-orgs-mobile` | orgs the user belongs to | [R] (`../numinar/audit/canvassing-core.md` §2) |
+| `GET /v3/projects` | projects (canvassing assignments) | [R] (`canvassing-core.md` §3) |
+| `GET /v2/mobile-app/projects/{id}/voters` — params `{ignore_contacted, include_past_contacts, limit:10000, include_tags, compress:true}` → gzipped column-oriented `voters_compressed` | voter/household records with geo (single page, no offset/bbox) | [R] (`canvassing-core.md` §4) |
+| `GET /v1/nearby-voters` — params only `{latitude, longitude}` | nearby voters for relational-neighbors mode | [R] (`canvassing-core.md` §5) |
+| `GET /v1/projects/sse/updates` | SSE change notifications (optional; polling fallback) | [R] (`../numinar/audit/push-realtime-endpoints.md` §2.2) |
 
-Stock is offline-first (expo-sqlite + `/v1/interactions/batch` retry queue
-[R]); ours mirrors that with a SQLite store keyed by project, and one
-bounded serial fetch per restart (single-flight; no duplicate concurrent
-fetches).
+Stock is offline-first (AsyncStorage `offline_buffer` + `/v1/interactions/
+batch` retry queue [R]; no expo-sqlite in the JS bundle); ours mirrors that
+with a SQLite store keyed by project, and one bounded serial fetch per
+restart (single-flight; no duplicate concurrent fetches).
 
 ## 3. WalklistAdapter — the synthesis layer (the new piece)
 
@@ -72,16 +77,26 @@ walk server latches PendingSubmission (gated on ValidNation shift)
   → WalkCanvasser reads pendingSubmissions (status poll), cursor-filtered
   → match stop_id/house → household (aid) → voter set
   → POST /v1/interactions/batch  [{household/voter ids, interaction type,
-    disposition, survey answers?, timestamp, gps}]   [R path, H shape]
+    disposition, survey answers?, timestamp, gps}]   [R path, R shape]
   → on accepted: advance exactly-once cursor (persisted, keyed by route
     identity), update local knocked state
   → on failure: surface, keep pending; retry only where idempotent
 ```
 
+- Interaction schema [R]: full confirmed canvass object and disposition enum
+  (`canvassed|Not Home|Refused|Wrong Address|Inaccessible Address|Dropped
+  Literature|Other`) in `../numinar/audit/interactions-surveys.md` §1.2.
+  Confirmed extra telemetry on canvass interactions — `user_latitude`/
+  `user_longitude` (canvasser GPS, **strings**), `device_id`,
+  `is_using_emulator`, `device_geolocation_enabled`,
+  `device_geolocation_permission_status` — are wire-parity obligations for
+  our client now, as is the 15 s `POST /v1/canvassing-qa/tracking` GPS beacon
+  (`interactions-surveys.md` §3): the server sees canvasser liveness/location
+  through it, so its absence is detectable.
 - Disposition mapping: walk-server trace dispositions → Numinar interaction
-  types (e.g. `not_home` → no-contact result, `resolved` → survey
-  completion). The mapping table is mock-defined first, real-mapped after
-  capture. [H]
+  types (e.g. `not_home` → `Not Home`, `resolved` → survey completion).
+  The mapping table is mock-defined first, then checked against the real
+  enum above. [H mapping, R enum]
 - Surveys: `/v1/relational-survey/` + tags (`/v1/tags`) attached to the
   interaction where the trace carries them. [R paths]
 - The clock gate is upstream (server-side); the app additionally refuses to
@@ -99,20 +114,27 @@ matching debugger port). Implements only what this domain calls:
 ```
 POST /api/v1/session            login → token
 GET  /v1/my-orgs-mobile         one org
-GET  /v2/mobile-app/projects/   one+ projects with voter sets
-GET  /v1/voters/                households with geo + per-voter data
+GET  /v3/projects               one+ projects
+GET  /v2/mobile-app/projects/{id}/voters
+                                households with geo + per-voter data
+                                (gzip-compressed column JSON in
+                                voters_compressed, matching stock's
+                                compress:true request)
 POST /v1/interactions/batch     accepts + records (debugger shows them)
 GET  /v1/relational-survey/     survey definitions
-POST /v1/push/tokens/           accepted, ignored
+POST /v1/canvassing-qa/tracking accepts + records the 15 s GPS QA beacon
+POST /v1/push/tokens            accepted, ignored
 ```
 
-The mock is the harness's definition of the Numinar contract until step-1
-capture lets us diff it against reality; every mock shape carries the
-evidence label and gets reconciled then.
+Shapes are now [R]-verified against `../numinar/audit/`, so the mock can be
+built to real parity immediately; step-1 runtime capture only confirms
+server behavior (status codes, error envelopes), and any discrepancy found
+then gets reconciled with evidence labels updated.
 
 ## 6. Realtime / push
 
-Deferred: SSE (`/v1/projects/sse/updates`) and FCM token registration are
+Deferred: SSE (`/v1/projects/sse/updates`; stock reconnects on a flat 3 s
+interval, no backoff, no cap [R]) and FCM token registration are
 nice-to-have; polling at stock-plausible cadence covers the harness. Twilio
 voice, relational texting, contact matching, leaderboards, paid-relational,
 Intercom/Mixpanel/Adjust, Mapbox native SDK: **not implemented** (the unified
@@ -121,9 +143,12 @@ map stays the offline Leaflet WebView from `walker_unified`).
 ## 7. Persistence
 
 SQLite: households/voters per project, interaction outbox (FIFO, drain on
-reconnect [R: stock offline semantics]), knocked-state cache, cursor store.
-Encrypted prefs: session tokens. All keyed so that sign-out wipes canvassing
-data but keeps walk config.
+reconnect — mirroring stock's AsyncStorage `offline_buffer` semantics:
+dedupe key `url_voter_id_project_id_tag_id`, drain in batches of 10 [R]),
+knocked-state cache, cursor store. Encrypted prefs: session tokens (note:
+stock itself uses plaintext AsyncStorage for tokens; we keep encrypted
+prefs). All keyed so that sign-out wipes canvassing data but keeps walk
+config.
 
 ## 8. UI surfaces
 
@@ -145,5 +170,8 @@ data but keeps walk config.
    across a process restart mid-route.
 3. `X-Walk-Client` version gate passes; readiness + liveness posts keep the
    walk unpaused for a full route.
-4. Step-1 capture complete: mock contract diffed against real Numinar
-   shapes; discrepancies fixed with evidence labels updated.
+4. Step-1 shape capture is **done statically** (hermes-decomp 2026-09-19;
+   fixtures in `../numinar/audit/`); what remains is a runtime canary
+   against the real API with a test account — sanitized live responses
+   match the audit fixtures, Auth0 login works with the recovered
+   client_id/audience.
