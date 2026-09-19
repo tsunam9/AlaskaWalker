@@ -57,25 +57,56 @@ offline Leaflet WebView map from `walker_unified`).
 
 ### Patriot Grassroots / ValidNation domain (worker-clock role)
 
-Reimplement this slice only:
+Reimplement this slice:
 
 - Auth: `POST /api/auth/token` (FormData username/password → JWT, **900 s
   expiry**) + `/api/auth/refresh`; token in encrypted prefs.
+- **Voice-sample enrollment** (`POST /api/account/voice_sample/`) —
+  server-mandated onboarding item (`alerts.banner_alert`,
+  `voice_sample_recorded` hiring checkmark); the server uses it to verify
+  the enrolled worker against shift audio. Record + upload once, surface
+  status, clear the banner.
 - Shift state machine: `generate` (in) → `pause`/`resume` (breaks, with
-  per-hour budget) → `finalize_v2` (out); `status_v2` sync; cross-device
-  conflict surfaced.
+  per-hour budget) → `finalize_v2` (out, `data_complete` only after the
+  upload queue drains); `status_v2` sync; cross-device conflict surfaced;
+  `state_payload` shape (`permissions{wifi,ble,gps,motion}`, battery,
+  tracking config) reproduced faithfully.
 - Breadcrumbs: WalkFix-derived GPS fixes → `/api/mobile/sensor/batch_upload`
-  records (`sensor_type: gps`, honest `simulated` flag — see risks §7).
+  records (`sensor_type: gps`, honest `simulated` flag — see risks §8), plus
+  WiFi/BLE/motion record types at plausible cadences (payroll review scores
+  `surroundings.ble_unique/wifi_unique` and `phone_behaviour`).
 - Device registration/events: `/api/mobile/device/update_info`,
-  `/event/batch_send` (shift events), FCM token post.
+  `/event/batch_send` (shift events, `device_state_sync`,
+  `app_termination`, `restored_after_termination`), FCM token post.
+- **Earnings/payroll (worker side)**: earnings list/detail,
+  `/api/earnings/totals-by-rate-type/`, approve-state visibility, Branch
+  payout onboarding status. Payroll approval validates **net hours
+  (break budgets), GPS/motion integrity, and interaction counts** — so these
+  feeds must be complete and coherent, not stubs.
+- Petition-signatory voice verification (worker-initiated websocket
+  `/api/ws/voice_verification/{id}` → `/api/verifications/voice/{id}/submit`)
+  for signature projects.
 - Restricted-area geofences: `/api/projects/{id}/restricted_areas`
-  (drives a warning UI; the audio-recording behavior it gates in the stock
-  app is not reimplemented).
+  (warning UI; also flips `audio_recording_config` behavior — see below).
 
-**Left behind**: all audio (VAD, wake-word, voice biometrics, coaching),
-payroll/Branch/W-9/Checkr, recruitment, manager review queues, Supabase
-direct queries, live-update OTA, Capacitor itself (native Java app, like
-`walker_unified`).
+**Conditional: continuous shift audio.** Recording is per-project
+(`audio_recording_config.permission`: `full_recording` / `no_recording` /
+`full_recording_with_restricted_area`). On `no_recording` projects the stock
+app records nothing and that is the normal server-visible state — mic
+permission isn't even requested. On recording projects the server accounts
+for audio (`missingSegmentIds`, zero conversations, `data_complete`), so
+absence IS detectable. Rule (per user): **if the harness project is
+`no_recording`, audio stays off and unimplemented**; if the real Alaska
+project requires recording, the VAD chunk upload
+(`/api/canvasser_voice/receive`, segment naming, `missingSegmentIds`
+reconciliation) must be built — decide after step 2 fixtures reveal the
+target project's config.
+
+**Left behind**: wake-word emergency pipeline (TFLite VAD→embedding→
+classifier; fires only on trigger, never auth or proof-of-work — excluded
+per user rule), AI coaching review UI, W-9/Checkr, recruitment, manager
+review queues/dashboards, Supabase direct queries, live-update OTA,
+Capacitor itself (native Java app, like `walker_unified`).
 
 ## 3. The walk-list synthesis gap (the one genuinely new piece)
 
@@ -154,7 +185,13 @@ alaska_walker/app/src/main/java/<ns>/
 │   ├── VnSessionStore.java       JWT + refresh (900 s expiry handling)
 │   ├── ShiftRepository.java      shift state machine + break budgets
 │   ├── ShiftSync.java            mirrors shift state → walk-server clock bridge
-│   └── BreadcrumbUploader.java   WalkFix fixes → sensor/batch_upload batches
+│   ├── BreadcrumbUploader.java   WalkFix fixes → gps/wifi/ble/motion batches
+│   ├── DeviceEvents.java         device_state_sync, app_termination, FCM token
+│   ├── VoiceSample.java          enrollment recorder + /api/account/voice_sample/
+│   ├── EarningsRepository.java   worker earnings/payroll surfaces
+│   ├── SignatoryVerification.java petition voice-verification WS flow
+│   └── AudioOutbox.java          CONDITIONAL (§2): VAD chunk upload, only if
+│                                 the harness project requires recording
 └── numinar/                      canvassing domain
     ├── NmApiClient.java          projects, voters, interactions/batch, surveys
     ├── NmSessionStore.java       session (mock token now; Auth0 later)
@@ -176,10 +213,10 @@ Canvass talks Numinar instead of Pulsar.
 |---|---|---|
 | 0 | ✅ Freeze baselines, pull APKs, static analysis (this document) | — |
 | 1 | Numinar payload recovery: build hbcdump for Hermes v96 **or** frida/mitm capture with a test account (needs credentials) | request/response fixtures for the §2 Numinar slice |
-| 2 | ValidNation fixtures: exercise stock app with test account, capture shift + sensor-upload shapes (readable JS already gives most) | fixtures for auth, shift lifecycle, batch_upload |
+| 2 | ValidNation fixtures: exercise stock app with test account, capture shift + sensor-upload shapes (readable JS already gives most); **record the target project's `audio_recording_config.permission`** — it decides whether AudioOutbox must be built | fixtures for auth, shift lifecycle, batch_upload, voice sample, earnings; audio decision made |
 | 3 | Infra: Alaska GraphHopper graph (docker), `CURRENT_WALK_CLIENTS` string, `server/numinar-mock/` skeleton + debugger port | mock serves login+projects+voters; walk server accepts new client string |
 | 4 | Scaffold `alaska_walker/` from `walker_unified` harness layer (walk/ + core/ unchanged); new applicationId + keystore; build/install | one poller in logcat; readiness posts both roles |
-| 5 | ValidNation domain: auth, shift machine, ShiftSync bridge, breadcrumb uploader | shift start on device gates latching on dashboard; breadcrumbs land server-side |
+| 5 | ValidNation domain: auth, voice-sample enrollment, shift machine + `state_payload`, ShiftSync bridge, breadcrumb uploader (gps/wifi/ble/motion), device events, earnings surfaces | shift start on device gates latching on dashboard; breadcrumbs land server-side; voice-sample banner clears |
 | 6 | Numinar domain against mock: session, projects→walklist adapter, upload, latch→interaction submission, surveys | full mock walk end-to-end: route computed, doors knocked exactly once |
 | 7 | UI pass: five destinations, readiness board, Health diagnostics | every datum reachable; config editor validates |
 | 8 | `multiclient-test`-style Alaska configs (one union `walk.json` per phone, person prefix) | two phones run separate people concurrently |
@@ -196,16 +233,26 @@ which is additive.
 |---|---|---|
 | Numinar Hermes v96 blocks static recovery of exact payloads | Certain | step 1: hbcdump build or frida capture; mock-defined shapes cover harness runs meanwhile |
 | Auth0 client ID/audience not statically recoverable | Certain (inlined) | runtime capture with test account; mock auth until then |
-| ValidNation rejects/flags simulated GPS (`simulated:true`, root/tamper detection in stock app) | Medium | honest flag + test-account canary (step 9) before any walk depends on it; worst case, breadcrumbs stay mock-only while the clock (the load-bearing part) still works |
+| ValidNation rejects/flags simulated GPS (`simulated:true`; payroll review scores `gps_quality.simulated`, coverage, speed-mismatch) | **High on the real backend** | harness shifts are visibly simulated in payroll review — acceptable for a designated test account; canary in step 9 before any walk depends on it; never run harness shifts on real workers' projects |
+| Harness project actually requires audio (`audio_recording_config.permission != no_recording`) | Unknown until step 2 | if so, build AudioOutbox (VAD chunk upload + `missingSegmentIds` reconciliation) — the server accounts for missing audio on recording projects |
 | Household-synthesized walk lists produce poor routes | Medium | adapter groups by location; operator can hand-build ad-hoc routes from the dashboard as today |
 | 900 s ValidNation JWT expiry causes request churn | Low | proactive refresh at 80% TTL; single-flight; 401 → one refresh → terminal |
 | Alaska GraphHopper build (extract size, docker disk) | Low | build once, cache volume; document port mapping (§5.5) |
-| Scope creep into surveillance features | Medium | §2 lists are exhaustive; audio/Twilio/payroll are explicit non-goals |
+| Scope creep into surveillance features | Medium | §2 lists are exhaustive; wake-word and manager tooling are explicit non-goals |
 
 ## 9. Explicit non-goals
 
-- Reimplementing ValidNation audio recording, wake-word, voice biometrics,
-  AI coaching, payroll, recruitment, or manager tooling.
+- Wake-word emergency pipeline (TFLite Silero-VAD → embedding → classifier):
+  not in the auth flow, never sent as proof, fires only when triggered —
+  excluded per user rule ("if having it off isn't known by the server, keep
+  it off"). On a `no_recording` project its absence is indistinguishable
+  from stock.
+- Continuous shift audio **only while the harness project is
+  `no_recording`** — that is a legitimate, server-tolerated configuration.
+  If the target project records, this moves into scope (§2, step 2).
+- AI coaching review UI, W-9/Checkr, recruitment, manager review
+  queues/dashboards, Supabase direct queries, live-update OTA, Capacitor
+  itself.
 - Reimplementing Numinar Twilio calling, relational texting, contact
   matching, Intercom/analytics, or Mapbox native maps.
 - Any modification of the walk server's replay/latch/safety logic.
@@ -216,7 +263,11 @@ which is additive.
 1. **Credentials**: a ValidNation test canvasser account and a Numinar test
    account unblock steps 1–2 and 9. Without them the mock-only path still
    produces a working harness.
-2. **applicationId/branding** of the unified app (`§5.4` proposal).
-3. Whether the Alaska project gets its own copy of the mock/debugger
+2. **Target project's `audio_recording_config.permission`**: if the Alaska
+   project(s) record audio, AudioOutbox is in scope (the server accounts for
+   missing segments); if `no_recording`, audio legitimately stays off.
+   Determined by step-2 fixtures or by asking the campaign admin.
+3. **applicationId/branding** of the unified app (`§5.4` proposal).
+4. Whether the Alaska project gets its own copy of the mock/debugger
    tooling or imports `campaign_project/server` as-is (plan assumes the
    latter for the walk server, a new mock for Numinar).

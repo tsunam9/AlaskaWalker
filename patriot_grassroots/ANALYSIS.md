@@ -30,12 +30,34 @@ platform:
   (`shift_end`, `shift_break_event`, `wake_word_event`,
   `restored_after_termination`, ...), `/api/mobile/device/update_info`,
   `/api/mobile/notifications/token` (FCM).
-- **Out of scope for us**: continuous shift audio recording + on-device VAD
-  (Silero) + wake-word emergency (`validnation.ai.audiomanager`,
-  TFLite pipeline), voice-biometric verification over websocket, AI coaching,
-  earnings/payroll/Branch payouts, W-9/Checkr, recruitment campaigns,
-  manager review queues. ~80% of the app is surveillance/HR we do not
-  reimplement.
+- **Scope note (revised 2026-09-18, second pass)**: voice-sample enrollment
+  and worker-side earnings/payroll are **in scope** for the reimplementation
+  (see `docs/UNIFIED-APP-PLAN.md` §2). Key facts:
+  - Voice sample (`POST /api/account/voice_sample/`) is server-mandated
+    onboarding (`alerts.banner_alert: "record_voice_sample"` + hiring
+    checkmark `voice_sample_recorded`), consumed server-side to verify the
+    worker's voice against shift audio. The shift-start screen does NOT
+    check for it client-side; shift start gates on: assigned project +
+    location/motion/BLE/WiFi permissions (+ mic ONLY when the project's
+    `audio_recording_config.permission != "no_recording"`).
+  - Continuous shift audio is per-project (`full_recording` /
+    `no_recording` / `full_recording_with_restricted_area`). On
+    `no_recording` projects, zero audio is the normal server-visible state.
+    On recording projects the server accounts for audio: `missingSegmentIds`
+    in `/api/canvasser_voice/receive` responses, zero conversations,
+    `data_complete` at `finalize_v2`, `aliveModules` in
+    `tracker_state_divergence` events.
+  - The `/api/ws/voice_verification/{id}` websocket is the petition
+    SIGNATORY verification feature (voters' voices, worker-initiated),
+    NOT a worker spot-check. No server-initiated voice challenge exists.
+  - Payroll review scores: net hours vs break budgets, `gps_quality`
+    (`coverage_pct`, `simulated` mock-GPS, `speed_mismatch_pct`),
+    `phone_behaviour`, `surroundings` (BLE/WiFi uniqueness), engagement
+    (interaction counts). No audio-presence metric client-side, but
+    managers see conversation lists — a recording-project shift with no
+    conversations looks anomalous.
+  - Wake-word emergency pipeline: fires only when triggered; not auth, not
+    proof-of-work → excluded from reimplementation.
 
 ## Auth
 
