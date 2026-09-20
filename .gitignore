@@ -3,3 +3,11 @@ java/
 tree/apktool/
 *.keystore
 *.jks
+
+# Local traffic-capture tooling and sensitive runtime output.
+.traffic-capture/
+patriot_grassroots/instrumentation/build/
+patriot_grassroots/instrumentation/captures/
+patriot_grassroots/instrumentation/.venv/
+patriot_grassroots/instrumentation/.tools/
+patriot_grassroots/instrumentation/__pycache__/
