@@ -21,9 +21,18 @@ project `~/src/campaign_project` (`server/pulsar-route/`, port 8765):
   `api.validnation.ai`).
 
 Status as of 2026-09-19: **static recovery complete; plan steps 1–2 (static
-halves) done; nothing built yet.** Next work is steps 3–4 of
-`docs/UNIFIED-APP-PLAN.md` (Alaska GraphHopper graph, `server/numinar-mock/`,
-walk-client version string, then the `alaska_walker/` scaffold).
+halves) done.** Updated 2026-09-21: first build artifacts exist —
+`server/patriot-mock/` (ValidNation mock backend covering the full
+canvasser-facing surface per `patriot_grassroots/audit/`; test suites
+`scripts/test_audio.sh` 26/26, `scripts/test_reads.sh` 77/77,
+`scripts/simulate_workflow.py` all green) and the `alaska_walker/` scaffold
+(logs into the mock: token → profile → proactive refresh verified
+on-device). Per user direction the Patriot side is mocked first and
+GraphHopper is deferred. A repointed stock Patriot Grassroots build
+(`patriot_grassroots/instrumentation/build_instrumented.sh` with
+`BUILD_VARIANT=repointed TARGET_HTTP_ORIGIN=...`) runs against the mock as
+the behavioral fidelity test. Next work: steps 3–6 of
+`docs/UNIFIED-APP-PLAN.md` (grow `alaska_walker/` against the mock).
 
 ## Repository layout
 
@@ -44,6 +53,13 @@ patriot_grassroots/           ValidNation white-label (Capacitor/Nuxt hybrid)
 numinar/                      canvassing app (Expo/React Native, Hermes v96)
   stock/  BASELINE.md  ANALYSIS.md  tree/  (same roles as above)
   audit/                      six line-cited audit files — GROUND TRUTH
+server/patriot-mock/          ValidNation mock backend (Flask+PyJWT,
+                              0.0.0.0:19001, env PM_HOST/PM_PORT); full
+                              canvasser surface; dashboard at /__mock/;
+                              runtime-state.json persistence; tests in
+                              scripts/; run: python3 patriot_mock.py
+alaska_walker/                unified app scaffold (native Java, AGP 8.10,
+                              gradle 8.11.1 wrapper); build: ./build.sh
 ```
 
 Gitignored local artifacts (not committed, may be absent on disk):

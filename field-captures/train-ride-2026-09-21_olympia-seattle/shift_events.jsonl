@@ -1,0 +1,3 @@
+{"captured_at": "2026-09-22T05:42:41Z", "event": "finalize", "user_id": "1001", "work_shift_id": "ac887d8c37774ffc9549cc84c4cf6dce", "end_time": "2026-09-22T05:42:40.779Z", "data_complete": true}
+{"captured_at": "2026-09-22T16:46:12Z", "event": "generate", "user_id": "1001", "work_shift_id": "ff5c12ec5d0f419cb5991011b0cf7a9a", "device_id": "25d59710e21b78f0", "project_id": "3f8a2c1e-7b4d-4e2a-9c5f-1a2b3c4d5e6f", "start_time": "2026-09-22T16:46:12Z", "client_start_time": "2026-09-22T16:46:11.829Z", "time_zone": "America/Los_Angeles"}
+{"captured_at": "2026-09-22T17:02:40Z", "event": "finalize", "user_id": "1001", "work_shift_id": "ff5c12ec5d0f419cb5991011b0cf7a9a", "end_time": "2026-09-22T17:02:40.106Z", "data_complete": true}

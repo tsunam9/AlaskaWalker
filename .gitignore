@@ -1,13 +1,34 @@
 .venv-re/
-java/
+# jadx decompilations of the two stock apps (regenerable; do NOT ignore
+# alaska_walker's own Java sources)
+numinar/java/
+patriot_grassroots/java/
 tree/apktool/
 *.keystore
 *.jks
+__pycache__/
 
 # Local traffic-capture tooling and sensitive runtime output.
 .traffic-capture/
 patriot_grassroots/instrumentation/build/
+patriot_grassroots/instrumentation/build-repointed/
 patriot_grassroots/instrumentation/captures/
+.playwright-cli/
 patriot_grassroots/instrumentation/.venv/
 patriot_grassroots/instrumentation/.tools/
 patriot_grassroots/instrumentation/__pycache__/
+
+# Patriot mock runtime artifacts
+server/patriot-mock/uploads/
+server/patriot-mock/captures/
+server/patriot-mock/runtime-state.json
+server/patriot-mock/__pycache__/
+server/patriot-mock/mock/__pycache__/
+server/patriot-mock/runtime-state.json
+server/patriot-mock/runtime-state.json.tmp
+
+# Unified app build outputs
+alaska_walker/app/build/
+alaska_walker/build/
+alaska_walker/dist/
+alaska_walker/.gradle/

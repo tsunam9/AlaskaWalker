@@ -4,12 +4,21 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
 STOCK_DIR="$REPO_ROOT/patriot_grassroots/stock"
-BUILD_DIR="$SCRIPT_DIR/build"
+BUILD_VARIANT="${BUILD_VARIANT:-capture}"
+CAPTURE_HOOKS="${CAPTURE_HOOKS:-1}"
+TARGET_HTTP_ORIGIN="${TARGET_HTTP_ORIGIN:-http://127.0.0.1:18080}"
+TARGET_WS_ORIGIN="${TARGET_WS_ORIGIN:-${TARGET_HTTP_ORIGIN/http:/ws:}}"
+if [[ "$BUILD_VARIANT" == "capture" ]]; then
+  BUILD_DIR="$SCRIPT_DIR/build"
+else
+  BUILD_DIR="$SCRIPT_DIR/build-$BUILD_VARIANT"
+fi
 WORK_TREE="$BUILD_DIR/apktool"
 OUT_DIR="$BUILD_DIR/out"
 TOOLS_DIR="$SCRIPT_DIR/.tools"
 APKTOOL_VERSION="3.0.3"
 APKTOOL_JAR="$TOOLS_DIR/apktool_${APKTOOL_VERSION}.jar"
+FRAME_DIR="${APKTOOL_FRAME_DIR:-$TOOLS_DIR/framework-device}"
 APKTOOL_SHA256="dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423"
 SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/home/jjlar/Android/Sdk}}"
 
@@ -38,7 +47,7 @@ printf '%s  %s\n' "$APKTOOL_SHA256" "$APKTOOL_JAR" | sha256sum --check --status
 if [[ -d "$WORK_TREE" ]]; then
   mv "$WORK_TREE" "$BUILD_DIR/apktool.previous.$(date +%s)"
 fi
-java -jar "$APKTOOL_JAR" decode --force --output "$WORK_TREE" "$STOCK_DIR/base.apk"
+java -jar "$APKTOOL_JAR" decode --frame-path "$FRAME_DIR" --force --output "$WORK_TREE" "$STOCK_DIR/base.apk"
 
 python3 - "$WORK_TREE/AndroidManifest.xml" "$WORK_TREE/res/values/public.xml" <<'PY'
 from pathlib import Path
@@ -160,22 +169,32 @@ PY
 
 # Capture the exact FCM objects delivered into the app. The transport socket belongs
 # to Google Play Services and may not be decryptable by an app-scoped CA trust patch.
-cp "$SCRIPT_DIR/capture_inbound.js" "$WORK_TREE/assets/public/capture-inbound.js"
-python3 - "$WORK_TREE/assets/public" <<'PY'
+if [[ "$CAPTURE_HOOKS" == "1" ]]; then
+  cp "$SCRIPT_DIR/capture_inbound.js" "$WORK_TREE/assets/public/capture-inbound.js"
+fi
+python3 - "$WORK_TREE/assets/public" "$CAPTURE_HOOKS" "$TARGET_HTTP_ORIGIN" "$TARGET_WS_ORIGIN" <<'PY'
 from pathlib import Path
 import sys
 
 public = Path(sys.argv[1])
+capture_hooks = sys.argv[2] == "1"
+target_http = sys.argv[3].rstrip("/")
+target_ws = sys.argv[4].rstrip("/")
+if not target_http.startswith(("http://", "https://")):
+    raise SystemExit(f"invalid TARGET_HTTP_ORIGIN: {target_http}")
+if not target_ws.startswith(("ws://", "wss://")):
+    raise SystemExit(f"invalid TARGET_WS_ORIGIN: {target_ws}")
 loader = '<script src="/capture-inbound.js"></script>'
 html_files = list(public.rglob("*.html"))
-for html in html_files:
-    text = html.read_text(encoding="utf-8")
-    if loader not in text:
-        marker = '<script type="module"'
-        if marker not in text:
-            raise SystemExit(f"Nuxt module marker not found in {html}")
-        text = text.replace(marker, loader + marker, 1)
-        html.write_text(text, encoding="utf-8")
+if capture_hooks:
+    for html in html_files:
+        text = html.read_text(encoding="utf-8")
+        if loader not in text:
+            marker = '<script type="module"'
+            if marker not in text:
+                raise SystemExit(f"Nuxt module marker not found in {html}")
+            text = text.replace(marker, loader + marker, 1)
+            html.write_text(text, encoding="utf-8")
 
 callbacks = {
     'jr.addListener("tokenReceived",async i=>{': "tokenReceived",
@@ -183,43 +202,41 @@ callbacks = {
     'jr.addListener("notificationActionPerformed",async i=>{': "notificationActionPerformed",
 }
 matches = {marker: [] for marker in callbacks}
-for javascript in (public / "_nuxt").glob("*.js"):
-    text = javascript.read_text(encoding="utf-8")
-    changed = False
-    for marker, event_name in callbacks.items():
-        if marker in text:
-            injection = (
-                marker
-                + f'globalThis.__patriotCaptureInbound?.("{event_name}",i);'
-            )
-            text = text.replace(marker, injection, 1)
-            matches[marker].append(javascript)
-            changed = True
-    if changed:
-        javascript.write_text(text, encoding="utf-8")
+if capture_hooks:
+    for javascript in (public / "_nuxt").glob("*.js"):
+        text = javascript.read_text(encoding="utf-8")
+        changed = False
+        for marker, event_name in callbacks.items():
+            if marker in text:
+                injection = marker + f'globalThis.__patriotCaptureInbound?.("{event_name}",i);'
+                text = text.replace(marker, injection, 1)
+                matches[marker].append(javascript)
+                changed = True
+        if changed:
+            javascript.write_text(text, encoding="utf-8")
 
-bad = {marker: files for marker, files in matches.items() if len(files) != 1}
-if bad:
-    details = ", ".join(f"{marker}: {len(files)}" for marker, files in bad.items())
-    raise SystemExit(f"FCM callback patch count mismatch ({details})")
+    bad = {marker: files for marker, files in matches.items() if len(files) != 1}
+    if bad:
+        details = ", ".join(f"{marker}: {len(files)}" for marker, files in bad.items())
+        raise SystemExit(f"FCM callback patch count mismatch ({details})")
 
-# Route every recovered runtime origin to the USB-reversed local backend. Source maps
+# Route every recovered runtime origin to the selected isolated backend. Source maps
 # are evidence only and are deliberately left intact; executable HTML/JS is audited.
 origin_replacements = {
-    "wss://api.validnation.ai/api/ws": "ws://127.0.0.1:18080/api/ws",
-    "https://api.validnation.ai": "http://127.0.0.1:18080",
-    "https://tfnnpqpvdjisoizvciyr.supabase.co": "http://127.0.0.1:18080",
-    "https://google.com/generate_204": "http://127.0.0.1:18080/generate_204",
-    "https://maps.googleapis.com/maps/api/js?": "http://127.0.0.1:18080/maps/api/js?",
-    "https://fcmregistrations.googleapis.com/v1": "http://127.0.0.1:18080/firebase/fcmregistrations/v1",
-    "https://firebaseremoteconfig.googleapis.com": "http://127.0.0.1:18080/firebase/remoteconfig",
-    "https://firebaseinstallations.googleapis.com/v1": "http://127.0.0.1:18080/firebase/installations/v1",
-    "https://browser.sentry-cdn.com": "http://127.0.0.1:18080/sentry-cdn",
-    "https://o447951.ingest.sentry.io": "http://127.0.0.1:18080/api/sentry",
-    "https://unpkg.com": "http://127.0.0.1:18080/unpkg",
-    "https://www.gstatic.com/firebasejs": "http://127.0.0.1:18080/firebasejs",
-    "https://apps.apple.com": "http://127.0.0.1:18080/external/apple-store",
-    "https://play.google.com": "http://127.0.0.1:18080/external/play-store",
+    "wss://api.validnation.ai/api/ws": f"{target_ws}/api/ws",
+    "https://api.validnation.ai": target_http,
+    "https://tfnnpqpvdjisoizvciyr.supabase.co": target_http,
+    "https://google.com/generate_204": f"{target_http}/generate_204",
+    "https://maps.googleapis.com/maps/api/js?": f"{target_http}/maps/api/js?",
+    "https://fcmregistrations.googleapis.com/v1": f"{target_http}/firebase/fcmregistrations/v1",
+    "https://firebaseremoteconfig.googleapis.com": f"{target_http}/firebase/remoteconfig",
+    "https://firebaseinstallations.googleapis.com/v1": f"{target_http}/firebase/installations/v1",
+    "https://browser.sentry-cdn.com": f"{target_http}/sentry-cdn",
+    "https://o447951.ingest.sentry.io": f"{target_http}/api/sentry",
+    "https://unpkg.com": f"{target_http}/unpkg",
+    "https://www.gstatic.com/firebasejs": f"{target_http}/firebasejs",
+    "https://apps.apple.com": f"{target_http}/external/apple-store",
+    "https://play.google.com": f"{target_http}/external/play-store",
 }
 runtime_files = [
     path
@@ -239,6 +256,10 @@ for path in runtime_files:
             text = text.replace(origin, local)
     # Disable platform-specific Sentry DSNs copied into every prerendered page.
     text = __import__("re").sub(r'dsn(Ios|Android):"[^"]*"', lambda m: f'dsn{m.group(1)}:""', text)
+    # Keep the embedded policy page available as stock content, but make the one
+    # consent-form hyperlink inert so it cannot navigate to any policy destination.
+    text = text.replace('href:"/privacy-policy"', 'href:"#"')
+    text = text.replace("privacy@patriotgrassroots.com", "Privacy contact unavailable in this isolated build")
     if text != original:
         path.write_text(text, encoding="utf-8")
 
@@ -265,6 +286,7 @@ forbidden = (
     "unpkg.com",
     "apps.apple.com",
     "play.google.com",
+    "patriotgrassroots.com",
 )
 leaks = []
 for path in runtime_files:
@@ -275,13 +297,17 @@ for path in runtime_files:
 if leaks:
     raise SystemExit("vendor runtime origins remain:\n" + "\n".join(leaks))
 
+hook_summary = (
+    f"injected capture loader into {len(html_files)} HTML files and instrumented three FCM callbacks"
+    if capture_hooks else "left stock application callbacks untouched"
+)
 print(
-    f"Injected capture loader into {len(html_files)} HTML files, instrumented three FCM callbacks, "
-    f"and rerouted {sum(replacement_counts.values())} runtime origins to localhost."
+    f"{hook_summary}; rerouted {sum(replacement_counts.values())} runtime origins "
+    f"to {target_http}."
 )
 PY
 
-java -jar "$APKTOOL_JAR" build "$WORK_TREE" -o "$BUILD_DIR/base-unsigned.apk"
+java -jar "$APKTOOL_JAR" build --frame-path "$FRAME_DIR" "$WORK_TREE" -o "$BUILD_DIR/base-unsigned.apk"
 "$ZIPALIGN" -f 4 "$BUILD_DIR/base-unsigned.apk" "$OUT_DIR/base-aligned.apk"
 
 KEYSTORE="$BUILD_DIR/capture-debug.keystore"
@@ -316,7 +342,7 @@ for split in "$STOCK_DIR"/split_*.apk; do
   "$APKSIGNER" verify --verbose "$OUT_DIR/$(basename "$split")" >/dev/null
 done
 printf 'Signature verification passed for base and split APKs.\n'
-printf '\nInstrumented and consistently signed APK set:\n'
+printf '\nRebuilt and consistently signed APK set:\n'
 find "$OUT_DIR" -maxdepth 1 -type f -name '*.apk' ! -name '*-aligned.apk' -printf '  %p\n' | sort
 printf '\nInstall on a disposable emulator/device after removing the vendor-signed app:\n'
 printf '  adb install-multiple %q/base.apk %q/split_config.arm64_v8a.apk %q/split_config.en.apk %q/split_config.xxhdpi.apk\n' "$OUT_DIR" "$OUT_DIR" "$OUT_DIR" "$OUT_DIR"

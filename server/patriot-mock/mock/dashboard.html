@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Patriot Mock Dashboard</title>
+  <style>
+    :root{color-scheme:dark;--bg:#081018;--panel:#101c28;--panel2:#142535;--line:#294052;--text:#eaf3f8;--muted:#91a8b7;--cyan:#4dd7e8;--green:#57df9a;--amber:#ffcc66;--red:#ff7384;--blue:#78a9ff}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% -10%,#16344a 0,transparent 35%),var(--bg);color:var(--text);font:14px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    header{position:sticky;top:0;z-index:5;display:flex;gap:18px;align-items:center;padding:16px 22px;border-bottom:1px solid var(--line);background:#081018e8;backdrop-filter:blur(12px)}
+    h1{font:700 20px/1.1 system-ui;margin:0;letter-spacing:.2px}.sub{color:var(--muted);font-size:12px}.live{margin-left:auto;display:flex;gap:9px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}button,input{font:inherit;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:7px 10px}button{cursor:pointer}button:hover,.tab.active{border-color:var(--cyan);color:var(--cyan)}
+    main{max-width:1800px;margin:auto;padding:20px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:11px;padding:14px}.card b{display:block;font-size:25px;color:var(--cyan)}.card span{color:var(--muted);font-size:12px}
+    nav{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.tab{background:transparent}.pane{display:none}.pane.active{display:block}.toolbar{display:flex;gap:10px;margin-bottom:12px}.toolbar input{width:min(520px,100%)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:12px}.box{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}.box h2{font:650 14px system-ui;margin:0;padding:11px 13px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.box h2 small{color:var(--muted);font:12px ui-monospace}
+    .table-wrap{max-height:520px;overflow:auto}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:9px 11px;border-bottom:1px solid #203443;vertical-align:top;white-space:nowrap}th{position:sticky;top:0;background:#142535;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}tr:hover td{background:#142535}code{color:var(--blue)}
+    details{border-bottom:1px solid #203443}summary{cursor:pointer;padding:10px 12px;display:flex;gap:12px;align-items:center;list-style:none}summary::-webkit-details-marker{display:none}summary:hover{background:#142535}.grow{flex:1}.muted{color:var(--muted)}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
+    pre{margin:0;padding:12px;overflow:auto;max-height:600px;background:#071019;color:#cce4ef;font:12px/1.45 ui-monospace;white-space:pre;word-break:normal}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px}.method{width:52px;color:var(--cyan)}.empty{padding:28px;text-align:center;color:var(--muted)}
+    .inspect-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--line)}.viewer{min-width:0;background:#071019}.viewer+.viewer{border-left:1px solid var(--line)}.viewer-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:8px 11px;background:#142535;border-bottom:1px solid var(--line);font:650 12px system-ui}.viewer-head button{padding:3px 8px;font-size:11px}.json-view{height:520px;max-height:65vh}.json-key{color:#79c7ff}.json-string{color:#9be3a8}.json-number{color:#ffd479}.json-bool{color:#d8a7ff}.json-null{color:#8498a5}
+    .tree{height:520px;max-height:65vh;overflow:auto;padding:8px 10px;background:#0b151f}.tree details{border:0}.tree summary{padding:3px 4px;border-radius:4px}.tree summary:hover{background:#172735}.tree .leaf{display:flex;gap:8px;padding:3px 4px 3px 22px}.tree-key{color:#79c7ff}.tree-type{color:var(--muted);font-size:11px}.tree-value{color:#9be3a8;overflow:hidden;text-overflow:ellipsis}.tree-node{color:#ffd479}
+    @media(max-width:900px){.inspect-grid{grid-template-columns:1fr}.viewer+.viewer{border-left:0;border-top:1px solid var(--line)}}
+    @media(max-width:700px){header{align-items:flex-start;flex-wrap:wrap}.live{margin-left:0}.grid{grid-template-columns:1fr}main{padding:12px}th:nth-child(n+4),td:nth-child(n+4){display:none}}
+  </style>
+</head>
+<body>
+<header>
+  <div><h1>Patriot Mock // live state</h1><div class="sub">localhost-only operational dashboard</div></div>
+  <div class="live"><span class="dot" id="dot"></span><span id="connection">connecting</span><span class="sub" id="updated"></span><button id="refresh">Refresh</button></div>
+</header>
+<main>
+  <section class="cards" id="cards"></section>
+  <nav id="tabs"></nav>
+  <section id="overview" class="pane active"></section>
+  <section id="requests" class="pane"></section>
+  <section id="sensors" class="pane"></section>
+  <section id="events" class="pane"></section>
+  <section id="shifts" class="pane"></section>
+  <section id="audio" class="pane"></section>
+  <section id="fixtures" class="pane"></section>
+  <section id="raw" class="pane"></section>
+</main>
+<script>
+const tabs=[['overview','Overview'],['requests','HTTP requests'],['sensors','Sensors'],['events','Device events'],['shifts','Shifts'],['audio','Audio / voice'],['fixtures','Fixtures'],['raw','Raw state']];
+let state=null, filter='', viewerSeq=0, viewerValues={}, recordValues={};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pretty=v=>JSON.stringify(v,null,2); const count=o=>Object.entries(o||{}).map(([k,v])=>`<span class="pill">${esc(k)} ${v}</span>`).join(' ');
+function box(title,body,n=''){return `<div class="box"><h2>${esc(title)}<small>${esc(n)}</small></h2>${body}</div>`}
+function relativeText(ms){let seconds=Math.floor(Math.abs(Date.now()-ms)/1000);const days=Math.floor(seconds/86400);seconds%=86400;const hours=Math.floor(seconds/3600);seconds%=3600;const minutes=Math.floor(seconds/60);seconds%=60;const clock=[hours,minutes,seconds].map(n=>String(n).padStart(2,'0')).join(':');return `${days?days+'d ':''}${clock} ${ms>Date.now()?'from now':'ago'}`}
+function timeMarkup(value){if(value===null||value===undefined)return '<span class="muted">—</span>';const date=new Date(typeof value==='number'?value:String(value));if(Number.isNaN(date.getTime()))return esc(value);return `<span data-time="${date.getTime()}" title="${esc(date.toISOString())}">${esc(relativeText(date.getTime()))}</span>`}
+function refreshRelativeTimes(){document.querySelectorAll('[data-time]').forEach(el=>el.textContent=relativeText(Number(el.dataset.time)))}
+function cell(v){if(v===null||v===undefined)return '<span class="muted">—</span>';if(typeof v==='object')return `<code>${esc(JSON.stringify(v))}</code>`;return esc(v)}
+function syntaxJson(value){return esc(pretty(value)).replace(/(&quot;(?:\\u[a-fA-F0-9]{4}|\\[^u]|[^\\&])*&quot;)(\s*:)?|\b(true|false)\b|\b(null)\b|(-?\d+(?:\.\d+)?(?:[eE][+\-]?\d+)?)/g,(m,s,key,b,n,num)=>{if(s)return `<span class="${key?'json-key':'json-string'}">${s}</span>${key||''}`;if(b)return `<span class="json-bool">${b}</span>`;if(n)return `<span class="json-null">${n}</span>`;return `<span class="json-number">${num}</span>`})}
+function treeNode(value,key='root',open=true,path=[]){const nodePath=[...path,String(key)];const keyHtml=`<span class="tree-key">${esc(key)}</span>`;if(value!==null&&typeof value==='object'){const entries=Array.isArray(value)?value.map((v,i)=>[i,v]):Object.entries(value);const label=Array.isArray(value)?`Array(${entries.length})`:`Object(${entries.length})`;return `<details data-tree-path="${esc(JSON.stringify(nodePath))}" ${open?'open':''}><summary>${keyHtml}<span class="tree-node">${label}</span></summary>${entries.map(([k,v])=>treeNode(v,k,false,nodePath)).join('')}</details>`}const type=value===null?'null':typeof value;return `<div class="leaf">${keyHtml}<span class="tree-type">${type}</span><span class="tree-value">${cell(value)}</span></div>`}
+function dualViewer(value){const id=`viewer-${++viewerSeq}`;viewerValues[id]=value;return `<div class="inspect-grid"><section class="viewer"><div class="viewer-head"><span>Raw JSON</span><button data-copy="${id}">Copy JSON</button></div><pre class="json-view" data-view-scroll="raw">${syntaxJson(value)}</pre></section><section class="viewer"><div class="viewer-head"><span>Structure explorer</span><span class="muted">expand keys and arrays</span></div><div class="tree" data-view-scroll="tree">${treeNode(value)}</div></section></div>`}
+async function copyViewer(id,button){await navigator.clipboard.writeText(pretty(viewerValues[id]));const old=button.textContent;button.textContent='Copied';setTimeout(()=>button.textContent=old,1000)}
+function uploadedSensorPayload(record){const payload={};for(const [key,value] of Object.entries(record))if(key!=='user_id'&&key!=='received_at')payload[key]=value;return payload}
+function rows(items,kind){if(!items.length)return '<div class="empty">No records received</div>';return items.slice().reverse().map((x,i)=>{let label,meta;
+  if(kind==='request'){label=`<span class="method">${esc(x.method)}</span><span class="grow">${esc(x.path)}${esc(new URLSearchParams(x.query||{}).toString()?'?'+new URLSearchParams(x.query).toString():'')}</span><span class="${x.status>=400?'bad':'ok'}">${x.status}</span>`;meta=`${esc(x.duration_ms)}ms · ${timeMarkup(x.received_at)}`}
+  else if(kind==='sensor'){label=`<span class="pill">${esc(x.sensor_type)}</span><span class="grow">${(x.sensor_readings||[]).length} readings</span>`;meta=timeMarkup(x.received_at||x.ended_at)}
+  else if(kind==='event'){label=`<span class="pill">${esc(x.event_type)}</span><span class="grow">${esc(x.device_id)}</span>`;meta=timeMarkup(x.received_at||x.created_at)}
+  else {label=`<span class="pill">${esc(x.kind||x.status||'item')}</span><span class="grow">${esc(x.work_shift_id||x.id||'')}</span>`;meta=timeMarkup(x.received_at||x.created_at||x.start_time)}
+  const hay=pretty(x).toLowerCase(); if(filter&&!hay.includes(filter))return '';
+  const stableId=x.record_id||x.id||x.work_shift_id||`${x.received_at||x.created_at||x.start_time||''}:${x.event_type||x.sensor_type||x.status||''}:${i}`;
+  const recordKey=`${kind}:${stableId}`;recordValues[recordKey]=kind==='sensor'?uploadedSensorPayload(x):x;return `<details data-record-key="${esc(recordKey)}"><summary>${label}<span class="muted">${meta}</span></summary><div data-record-body></div></details>`}).join('')}
+function hydrateRecord(record){const body=record.querySelector(':scope > [data-record-body]');if(body&&!body.firstChild&&recordValues[record.dataset.recordKey]!==undefined)body.innerHTML=dualViewer(recordValues[record.dataset.recordKey])}
+function captureView(){const snap={openRecords:[],openTrees:[],scrolls:[],focus:null};document.querySelectorAll('.pane').forEach(pane=>pane.querySelectorAll('details[data-record-key]').forEach(record=>{const token=[pane.id,record.dataset.recordKey];if(record.open)snap.openRecords.push(token);record.querySelectorAll('details[data-tree-path][open]').forEach(node=>snap.openTrees.push([...token,node.dataset.treePath]));record.querySelectorAll('[data-view-scroll]').forEach(view=>snap.scrolls.push([...token,view.dataset.viewScroll,view.scrollTop,view.scrollLeft]))}));if(document.activeElement?.matches('[data-filter]')){const input=document.activeElement;snap.focus=[input.closest('.pane')?.id,input.selectionStart,input.selectionEnd]}return snap}
+function restoreView(snap){const records=new Map();document.querySelectorAll('.pane').forEach(pane=>pane.querySelectorAll('details[data-record-key]').forEach(record=>records.set(`${pane.id}\n${record.dataset.recordKey}`,record)));for(const [pane,key] of snap.openRecords){const record=records.get(`${pane}\n${key}`);if(record){hydrateRecord(record);record.open=true}}for(const [pane,key,path] of snap.openTrees){const record=records.get(`${pane}\n${key}`);if(!record)continue;const node=[...record.querySelectorAll('details[data-tree-path]')].find(item=>item.dataset.treePath===path);if(node)node.open=true}for(const [pane,key,role,top,left] of snap.scrolls){const record=records.get(`${pane}\n${key}`);const view=record&&[...record.querySelectorAll('[data-view-scroll]')].find(item=>item.dataset.viewScroll===role);if(view){view.scrollTop=top;view.scrollLeft=left}}if(snap.focus?.[0]){const input=document.getElementById(snap.focus[0])?.querySelector('[data-filter]');if(input){input.focus({preventScroll:true});input.setSelectionRange(snap.focus[1],snap.focus[2])}}}
+function renderCards(){const q=state.summary;document.getElementById('cards').innerHTML=[['Active shifts',q.active_shifts],['Sensor records',q.sensor_records],['Individual readings',q.sensor_readings],['Device events',q.device_events],['Audio uploads',q.audio_uploads],['HTTP requests',q.requests],['HTTP errors',q.request_errors]].map(([a,b])=>`<div class="card"><b>${b}</b><span>${a}</span></div>`).join('')}
+function render(){const s=state,q=s.summary;
+ viewerSeq=0;viewerValues={};recordValues={};
+ renderCards();
+ const pane=document.querySelector('.pane.active')||document.getElementById('overview');
+ if(pane.id==='overview')pane.innerHTML=`<div class="grid">${box('Sensor mix',count(s.breakdowns.sensor_types),q.sensor_records+' records')}${box('Event mix',count(s.breakdowns.event_types),q.device_events+' events')}${box('HTTP status codes',count(s.breakdowns.status_codes),q.requests+' requests')}${box('Server',`<pre>${esc(pretty(s.server))}</pre>`)}</div>`;
+ else if(pane.id==='requests')pane.innerHTML=`<div class="toolbar"><input data-filter placeholder="Filter paths, payloads, status…" value="${esc(filter)}"></div>${box('Request / response history',rows(s.requests,'request'),`${s.requests.length}/${s.server.request_history_limit}`)}`;
+ else if(pane.id==='sensors')pane.innerHTML=`<div class="toolbar"><input data-filter placeholder="Filter sensor type, shift, reading…" value="${esc(filter)}"></div>${box('Accepted sensor records',rows(s.sensor_records,'sensor'),count(s.breakdowns.sensor_types))}`;
+ else if(pane.id==='events')pane.innerHTML=`<div class="toolbar"><input data-filter placeholder="Filter event type or payload…" value="${esc(filter)}"></div>${box('Accepted device events',rows(s.device_events,'event'),count(s.breakdowns.event_types))}`;
+ else if(pane.id==='shifts')pane.innerHTML=`<div class="grid">${box('Work shifts',rows(s.shifts,'other'),s.shifts.length)}${box('Recovered stale finalizations',rows(s.orphaned_finalizations,'other'),s.orphaned_finalizations.length)}${box('Earnings',rows(s.earnings,'other'),s.earnings.length)}${box('Devices',`<pre>${esc(pretty(s.devices))}</pre>`)}${box('Notifications',`<pre>${esc(pretty(s.notifications))}</pre>`)}</div>`;
+ else if(pane.id==='audio')pane.innerHTML=`<div class="grid">${box('Audio upload metadata',rows(s.audio_uploads,'other'),`${q.audio_uploads} / ${q.audio_bytes} bytes`)}${box('Voice samples',`<pre>${esc(pretty(s.voice_samples))}</pre>`)}${box('Wake-word events',rows(s.wake_word_events,'other'),s.wake_word_events.length)}${box('Voice verifications',rows(s.verifications,'other'),s.verifications.length)}</div>`;
+ else if(pane.id==='fixtures')pane.innerHTML=`<div class="grid">${box('Users (secrets redacted)',`<pre>${esc(pretty(s.users))}</pre>`)}${box('Projects / tracking policy',`<pre>${esc(pretty(s.projects))}</pre>`)}${box('Transactions',`<pre>${esc(pretty(s.transactions))}</pre>`)}</div>`;
+ else if(pane.id==='raw')pane.innerHTML=box('Complete dashboard payload',`<pre>${esc(pretty(s))}</pre>`);
+ pane.querySelectorAll('[data-filter]').forEach(el=>el.oninput=e=>{filter=e.target.value.toLowerCase();render();const active=document.querySelector('.pane.active [data-filter]');if(active){active.value=e.target.value;active.focus()}});
+}
+async function load(){try{const snap=captureView();const r=await fetch('/__mock/state',{cache:'no-store'});if(!r.ok)throw Error(r.status);state=await r.json();document.getElementById('connection').textContent='connected';document.getElementById('dot').style.background='var(--green)';document.getElementById('updated').textContent=new Date().toLocaleTimeString();render();restoreView(snap)}catch(e){document.getElementById('connection').textContent='disconnected';document.getElementById('dot').style.background='var(--red)'}}
+document.getElementById('tabs').innerHTML=tabs.map(([id,label],i)=>`<button class="tab ${i?'':'active'}" data-tab="${id}">${label}</button>`).join('');
+document.getElementById('tabs').onclick=e=>{if(!e.target.dataset.tab)return;document.querySelectorAll('.tab,.pane').forEach(x=>x.classList.remove('active'));e.target.classList.add('active');document.getElementById(e.target.dataset.tab).classList.add('active');if(state)render()};
+document.body.addEventListener('click',e=>{const button=e.target.closest('[data-copy]');if(button)copyViewer(button.dataset.copy,button);const summary=e.target.closest('summary');const record=summary?.parentElement;if(record?.matches('details[data-record-key]')&&!record.open)hydrateRecord(record)});
+document.getElementById('refresh').onclick=load;load();setInterval(()=>{if(!document.hidden)load()},2000);setInterval(refreshRelativeTimes,1000);
+</script>
+</body>
+</html>

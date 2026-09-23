@@ -1,0 +1,30 @@
+{
+  "projects": [
+    {
+      "id": "3f8a2c1e-7b4d-4e2a-9c5f-1a2b3c4d5e6f",
+      "name": "Alaska Canvassing 2026",
+      "project_type": "canvassing",
+      "status": "active",
+      "start_date": "2026-09-01",
+      "end_date": "2026-11-03",
+      "assigned_user_ids": [1001],
+      "hourly_rate": 22.0,
+      "allowed_break_minutes_per_hour": 10,
+      "audio_recording_config": { "permission": "no_recording" },
+      "zip_list": ["99501", "99502", "99503", "99504", "99507", "99508"]
+    },
+    {
+      "id": "8b1d4f2a-3c6e-4a1b-8d7e-2b3c4d5e6f7a",
+      "name": "Alaska Ballot Initiative Signatures",
+      "project_type": "signature",
+      "status": "active",
+      "start_date": "2026-09-01",
+      "end_date": "2026-12-15",
+      "assigned_user_ids": [1001],
+      "hourly_rate": 25.0,
+      "allowed_break_minutes_per_hour": 10,
+      "audio_recording_config": { "permission": "full_recording_with_restricted_area" },
+      "zip_list": ["99501", "99515", "99516", "99517", "99518"]
+    }
+  ]
+}

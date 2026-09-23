@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": 1001,
+      "email": "canvasser@alaska.test",
+      "password": "alaska-test-1",
+      "first_name": "Test",
+      "last_name": "Canvasser",
+      "role": "canvasser",
+      "time_zone": "America/Anchorage",
+      "alerts": { "banner_alert": "record_voice_sample" }
+    }
+  ]
+}
