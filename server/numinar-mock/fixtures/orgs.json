@@ -1,0 +1,16 @@
+{
+  "orgs": [
+    {
+      "id": "org_alaska_001",
+      "name": "Alaska Field Project",
+      "slug": "alaska-field-project",
+      "signed_url": "https://example.test/alaska-field-project",
+      "selected_state": "AK",
+      "data_source": "rnc",
+      "has_relational_enabled": true,
+      "has_mobile_leaderboard_enabled": true,
+      "has_paid_relational_enabled": true,
+      "mv_created": true
+    }
+  ]
+}

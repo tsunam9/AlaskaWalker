@@ -34,6 +34,13 @@ GraphHopper is deferred. A repointed stock Patriot Grassroots build
 the behavioral fidelity test. Next work: steps 3–6 of
 `docs/UNIFIED-APP-PLAN.md` (grow `alaska_walker/` against the mock).
 
+Updated 2026-09-23: `server/numinar-mock/` exists (port 19002, all four
+acceptance suites green) and `numinar/instrumentation/build_repointed.sh`
+builds the repointed stock Numinar APK set (Hermes v96 patched via
+hermes-decomp patch-string/asm; expo-updates disabled; Sentry/Mixpanel/
+Adjust neutered). The mock includes the minimal WebSocket acceptor required
+to open the stock client's `websocketUp`-gated offline drain.
+
 ## Repository layout
 
 ```
@@ -53,11 +60,18 @@ patriot_grassroots/           ValidNation white-label (Capacitor/Nuxt hybrid)
 numinar/                      canvassing app (Expo/React Native, Hermes v96)
   stock/  BASELINE.md  ANALYSIS.md  tree/  (same roles as above)
   audit/                      six line-cited audit files — GROUND TRUTH
+  instrumentation/            build_repointed.sh — repointed stock build
+                              targeting the mock (Hermes v96 bytecode patch)
 server/patriot-mock/          ValidNation mock backend (Flask+PyJWT,
                               0.0.0.0:19001, env PM_HOST/PM_PORT); full
                               canvasser surface; dashboard at /__mock/;
                               runtime-state.json persistence; tests in
                               scripts/; run: python3 patriot_mock.py
+server/numinar-mock/          Numinar mock backend (same pattern, port
+                              19002, one Flask process plays all three
+                              Numinar origins); slash-collapse middleware
+                              absorbs repoint URL padding; run:
+                              python3 numinar_mock.py
 alaska_walker/                unified app scaffold (native Java, AGP 8.10,
                               gradle 8.11.1 wrapper); build: ./build.sh
 ```

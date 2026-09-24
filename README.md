@@ -27,17 +27,25 @@ Alaska_Campaign/
   .venv-re/                reverse-engineering python env (hbctool)
 ```
 
-Status: **static recovery complete; ready to build**. Both stock apps are
+Status: **static recovery complete; mocks being built**. Both stock apps are
 fully reverse-engineered to citation grade (all endpoint shapes, triggers,
 cadences, and anti-fraud behavior confirmed in code — see the two `audit/`
 directories); every former hypothesis in the design docs is resolved. Plan
-steps 1–2 (static halves) are done. Nothing built yet.
+steps 1–2 (static halves) are done.
 
-Next actions are steps 3–4 in `docs/UNIFIED-APP-PLAN.md` (Alaska GraphHopper
-graph + `server/numinar-mock/` + walk-client string, then `alaska_walker/`
-scaffold). Runtime-only leftovers: the target project's
-`audio_recording_config.permission` value and the step-9 live canaries, both
-needing a ValidNation test account.
+Updated 2026-09-21: `server/patriot-mock/` (ValidNation mock, all test
+suites green) and the `alaska_walker/` scaffold exist; a repointed stock
+Patriot build (`patriot_grassroots/instrumentation/`) runs against it.
+Updated 2026-09-23: `server/numinar-mock/` exists (Numinar mock,
+0.0.0.0:19002; `test_auth0.sh` / `test_core.sh` / `test_interactions.sh` /
+`simulate_workflow.py` all pass) and `numinar/instrumentation/` builds a
+repointed stock Numinar APK set (Hermes v96 string-table + instruction
+patches) that targets the mock via `adb reverse tcp:19002`.
+
+Next actions are steps 3–6 in `docs/UNIFIED-APP-PLAN.md` (grow
+`alaska_walker/` against the mocks; GraphHopper deferred). Runtime-only
+leftovers: the target project's `audio_recording_config.permission` value
+and the step-9 live canaries, both needing a ValidNation test account.
 
 Sibling project reference: `~/src/campaign_project/` (walk server, mock
 backend pattern, `walker_unified` app this plan mirrors).

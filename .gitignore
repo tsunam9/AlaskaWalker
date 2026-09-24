@@ -18,6 +18,13 @@ patriot_grassroots/instrumentation/.venv/
 patriot_grassroots/instrumentation/.tools/
 patriot_grassroots/instrumentation/__pycache__/
 
+# Numinar repointed-build outputs and local tooling
+numinar/instrumentation/build/
+numinar/instrumentation/build-repointed/
+numinar/instrumentation/captures/
+numinar/instrumentation/.tools/
+numinar/instrumentation/__pycache__/
+
 # Patriot mock runtime artifacts
 server/patriot-mock/uploads/
 server/patriot-mock/captures/

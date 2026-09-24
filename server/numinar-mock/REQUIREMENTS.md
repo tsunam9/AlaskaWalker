@@ -72,8 +72,13 @@ From `auth-session.md` §5 / `canvassing-core.md` §1:
   - `https://numinar.com/roles` (array; `"admin"` in [0] gates admin UI —
     keep the fixture user non-admin)
   - `https://numinar.com/email_verified` (boolean; gates VerifyEmail screen)
-  HS256 with a mock-only secret (client never verifies signatures —
-  jwtDecode only). `id_token` also issued and decoded for the user profile.
+  The access token uses HS256 with a mock-only secret (the JS client only
+  decodes its claims). **Corrected 2026-09-23 from the repointed-stock Web
+  Auth run:** Auth0.Android independently validates `id_token`; the mock must
+  sign it with RS256, advertise the matching `kid` at
+  `GET /.well-known/jwks.json`, preserve the request `nonce`, and use the
+  SDK's exact repointed domain URL as `iss` (including same-length slash
+  padding).
 - Refresh: `POST /oauth/token` with `grant_type: "refresh_token"`. The
   client tolerates rotation **or** no rotation (keeps old token if the
   response omits one) — simplest correct behavior: return a new
@@ -86,7 +91,8 @@ From `auth-session.md` §5 / `canvassing-core.md` §1:
 | Endpoint | Requirements |
 |---|---|
 | `POST /passwordless/start` | Body `{client_id, connection:"email", email, send:"code", authParams:{scope, audience, redirect_uri}}` (auth-session §2.1). Issue a mock 6-digit OTP; store it; return 200 (`response.ok` is all the client checks). Print the OTP to the mock log/dashboard (it is the "email"). |
-| `POST /oauth/token` | Three grant shapes: (a) `http://auth0.com/oauth/grant-type/passwordless/otp` — validate `{username, otp, realm:"email"}` against the issued OTP; wrong → 4xx Auth0 error shape; (b) `refresh_token` grant (§3 above); (c) `authorization_code` — accept any code (the SDK Web-Auth flows can't be exercised without a browser; mark [H]). Success returns `{access_token, refresh_token, id_token, scope, token_type:"Bearer", expires_in}` (all consumed, auth-session §2.6). |
+| `POST /oauth/token` | Three grant shapes: (a) `http://auth0.com/oauth/grant-type/passwordless/otp` — validate `{username, otp, realm:"email"}` against the issued OTP; wrong → 4xx Auth0 error shape; (b) `refresh_token` grant (§3 above); (c) `authorization_code` — exchange a code issued by the mock `/authorize` page and carry its nonce into the ID token (corrected [O] 2026-09-23 after the repointed-stock browser flow). Success returns `{access_token, refresh_token, id_token, scope, token_type:"Bearer", expires_in}` (all consumed, auth-session §2.6). |
+| `GET /.well-known/jwks.json` | Publish the persistent mock RSA public key as an Auth0-compatible RS256 JWKS; `kid` must match the ID-token header. |
 | `GET /userinfo` | Bearer → user profile object consumed by `setAuth0User` (auth-session §8.2). Failure → client falls back to id_token decode, so any object with name/email/sub fields works; return the fixture profile. |
 
 ### fast-api origin — bootstrap
@@ -159,13 +165,13 @@ for consumed fields). SSE streams (`GET /v1/projects/sse/updates` fast-api,
 serve SSE with a generator — emit an initial status event then keep the
 stream; reconnect interval 3 s client-side.
 
-**Explicit non-goals (do not build):** the ROS WebSocket
-(`wss://rust-server.numinar.com/websocket`) — out of scope initially like
-the Patriot voice WS; note in code that `websocketUp` gates the offline
-drain client-side, so if the repointed-app test stalls at sync, a minimal
-WS acceptor becomes in-scope. Twilio call media, Bandwidth SMS delivery,
-and all third-party SDK hosts (Sentry/Intercom/Mixpanel/Adjust/Mapbox —
-traffic goes to those vendors, not Numinar).
+**Corrected 2026-09-23 after repointed-stock observation:** the ROS WebSocket
+(`wss://rust-server.numinar.com/websocket`) needs a minimal acceptor because
+`websocketUp` gates the offline drain client-side. Remaining explicit
+non-goals are Twilio call media, Bandwidth SMS delivery,
+and third-party telemetry SDK hosts (Sentry/Intercom/Mixpanel/Adjust —
+traffic goes to those vendors, not Numinar). Mapbox and Google Maps are the
+explicit map-rendering exception recorded in §8.1.
 
 ## 7. State & semantics
 
@@ -191,6 +197,43 @@ no cert pinning. The mock must **accept** `is_using_emulator`,
 geolocation-permission fields, and device uuids verbatim and store them as
 telemetry — never gate or reject on them. The `numinar-origin: mobile` /
 `platform: android` headers are observed, not enforced.
+
+### 8.1 Vendor egress isolation (added 2026-09-23 per user direction;
+map exception added 2026-09-23 per subsequent user direction)
+
+The repointed stock build must **never send a request to a real third-party
+vendor backend carrying Numinar-identifying material** — API keys, DSNs,
+SDK app tokens, EAS/Firebase project IDs, or account-linked device
+fingerprints. If the vendor can attribute the traffic to Numinar, the
+traffic must not happen at all, **except for the stock Mapbox and Google Maps
+credentials explicitly restored by user direction so the map can render**.
+Outside that narrow map exception, this rule overrides app functionality.
+
+Applied in `numinar/instrumentation/build_repointed.sh`:
+
+- **Adjust**: `initSdk` call removed + app token zeroed + manifest
+  components disabled (device fingerprinting under Numinar's Adjust account).
+- **Sentry**: both DSN/envelope URLs → `.invalid` TLD; native providers
+  disabled (DSN identifies Numinar's project; payloads carry voter PII and
+  session replay).
+- **Mixpanel**: host → `.invalid`/mock; token entry repurposed (events carry
+  voter PII under Numinar's project token).
+- **Mapbox (explicit exception, corrected 2026-09-23):** preserve the stock
+  `sk.` account token so map tiles can render.
+- **Google Maps (explicit exception, corrected 2026-09-23):** preserve the
+  stock `com.google.android.geo.API_KEY` manifest value so maps can render.
+- **Expo/EAS**: `exp.host` push-token endpoint → `.invalid`; expo-updates
+  disabled (update check carries Numinar's EAS project ID, and an OTA would
+  overwrite the patch).
+- **Firebase/FCM, Intercom, Twilio FCM**: autostart components disabled
+  (registration would carry Numinar's Firebase project and user PII).
+
+**Permitted APK modifications are only:** (a) connection viability — origin
+host/scheme rewrites to the mock, cleartext network config, the auth-callback
+intent-filter addition, OTA disable; (b) vendor egress isolation as above;
+(c) local re-signing. No functional, UI, or logic changes to the app itself.
+Traffic to the mock itself (including neutered-SDK 404s) is fine — it is
+captured, not leaked.
 
 ## 9. Ops & repo conventions (same as patriot-mock)
 

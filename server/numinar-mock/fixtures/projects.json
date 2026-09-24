@@ -1,0 +1,178 @@
+{
+  "projects": [
+    {
+      "id": "project_canvass_001",
+      "name": "Anchorage Door Program",
+      "outreach_type": "canvass",
+      "status": "in-progress",
+      "is_active": true,
+      "created_at": "2026-09-01T12:00:00Z",
+      "description": "Door-to-door voter contact in Anchorage.",
+      "county_name": "Anchorage Municipality",
+      "geofence_name": "East Anchorage",
+      "precinct_name": "AK-ED-18",
+      "precinct_id": "precinct_18",
+      "abev_election_id": "election_2026",
+      "dynamic_survey": {
+        "id": "dynamic_survey_001",
+        "tag_id": "tag_support",
+        "survey_mappings": [
+          {
+            "tag_value": null,
+            "is_default": true,
+            "survey": {
+              "id": "survey_canvass_001",
+              "name": "Door Survey",
+              "questions": [
+                {
+                  "id": "question_support",
+                  "tag_id": "tag_support",
+                  "text": "Do you support our candidate?",
+                  "position": 0,
+                  "is_jumpy": false,
+                  "response_set": [
+                    {"response": "Yes", "next_q": null},
+                    {"response": "No", "next_q": null},
+                    {"response": "Undecided", "next_q": null}
+                  ]
+                },
+                {
+                  "id": "question_issue",
+                  "tag_id": "tag_issue",
+                  "text": "Which issue matters most?",
+                  "position": 1,
+                  "is_jumpy": false,
+                  "response_set": [
+                    {"response": "Cost of living", "next_q": null},
+                    {"response": "Energy", "next_q": null},
+                    {"response": "Public safety", "next_q": null}
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "survey": {
+        "id": "survey_canvass_001",
+        "name": "Door Survey",
+        "questions": [
+          {
+            "id": "question_support",
+            "tag_id": "tag_support",
+            "text": "Do you support our candidate?",
+            "position": 0,
+            "is_jumpy": false,
+            "response_set": [
+              {"response": "Yes", "next_q": null},
+              {"response": "No", "next_q": null},
+              {"response": "Undecided", "next_q": null}
+            ]
+          },
+          {
+            "id": "question_issue",
+            "tag_id": "tag_issue",
+            "text": "Which issue matters most?",
+            "position": 1,
+            "is_jumpy": false,
+            "response_set": [
+              {"response": "Cost of living", "next_q": null},
+              {"response": "Energy", "next_q": null},
+              {"response": "Public safety", "next_q": null}
+            ]
+          }
+        ]
+      },
+      "text": "Thanks for speaking with us, {{first_name}}.",
+      "specific_number": "+19075550100",
+      "conditional_survey": true,
+      "org_id": "org_alaska_001"
+    },
+    {
+      "id": "project_call_001",
+      "name": "Alaska Voter Calls",
+      "outreach_type": "call",
+      "status": "todo",
+      "is_active": true,
+      "created_at": "2026-09-02T12:00:00Z",
+      "description": "Phone outreach fixture.",
+      "county_name": "Anchorage Municipality",
+      "geofence_name": "Statewide",
+      "precinct_name": "All",
+      "precinct_id": "all",
+      "abev_election_id": "election_2026",
+      "dynamic_survey": {
+        "id": "dynamic_survey_call_001",
+        "tag_id": "tag_support",
+        "survey_mappings": [
+          {
+            "tag_value": null,
+            "is_default": true,
+            "survey": {
+              "id": "survey_call_001",
+              "name": "Call Survey",
+              "questions": [
+                {
+                  "id": "question_call_support",
+                  "tag_id": "tag_support",
+                  "text": "Candidate support",
+                  "position": 0,
+                  "is_jumpy": false,
+                  "response_set": [
+                    {"response": "Yes", "next_q": null},
+                    {"response": "No", "next_q": null},
+                    {"response": "Undecided", "next_q": null}
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "survey": {
+        "id": "survey_call_001",
+        "name": "Call Survey",
+        "questions": [
+          {
+            "id": "question_call_support",
+            "tag_id": "tag_support",
+            "text": "Candidate support",
+            "position": 0,
+            "is_jumpy": false,
+            "response_set": [
+              {"response": "Yes", "next_q": null},
+              {"response": "No", "next_q": null},
+              {"response": "Undecided", "next_q": null}
+            ]
+          }
+        ]
+      },
+      "text": "Hello {{first_name}}.",
+      "specific_number": "+19075550101",
+      "conditional_survey": false,
+      "simultaneous_calls": 2,
+      "org_id": "org_alaska_001"
+    },
+    {
+      "id": "project_relational_001",
+      "name": "Friends and Family",
+      "outreach_type": "relational",
+      "status": "in-progress",
+      "is_active": true,
+      "created_at": "2026-09-03T12:00:00Z",
+      "description": "Relational organizing fixture.",
+      "county_name": "Statewide",
+      "geofence_name": "Statewide",
+      "precinct_name": "All",
+      "precinct_id": "all",
+      "abev_election_id": "election_2026",
+      "dynamic_survey": {"id": "dynamic_survey_rel_001"},
+      "survey_id": "survey_relational_001",
+      "survey": {"id": "survey_relational_001", "name": "Relational Survey", "questions": []},
+      "text": "Remember to vote, {{first_name}}!",
+      "specific_number": null,
+      "conditional_survey": false,
+      "org_id": "org_alaska_001"
+    }
+  ]
+}

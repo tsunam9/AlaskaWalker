@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": "usr_alaska_001",
+      "sub": "auth0|alaska-canvasser",
+      "email": "canvasser@example.test",
+      "first_name": "Alex",
+      "last_name": "Morgan",
+      "name": "Alex Morgan",
+      "email_verified": true,
+      "has_registered": true,
+      "roles": ["canvasser"],
+      "hmac": "mock-intercom-hmac",
+      "org_ids": ["org_alaska_001"]
+    },
+    {
+      "id": "usr_unverified_001",
+      "sub": "auth0|unverified-canvasser",
+      "email": "unverified@example.test",
+      "first_name": "Taylor",
+      "last_name": "Pending",
+      "name": "Taylor Pending",
+      "email_verified": false,
+      "has_registered": false,
+      "roles": ["canvasser"],
+      "hmac": "mock-unverified-hmac",
+      "org_ids": ["org_alaska_001"]
+    }
+  ]
+}
