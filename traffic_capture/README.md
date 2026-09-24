@@ -1,88 +1,78 @@
-# Real-backend stock traffic capture
+# App-internal real-backend traffic recording
 
-This is a separate pass-through capture plane for the real Patriot and Numinar
-backends. It never talks to `server/patriot-mock/` or `server/numinar-mock/` and
-never synthesizes a response. Every vendor request and response header is captured
-unredacted as an ordered list, preserving original casing and duplicate fields; the
-proxy does not inject any additional header into the vendor request. The complete
-header records are included in the delayed VPS archive. The future VPS logger address
-is intentionally unset.
+The stock-derived Patriot and Numinar test builds continue to use their real vendor
+origins. Recording happens inside each APK: no rooted device, Android proxy, VPN,
+user CA, USB reverse, or external capture process is required.
+
+Each app duplicates network observations into its own app-private
+`files/network-capture/` NDJSON queue. When a dedicated logger URL is configured,
+the queue is uploaded by a separate native `HttpURLConnection`; the uploader does
+not add logger headers to vendor requests and is outside the instrumented vendor
+transport, so it cannot record itself recursively. With no URL configured, records
+remain queued locally.
+
+These files are unredacted. They can contain credentials, bearer tokens, voter PII,
+GPS, and audio. Use only authorized accounts and send them only to the dedicated
+logger over a trusted connection.
+
+## What is recorded
+
+- Numinar installs an OkHttp network interceptor in React Native's shared client.
+  It records the final OkHttp request/response header lists and bodies, plus
+  RealWebSocket text/binary messages.
+- Patriot injects a document-start-accessible JavaScript bridge into its Capacitor
+  WebView and wraps `fetch`, `XMLHttpRequest`, and `WebSocket`. It records headers
+  exposed to WebView JavaScript, bodies, responses, errors, and WebSocket messages.
+  Chromium-managed transport headers that Web APIs do not expose are outside this
+  recorder's visibility.
+
+Capture is observational: neither recorder mutates the vendor URL, request, response,
+or header set. The logger upload uses these dedicated headers only on the logger
+connection:
+
+- `Content-Type: application/x-ndjson`
+- `X-Capture-App: numinar|patriot`
+- `X-Capture-Install: <random app-install UUID>`
+- `X-Capture-Batch: <queue filename>`
+- `Authorization: Bearer <token>` when configured
+
+The logger must return a 2xx status before the app deletes a batch. Failed batches
+remain private on the device and are retried after later app traffic.
+
+## Build
+
+The future VPS endpoint is intentionally unset in the default build:
+
+```bash
+cd ../numinar/instrumentation
+./build_stock_capture.sh
+
+cd ../../patriot_grassroots/instrumentation
+./build_stock_capture.sh
+```
+
+Once the dedicated logger address and token are known, rebuild both APKs with the
+same configuration:
+
+```bash
+export LOGGER_UPLOAD_URL='https://LOGGER_HOST:PORT/api/captures'
+export LOGGER_UPLOAD_TOKEN='dedicated-logger-token'
+./build_stock_capture.sh
+```
+
+`LOGGER_UPLOAD_URL` accepts only an empty value or an `http://`/`https://` URL. HTTPS
+is preferred because the records are sensitive. The token is embedded in the local
+test APK but is never printed in `BUILD-MANIFEST.txt`.
 
 ## Fidelity boundary
 
-There are two supported device choices:
+Both APKs are locally signed and therefore are stock-derived, not vendor-identical.
+Patriot also requires a PairIP startup bypass because a local signer cannot satisfy
+the Play-bound check. Per the test configuration, Firebase and Sentry initialization
+are disabled in both builds. Numinar Adjust remains enabled with its stock token,
+initialization function, components, and native signer library.
 
-1. **Actually stock:** install/use the vendor-signed Play builds and install the
-   mitmproxy CA as a system trust anchor on a controlled device. This is the only
-   choice that preserves the vendor signature, installer provenance, and PairIP.
-2. **Stock-derived capture builds:** use the new `build_stock_capture.sh` scripts.
-   They preserve the real origins and normal application behavior but trust a
-   user-installed CA. Both are locally re-signed; Patriot also needs a PairIP bypass.
-   Per the test configuration, Firebase and Sentry initialization are disabled in
-   both builds. Numinar Adjust remains enabled and otherwise stock.
-
-The second choice is still not telemetry-invisible. Disabling Firebase and Sentry
-creates an observable absence of their normal traffic. Numinar's retained Adjust SDK
-still records installer/install data and may observe the local signature/install
-provenance.
-
-The public SHA-256 certificate fingerprints in each `BASELINE.md` identify the stock
-signers but cannot be used to reproduce their signatures. Exact signing and Play
-installer identity require either the untouched Play installation or cooperation from
-the app owner to publish the capture build through a Google Play test track using the
-real app-signing key. Falsifying Adjust installer or certificate data would not make
-a locally signed APK stock-equivalent and is intentionally not part of this capture
-harness.
-
-Numinar's build patches only its `USING_SENTRY` getter to return false, which follows
-the app's existing no-Sentry branch. It verifies that the stock Adjust token,
-`Adjust.initSdk` bytecode, manifest receiver/provider, and native `libsigner.so`
-survive unchanged. Patriot's stock browser DSN is already empty; the build blanks its
-two native DSNs, causing the recovered native plugin to take its existing “Missing
-DSN … skipping Sentry init” return path. Both builds disable the native Firebase,
-Sentry, and associated DataTransport components and Firebase auto-init metadata;
-Numinar's app, Expo, Intercom, and Twilio FCM receiver services are disabled with the
-Firebase path. Push notification delivery is therefore intentionally unavailable in
-these test builds.
-
-## Capture a test run
-
-Create and install mitmproxy's CA on the dedicated test device, then run:
-
-```bash
-./run_capture.sh
-./device_proxy.sh enable
-# Run the authorized real-backend test shift.
-./device_proxy.sh disable
-```
-
-The Android proxy setting is device-wide, although the recorder persists only exact
-allowlisted first-party and recovered SDK/update hosts. On a dedicated device,
-`CAPTURE_HOSTS='*' ./run_capture.sh` records every proxy-visible host. Always disable
-the proxy before disconnecting USB. FCM,
-Google Play Services, native map traffic, pinned connections, and proxy-bypassing
-transports may be absent; absence from a capture is not evidence of no traffic.
-
-The proxy preserves HTTP methods, headers, and bodies, but it necessarily terminates
-TLS. A remote service can observe mitmproxy's upstream TLS fingerprint and possibly a
-different egress address even when the application payload is unchanged.
-
-Runs are written under `captures/<timestamp>/` with mode `0700`; files use `0600`.
-They are unredacted and contain credentials, tokens, voter PII, GPS, and potentially
-audio. They are gitignored. Use only authorized test accounts and a controlled host.
-
-## Delayed upload to the separate VPS logger
-
-Nothing uploads by default. Once the logger URL, port, and token are supplied:
-
-```bash
-export LOGGER_UPLOAD_URL=https://logger.example.test:PORT/api/captures
-export LOGGER_UPLOAD_TOKEN='dedicated-logger-token'
-./upload_capture.py captures/20260923-120000
-```
-
-The current provisional protocol is an authenticated HTTPS `POST` containing a
-`tar.gz`, with `X-Capture-Run` and `X-Capture-SHA256` headers. It can be adjusted to
-the VPS logger's final contract without rebuilding either Android app. The dedicated
-logger credential is used only by this host-side uploader and is never put into a
-Numinar, ValidNation, mock-backend, or walk-server request.
+The certificate fingerprints in each `BASELINE.md` identify the vendor signers but
+cannot reproduce those signatures. Numinar Adjust may observe the local signature
+or install provenance, and disabling Firebase/Sentry creates an observable absence
+of their normal traffic.

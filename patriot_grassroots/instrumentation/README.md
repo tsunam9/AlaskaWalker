@@ -1,11 +1,12 @@
 # Patriot full-traffic capture
 
-For the separate real-backend, stock-derived capture build and delayed VPS logger
-upload, see [`../../traffic_capture/README.md`](../../traffic_capture/README.md) and
-run `./build_stock_capture.sh`. That build disables Firebase auto-start/components
-and makes the native Sentry plugin follow its existing missing-DSN/skip-init branch.
-The tooling documented below remains the isolated, mock-repointed/sink-only audit
-variant.
+For the separate real-backend, stock-derived build with app-internal recording and a
+private delayed VPS upload queue, see
+[`../../traffic_capture/README.md`](../../traffic_capture/README.md) and run
+`./build_stock_capture.sh`. It needs no root, device proxy, user CA, or external
+capture process. That build disables Firebase auto-start/components and makes the
+native Sentry plugin follow its existing missing-DSN/skip-init branch. The tooling
+below remains the isolated, mock-repointed/sink-only audit variant.
 
 This directory produces a separately signed, instrumented Patriot build and routes
 its proxy-aware traffic into a local, sink-only recorder. The frozen APKs in

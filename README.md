@@ -25,8 +25,8 @@ Alaska_Campaign/
     DESIGN-VALIDNATION.md  worker-clock domain design (wire contracts, gates)
     DESIGN-NUMINAR.md      canvassing domain design (adapter, latch loop)
   .venv-re/                reverse-engineering python env (hbctool)
-  traffic_capture/         real-backend pass-through recorder + delayed
-                           dedicated-logger uploader (destination unset)
+  traffic_capture/         app-internal real-backend recorder + private
+                           dedicated-logger upload queue (destination unset)
 ```
 
 Status: **static recovery complete; mocks being built**. Both stock apps are
@@ -52,12 +52,13 @@ Texas.
 
 Also updated 2026-09-23: separate stock-derived real-backend capture builders
 exist for both apps (`*/instrumentation/build_stock_capture.sh`), plus the shared
-`traffic_capture/` pass-through recorder and delayed uploader. These variants do
-not point at either mock. Both builds add user-CA trust and a local signature, and
-Patriot necessarily bypasses PairIP. Their Firebase and Sentry initialization is
-disabled for this test; Numinar Adjust remains stock and active, including its
-native signer. See `traffic_capture/README.md` for the telemetry-visible fidelity
-boundary and sensitive-data handling.
+`traffic_capture/` app-internal recorder and delayed upload queue. These variants
+do not point at either mock and require no root, device proxy, user CA, or external
+capture service. Both builds have a local signature, and Patriot necessarily
+bypasses PairIP. Their Firebase and Sentry initialization is disabled for this
+test; Numinar Adjust remains stock and active, including its native signer. See
+`traffic_capture/README.md` for the telemetry-visible fidelity boundary and
+sensitive-data handling.
 
 Next actions are steps 3–6 in `docs/UNIFIED-APP-PLAN.md` (grow
 `alaska_walker/` against the mocks; GraphHopper deferred). Runtime-only

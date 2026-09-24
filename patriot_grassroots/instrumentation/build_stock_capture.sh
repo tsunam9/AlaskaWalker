@@ -15,6 +15,16 @@ APKTOOL_JAR="$TOOLS_DIR/apktool_${APKTOOL_VERSION}.jar"
 APKTOOL_SHA256="dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423"
 FRAME_DIR="${APKTOOL_FRAME_DIR:-$TOOLS_DIR/framework-device}"
 SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-$HOME/Android/Sdk}}"
+LOGGER_UPLOAD_URL="${LOGGER_UPLOAD_URL:-}"
+LOGGER_UPLOAD_TOKEN="${LOGGER_UPLOAD_TOKEN:-}"
+
+case "$LOGGER_UPLOAD_URL" in
+  ""|http://*|https://*) ;;
+  *)
+    printf 'LOGGER_UPLOAD_URL must be empty or an http(s) URL.\n' >&2
+    exit 1
+    ;;
+esac
 
 declare -A EXPECTED_SHA256=(
   [base.apk]="47b19ff8bee2b7f3742253e741273dbeb589c5f04ce864c8b90c7241ecf44bb1"
@@ -62,11 +72,6 @@ import xml.etree.ElementTree as ET
 
 manifest = Path(sys.argv[1])
 text = manifest.read_text(encoding="utf-8")
-needle = "<application "
-attribute = 'android:networkSecurityConfig="@xml/stock_capture_network_security_config"'
-if attribute in text or needle not in text:
-    raise SystemExit("unexpected application/network security manifest state")
-text = text.replace(needle, f"<application {attribute} ", 1)
 
 # This resource lives only in the density split. Restore the stock reference so
 # Apktool can round-trip the base manifest, exactly as the existing builder does.
@@ -141,8 +146,6 @@ if entry not in public:
 public_xml.write_text(public, encoding="utf-8")
 PY
 
-cp "$SCRIPT_DIR/stock_capture_network_security_config.xml" \
-  "$WORK_TREE/res/xml/stock_capture_network_security_config.xml"
 mkdir -p "$WORK_TREE/res/drawable"
 unzip -p "$STOCK_DIR/split_config.xxhdpi.apk" \
   res/drawable-xxhdpi-v4/ic_stat_patriot_notifications.png \
@@ -206,6 +209,88 @@ if not all(counts.values()):
 print(f"blanked Patriot native Sentry DSNs: {counts}")
 PY
 
+"$REPO_ROOT/traffic_capture/inject_android_recorder.sh" \
+  "$WORK_TREE" smali_classes5 "$TOOLS_DIR" "$SDK_ROOT"
+
+MAIN_ACTIVITY="$(find "$WORK_TREE" -path '*/com/patriotgrassroots/validnation/MainActivity.smali' -print -quit)"
+CAPACITOR_BRIDGE="$(find "$WORK_TREE" -path '*/com/getcapacitor/Bridge.smali' -print -quit)"
+if [[ -z "$MAIN_ACTIVITY" || -z "$CAPACITOR_BRIDGE" ]]; then
+  printf 'Required Patriot activity/bridge smali was not found.\n' >&2
+  exit 1
+fi
+python3 - "$MAIN_ACTIVITY" "$CAPACITOR_BRIDGE" \
+  "$LOGGER_UPLOAD_URL" "$LOGGER_UPLOAD_TOKEN" <<'PY'
+from pathlib import Path
+import sys
+
+activity_path, bridge_path = map(Path, sys.argv[1:3])
+logger_url, logger_token = sys.argv[3:5]
+
+def smali_string(value: str) -> str:
+    return value.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n").replace("\r", "\\r")
+
+activity = activity_path.read_text(encoding="utf-8")
+if ".method protected load()V" in activity:
+    raise SystemExit("Patriot MainActivity already overrides load")
+activity += f"""
+
+.method protected load()V
+    .locals 3
+
+    const-string v0, "patriot"
+
+    const-string v1, "{smali_string(logger_url)}"
+
+    const-string v2, "{smali_string(logger_token)}"
+
+    invoke-static {{p0, v0, v1, v2}}, Lai/alaskawalker/capture/InAppTrafficRecorder;->configure(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+
+    invoke-super {{p0}}, Lcom/getcapacitor/BridgeActivity;->load()V
+
+    return-void
+.end method
+"""
+activity_path.write_text(activity, encoding="utf-8")
+
+bridge = bridge_path.read_text(encoding="utf-8")
+needle = """.method private loadWebView()V
+    .locals 8
+"""
+replacement = """.method private loadWebView()V
+    .locals 8
+
+    iget-object v0, p0, Lcom/getcapacitor/Bridge;->webView:Landroid/webkit/WebView;
+
+    invoke-static {v0}, Lai/alaskawalker/capture/InAppTrafficRecorder;->attachWebView(Landroid/webkit/WebView;)V
+"""
+if bridge.count(needle) != 1:
+    raise SystemExit("unexpected Capacitor Bridge.loadWebView shape")
+bridge_path.write_text(bridge.replace(needle, replacement, 1), encoding="utf-8")
+PY
+
+cp "$REPO_ROOT/traffic_capture/patriot_in_app_capture.js" \
+  "$WORK_TREE/assets/public/alaska-in-app-capture.js"
+python3 - "$WORK_TREE/assets/public" <<'PY'
+from pathlib import Path
+import sys
+
+root = Path(sys.argv[1])
+tag = '<script src="/alaska-in-app-capture.js"></script>'
+count = 0
+for path in root.rglob("*.html"):
+    text = path.read_text(encoding="utf-8")
+    if tag in text:
+        raise SystemExit(f"capture script already present: {path}")
+    needle = '<script type="module"'
+    if needle not in text:
+        continue
+    path.write_text(text.replace(needle, tag + needle, 1), encoding="utf-8")
+    count += 1
+if count == 0:
+    raise SystemExit("no Patriot HTML entry points accepted the capture script")
+print(f"injected Patriot in-app capture into {count} HTML entry points")
+PY
+
 find "$WORK_TREE/assets/public" -type f -print0 | sort -z \
   | xargs -0 sha256sum > "$BUILD_DIR/runtime-after.sha256"
 grep -Rqs 'https://api.validnation.ai' "$WORK_TREE/assets/public"
@@ -214,11 +299,12 @@ if grep -RqsE 'dsn(Ios|Android):"https://' "$WORK_TREE/assets/public"; then
   printf 'A native Patriot Sentry DSN remains enabled.\n' >&2
   exit 1
 fi
-if find "$WORK_TREE/assets/public" -name capture-inbound.js -print -quit | grep -q .; then
-  printf 'Unexpected capture hook found in stock runtime.\n' >&2
+if [[ ! -f "$WORK_TREE/assets/public/alaska-in-app-capture.js" ]]; then
+  printf 'Patriot in-app capture script is missing.\n' >&2
   exit 1
 fi
-printf 'Verified only the native Sentry DSNs changed in web runtime; real origins retained.\n'
+grep -Rqs '/alaska-in-app-capture.js' "$WORK_TREE/assets/public" --include='*.html'
+printf 'Verified in-app recorder injection, disabled native Sentry DSNs, and retained real origins.\n'
 
 java -jar "$APKTOOL_JAR" build --frame-path "$FRAME_DIR" \
   "$WORK_TREE" -o "$BUILD_DIR/base-unsigned.apk"
@@ -254,8 +340,13 @@ done
 {
   printf 'variant=patriot-stock-derived-real-backend-capture\n'
   printf 'built_at=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-  printf 'runtime_assets=stock-except-empty-native-sentry-dsns\n'
-  printf 'differences=user-ca-trust,pairip-checkLicense-noop,firebase-disabled,sentry-disabled,local-signature\n'
+  printf 'runtime_assets=stock-plus-in-app-network-recorder-and-empty-native-sentry-dsns\n'
+  printf 'differences=in-app-network-recorder,private-delayed-upload,pairip-checkLicense-noop,firebase-disabled,sentry-disabled,local-signature\n'
+  if [[ -n "$LOGGER_UPLOAD_URL" ]]; then
+    printf 'logger_upload=configured\n'
+  else
+    printf 'logger_upload=disabled-local-queue-only\n'
+  fi
   sha256sum "$STOCK_DIR"/*.apk "$OUT_DIR/base.apk"
   for split in "$STOCK_DIR"/split_*.apk; do
     sha256sum "$OUT_DIR/$(basename "$split")"

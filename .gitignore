@@ -8,7 +8,7 @@ tree/apktool/
 *.jks
 __pycache__/
 
-# Local traffic-capture tooling and sensitive runtime output.
+# Sensitive traffic-capture runtime output and local tool environments.
 .traffic-capture/
 traffic_capture/.venv/
 traffic_capture/captures/

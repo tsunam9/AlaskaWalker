@@ -1,11 +1,13 @@
 # Numinar repointed build
 
-For the separate real-backend, stock-derived capture build and delayed VPS logger
-upload, see [`../../traffic_capture/README.md`](../../traffic_capture/README.md) and
-run `./build_stock_capture.sh`. That build disables Firebase and Sentry startup but
-leaves Adjust—including `Adjust.initSdk`, the production token, deep-link behavior,
-manifest components, and native Signature V3 library—unchanged. The tooling
-documented below remains the mock-repointed fidelity variant.
+For the separate real-backend, stock-derived build with app-internal recording and a
+private delayed VPS upload queue, see
+[`../../traffic_capture/README.md`](../../traffic_capture/README.md) and run
+`./build_stock_capture.sh`. It needs no root, device proxy, user CA, or external
+capture process. That build disables Firebase and Sentry startup but leaves
+Adjust—including `Adjust.initSdk`, the production token, deep-link behavior,
+manifest components, and native Signature V3 library—unchanged. The tooling below
+remains the mock-repointed fidelity variant.
 
 Produces a separately signed build of the stock Numinar app
 (`com.numinar.numinar` v10.0.0) whose three backend origins are retargeted to

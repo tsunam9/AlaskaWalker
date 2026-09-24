@@ -17,6 +17,16 @@ APKTOOL_SHA256="dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423
 FRAME_DIR="${APKTOOL_FRAME_DIR:-$PATRIOT_TOOLS/framework-device}"
 SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-$HOME/Android/Sdk}}"
 HERMES_DECOMP="${HERMES_DECOMP:-/tmp/hermes-decomp/target/release/hermes-decomp}"
+LOGGER_UPLOAD_URL="${LOGGER_UPLOAD_URL:-}"
+LOGGER_UPLOAD_TOKEN="${LOGGER_UPLOAD_TOKEN:-}"
+
+case "$LOGGER_UPLOAD_URL" in
+  ""|http://*|https://*) ;;
+  *)
+    printf 'LOGGER_UPLOAD_URL must be empty or an http(s) URL.\n' >&2
+    exit 1
+    ;;
+esac
 
 declare -A EXPECTED_SHA256=(
   [base.apk]="d4e5370dcd970ac463cf6cc1c6b8e3426a2994b09e69e6a6711c4ad15ebf2e94"
@@ -117,15 +127,10 @@ import xml.etree.ElementTree as ET
 
 manifest = Path(sys.argv[1])
 text = manifest.read_text(encoding="utf-8")
-needle = "<application "
-attribute = 'android:networkSecurityConfig="@xml/stock_capture_network_security_config"'
-if attribute in text or needle not in text:
-    raise SystemExit("unexpected application/network security manifest state")
 if '<meta-data android:name="expo.modules.updates.ENABLED" android:value="true"/>' not in text:
     raise SystemExit("stock Expo Updates enablement not found")
 if '<meta-data android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH" android:value="ALWAYS"/>' not in text:
     raise SystemExit("stock Expo update cadence not found")
-text = text.replace(needle, f"<application {attribute} ", 1)
 
 android = "http://schemas.android.com/apk/res/android"
 ET.register_namespace("android", android)
@@ -194,8 +199,118 @@ if found_adjust != adjust_components:
 manifest.write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
 PY
 
-cp "$SCRIPT_DIR/stock_capture_network_security_config.xml" \
-  "$WORK_TREE/res/xml/stock_capture_network_security_config.xml"
+"$REPO_ROOT/traffic_capture/inject_android_recorder.sh" \
+  "$WORK_TREE" smali_classes8 "$TOOLS_DIR" "$SDK_ROOT" with-okhttp
+
+MAIN_APPLICATION="$(find "$WORK_TREE" -path '*/com/numinar/numinar/MainApplication.smali' -print -quit)"
+OKHTTP_PROVIDER="$(find "$WORK_TREE" -path '*/com/facebook/react/modules/network/OkHttpClientProvider.smali' -print -quit)"
+REAL_WEBSOCKET="$(find "$WORK_TREE" -path '*/okhttp3/internal/ws/RealWebSocket.smali' -print -quit)"
+if [[ -z "$MAIN_APPLICATION" || -z "$OKHTTP_PROVIDER" || -z "$REAL_WEBSOCKET" ]]; then
+  printf 'Required Numinar network/startup smali was not found.\n' >&2
+  exit 1
+fi
+python3 - "$MAIN_APPLICATION" "$OKHTTP_PROVIDER" "$REAL_WEBSOCKET" \
+  "$LOGGER_UPLOAD_URL" "$LOGGER_UPLOAD_TOKEN" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+main_path, provider_path, websocket_path = map(Path, sys.argv[1:4])
+logger_url, logger_token = sys.argv[4:6]
+
+def smali_string(value: str) -> str:
+    return value.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n").replace("\r", "\\r")
+
+main = main_path.read_text(encoding="utf-8")
+main_needle = """    invoke-super {p0}, Landroid/app/Application;->onCreate()V
+
+    .line 53
+"""
+main_replacement = f"""    invoke-super {{p0}}, Landroid/app/Application;->onCreate()V
+
+    const-string v0, "numinar"
+
+    const-string v1, "{smali_string(logger_url)}"
+
+    const-string v2, "{smali_string(logger_token)}"
+
+    invoke-static {{p0, v0, v1, v2}}, Lai/alaskawalker/capture/InAppTrafficRecorder;->configure(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 53
+"""
+if main.count(main_needle) != 1:
+    raise SystemExit("unexpected Numinar MainApplication.onCreate shape")
+main_path.write_text(main.replace(main_needle, main_replacement, 1), encoding="utf-8")
+
+provider = provider_path.read_text(encoding="utf-8")
+provider_needle = """    invoke-virtual {v0, v1}, Lokhttp3/OkHttpClient$Builder;->cookieJar(Lokhttp3/CookieJar;)Lokhttp3/OkHttpClient$Builder;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+"""
+provider_replacement = """    invoke-virtual {v0, v1}, Lokhttp3/OkHttpClient$Builder;->cookieJar(Lokhttp3/CookieJar;)Lokhttp3/OkHttpClient$Builder;
+
+    move-result-object v0
+
+    new-instance v1, Lai/alaskawalker/capture/CaptureInterceptor;
+
+    invoke-direct {v1}, Lai/alaskawalker/capture/CaptureInterceptor;-><init>()V
+
+    check-cast v1, Lokhttp3/Interceptor;
+
+    invoke-virtual {v0, v1}, Lokhttp3/OkHttpClient$Builder;->addNetworkInterceptor(Lokhttp3/Interceptor;)Lokhttp3/OkHttpClient$Builder;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+"""
+if provider.count(provider_needle) != 1:
+    raise SystemExit("unexpected Numinar OkHttpClientProvider.createClientBuilder shape")
+provider_path.write_text(provider.replace(provider_needle, provider_replacement, 1), encoding="utf-8")
+
+websocket = websocket_path.read_text(encoding="utf-8")
+
+def patch_method(text: str, signature: str, marker: str, call: str) -> str:
+    pattern = re.compile(
+        rf"(\.method public {re.escape(signature)}\n.*?{re.escape(marker)}\n)(.*?\n\.end method)",
+        re.DOTALL,
+    )
+    match = pattern.search(text)
+    if not match:
+        raise SystemExit(f"unexpected RealWebSocket method shape: {signature}")
+    replacement = match.group(1) + "\n" + call + match.group(2)
+    return text[:match.start()] + replacement + text[match.end():]
+
+null_text = "    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V"
+websocket = patch_method(
+    websocket,
+    "onReadMessage(Ljava/lang/String;)V",
+    null_text,
+    "    const/4 v0, 0x1\n\n    invoke-static {p0, v0, p1}, Lai/alaskawalker/capture/CaptureInterceptor;->recordWebSocketText(Ljava/lang/Object;ZLjava/lang/String;)V\n",
+)
+websocket = patch_method(
+    websocket,
+    "onReadMessage(Lokio/ByteString;)V",
+    null_text,
+    "    const/4 v0, 0x1\n\n    invoke-static {p0, v0, p1}, Lai/alaskawalker/capture/CaptureInterceptor;->recordWebSocketBytes(Ljava/lang/Object;ZLokio/ByteString;)V\n",
+)
+websocket = patch_method(
+    websocket,
+    "send(Ljava/lang/String;)Z",
+    null_text,
+    "    const/4 v0, 0x0\n\n    invoke-static {p0, v0, p1}, Lai/alaskawalker/capture/CaptureInterceptor;->recordWebSocketText(Ljava/lang/Object;ZLjava/lang/String;)V\n",
+)
+websocket = patch_method(
+    websocket,
+    "send(Lokio/ByteString;)Z",
+    null_text,
+    "    const/4 v0, 0x0\n\n    invoke-static {p0, v0, p1}, Lai/alaskawalker/capture/CaptureInterceptor;->recordWebSocketBytes(Ljava/lang/Object;ZLokio/ByteString;)V\n",
+)
+websocket_path.write_text(websocket, encoding="utf-8")
+PY
 
 if [[ "$(sha256sum "$BUNDLE" | cut -d' ' -f1)" != "$BUNDLE_CAPTURE_SHA256" ]]; then
   printf 'Hermes bundle changed after the audited Sentry patch.\n' >&2
@@ -263,7 +378,12 @@ cmp \
   printf 'built_at=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   printf 'hermes_stock_sha256=%s\n' "$BUNDLE_STOCK_SHA256"
   printf 'hermes_capture_sha256=%s\n' "$BUNDLE_CAPTURE_SHA256"
-  printf 'differences=user-ca-trust,firebase-disabled,sentry-disabled,local-signature\n'
+  printf 'differences=in-app-network-recorder,private-delayed-upload,firebase-disabled,sentry-disabled,local-signature\n'
+  if [[ -n "$LOGGER_UPLOAD_URL" ]]; then
+    printf 'logger_upload=configured\n'
+  else
+    printf 'logger_upload=disabled-local-queue-only\n'
+  fi
   printf 'adjust=stock-token-init-function-native-signer-and-components-retained\n'
   sha256sum "$STOCK_DIR"/*.apk "$OUT_DIR/base.apk"
   for split in "$STOCK_DIR"/split_*.apk; do
