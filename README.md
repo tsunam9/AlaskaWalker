@@ -41,6 +41,12 @@ Updated 2026-09-23: `server/numinar-mock/` exists (Numinar mock,
 `simulate_workflow.py` all pass) and `numinar/instrumentation/` builds a
 repointed stock Numinar APK set (Hermes v96 string-table + instruction
 patches) that targets the mock via `adb reverse tcp:19002`.
+The Numinar canvass fixture now uses a 100-address Anchorage shift walklist
+centered on the latest retained real-device GPS beacon, with a matching
+`pulsar-route` upload payload under `server/numinar-mock/fixtures/walklists/`.
+Computing its simulated route requires importing an Anchorage foot graph into
+GraphHopper; the sibling project's current graphs cover only West Portland and
+Texas.
 
 Next actions are steps 3–6 in `docs/UNIFIED-APP-PLAN.md` (grow
 `alaska_walker/` against the mocks; GraphHopper deferred). Runtime-only

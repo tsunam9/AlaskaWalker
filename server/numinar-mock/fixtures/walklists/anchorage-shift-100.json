@@ -1,0 +1,5032 @@
+{
+  "name": "anchorage-shift-100",
+  "area": "Around 61.1851279,-149.9150977",
+  "generatedAt": "2026-09-24T02:56:07.394Z",
+  "source": "OpenStreetMap via Overpass API (ODbL); entrance snap by local GraphHopper foot profile",
+  "center": {
+    "latitude": 61.1851279,
+    "longitude": -149.9150977
+  },
+  "radiusMeters": 1500,
+  "start": {
+    "latitude": 61.1851279,
+    "longitude": -149.9150977
+  },
+  "houseCount": 100,
+  "houses": [
+    {
+      "id": "anchorage-shift-100-001-osm800784954",
+      "sequence": 1,
+      "address": "3811 Spenard Road, Anchorage 99517",
+      "buildingId": "osm-way-800784954",
+      "locationHint": {
+        "latitude": 61.186023399999996,
+        "longitude": -149.916321
+      },
+      "networkAccess": {
+        "latitude": 61.186023399999996,
+        "longitude": -149.916321
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-002-osm1473393034",
+      "sequence": 2,
+      "address": "3831 Spenard Road, Anchorage 99517",
+      "buildingId": "osm-way-1473393034",
+      "locationHint": {
+        "latitude": 61.1858034,
+        "longitude": -149.91811272
+      },
+      "networkAccess": {
+        "latitude": 61.1858034,
+        "longitude": -149.91811272
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-003-osm589076086",
+      "sequence": 3,
+      "address": "3902 Spenard Road, Anchorage",
+      "buildingId": "osm-way-589076086",
+      "locationHint": {
+        "latitude": 61.18596948,
+        "longitude": -149.92187897999997
+      },
+      "networkAccess": {
+        "latitude": 61.18596948,
+        "longitude": -149.92187897999997
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-004-osm800815402",
+      "sequence": 4,
+      "address": "3944 Spenard Road, Anchorage 99517",
+      "buildingId": "osm-way-800815402",
+      "locationHint": {
+        "latitude": 61.184865200000004,
+        "longitude": -149.9252726
+      },
+      "networkAccess": {
+        "latitude": 61.184865200000004,
+        "longitude": -149.9252726
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-005-osm800790096",
+      "sequence": 5,
+      "address": "2107 W 44th Ct",
+      "buildingId": "osm-way-800790096",
+      "locationHint": {
+        "latitude": 61.1805874,
+        "longitude": -149.9230748
+      },
+      "networkAccess": {
+        "latitude": 61.1805874,
+        "longitude": -149.9230748
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-006-osm800790094",
+      "sequence": 6,
+      "address": "4440 Van Buren St",
+      "buildingId": "osm-way-800790094",
+      "locationHint": {
+        "latitude": 61.180042428571426,
+        "longitude": -149.92389671428572
+      },
+      "networkAccess": {
+        "latitude": 61.180042428571426,
+        "longitude": -149.92389671428572
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-007-osm800790125",
+      "sequence": 7,
+      "address": "4509 Van Buren St",
+      "buildingId": "osm-way-800790125",
+      "locationHint": {
+        "latitude": 61.1795966,
+        "longitude": -149.9233258
+      },
+      "networkAccess": {
+        "latitude": 61.1795966,
+        "longitude": -149.9233258
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-008-osm800790124",
+      "sequence": 8,
+      "address": "2110 West 45th Avenue",
+      "buildingId": "osm-way-800790124",
+      "locationHint": {
+        "latitude": 61.1796526,
+        "longitude": -149.9230704
+      },
+      "networkAccess": {
+        "latitude": 61.1796526,
+        "longitude": -149.9230704
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-009-osm800790122",
+      "sequence": 9,
+      "address": "2106 West 45th Avenue",
+      "buildingId": "osm-way-800790122",
+      "locationHint": {
+        "latitude": 61.17959985714286,
+        "longitude": -149.922396
+      },
+      "networkAccess": {
+        "latitude": 61.17959985714286,
+        "longitude": -149.922396
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-010-osm800791506",
+      "sequence": 10,
+      "address": "2103 West 46th Avenue",
+      "buildingId": "osm-way-800791506",
+      "locationHint": {
+        "latitude": 61.179288400000004,
+        "longitude": -149.92191680000002
+      },
+      "networkAccess": {
+        "latitude": 61.179288400000004,
+        "longitude": -149.92191680000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-011-osm800791507",
+      "sequence": 11,
+      "address": "2107 West 46th Avenue",
+      "buildingId": "osm-way-800791507",
+      "locationHint": {
+        "latitude": 61.17917842857143,
+        "longitude": -149.92241928571428
+      },
+      "networkAccess": {
+        "latitude": 61.17917842857143,
+        "longitude": -149.92241928571428
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-012-osm800791510",
+      "sequence": 12,
+      "address": "2109 West 46th Avenue",
+      "buildingId": "osm-way-800791510",
+      "locationHint": {
+        "latitude": 61.179215555555565,
+        "longitude": -149.922765
+      },
+      "networkAccess": {
+        "latitude": 61.179215555555565,
+        "longitude": -149.922765
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-013-osm800791509",
+      "sequence": 13,
+      "address": "2111 West 46th Avenue",
+      "buildingId": "osm-way-800791509",
+      "locationHint": {
+        "latitude": 61.179207399999996,
+        "longitude": -149.923022
+      },
+      "networkAccess": {
+        "latitude": 61.179207399999996,
+        "longitude": -149.923022
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-014-osm800791511",
+      "sequence": 14,
+      "address": "2113 Van Buren St",
+      "buildingId": "osm-way-800791511",
+      "locationHint": {
+        "latitude": 61.17926877777778,
+        "longitude": -149.9233267777778
+      },
+      "networkAccess": {
+        "latitude": 61.17926877777778,
+        "longitude": -149.9233267777778
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-015-osm800790827",
+      "sequence": 15,
+      "address": "2203 West 46th Avenue",
+      "buildingId": "osm-way-800790827",
+      "locationHint": {
+        "latitude": 61.179232777777784,
+        "longitude": -149.92425466666666
+      },
+      "networkAccess": {
+        "latitude": 61.179232777777784,
+        "longitude": -149.92425466666666
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-016-osm800790825",
+      "sequence": 16,
+      "address": "2207 West 46th Avenue",
+      "buildingId": "osm-way-800790825",
+      "locationHint": {
+        "latitude": 61.17921388888889,
+        "longitude": -149.92483588888888
+      },
+      "networkAccess": {
+        "latitude": 61.17921388888889,
+        "longitude": -149.92483588888888
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-017-osm800790824",
+      "sequence": 17,
+      "address": "2209 West 46th Avenue",
+      "buildingId": "osm-way-800790824",
+      "locationHint": {
+        "latitude": 61.1791894,
+        "longitude": -149.9251332
+      },
+      "networkAccess": {
+        "latitude": 61.1791894,
+        "longitude": -149.9251332
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-018-osm800790822",
+      "sequence": 18,
+      "address": "2213 West 46th Ave",
+      "buildingId": "osm-way-800790822",
+      "locationHint": {
+        "latitude": 61.17920866666667,
+        "longitude": -149.92575366666668
+      },
+      "networkAccess": {
+        "latitude": 61.17920866666667,
+        "longitude": -149.92575366666668
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-019-osm800790819",
+      "sequence": 19,
+      "address": "2219 West 46th Avenue",
+      "buildingId": "osm-way-800790819",
+      "locationHint": {
+        "latitude": 61.17922428571428,
+        "longitude": -149.9266567142857
+      },
+      "networkAccess": {
+        "latitude": 61.17922428571428,
+        "longitude": -149.9266567142857
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-020-osm800790818",
+      "sequence": 20,
+      "address": "2221 West 46th Avenue",
+      "buildingId": "osm-way-800790818",
+      "locationHint": {
+        "latitude": 61.1792092857143,
+        "longitude": -149.9269202857143
+      },
+      "networkAccess": {
+        "latitude": 61.1792092857143,
+        "longitude": -149.9269202857143
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-021-osm800790817",
+      "sequence": 21,
+      "address": "2223 West 46th Avenue",
+      "buildingId": "osm-way-800790817",
+      "locationHint": {
+        "latitude": 61.17919490909091,
+        "longitude": -149.9272649090909
+      },
+      "networkAccess": {
+        "latitude": 61.17919490909091,
+        "longitude": -149.9272649090909
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-022-osm800790816",
+      "sequence": 22,
+      "address": "2225 West 46th Avenue",
+      "buildingId": "osm-way-800790816",
+      "locationHint": {
+        "latitude": 61.179216600000004,
+        "longitude": -149.92758039999998
+      },
+      "networkAccess": {
+        "latitude": 61.179216600000004,
+        "longitude": -149.92758039999998
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-023-osm800790862",
+      "sequence": 23,
+      "address": "2307 West 47th Avenue",
+      "buildingId": "osm-way-800790862",
+      "locationHint": {
+        "latitude": 61.17828479999999,
+        "longitude": -149.92682179999997
+      },
+      "networkAccess": {
+        "latitude": 61.17828479999999,
+        "longitude": -149.92682179999997
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-024-osm800790860",
+      "sequence": 24,
+      "address": "2305 West 47th Avenue",
+      "buildingId": "osm-way-800790860",
+      "locationHint": {
+        "latitude": 61.178318142857144,
+        "longitude": -149.92644385714286
+      },
+      "networkAccess": {
+        "latitude": 61.178318142857144,
+        "longitude": -149.92644385714286
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-025-osm800790859",
+      "sequence": 25,
+      "address": "2303 West 47th Avenue",
+      "buildingId": "osm-way-800790859",
+      "locationHint": {
+        "latitude": 61.178324599999996,
+        "longitude": -149.92602879999998
+      },
+      "networkAccess": {
+        "latitude": 61.178324599999996,
+        "longitude": -149.92602879999998
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-026-osm800790911",
+      "sequence": 26,
+      "address": "2301 W 48th Ave",
+      "buildingId": "osm-way-800790911",
+      "locationHint": {
+        "latitude": 61.177426714285716,
+        "longitude": -149.92578328571426
+      },
+      "networkAccess": {
+        "latitude": 61.177426714285716,
+        "longitude": -149.92578328571426
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-027-osm800790915",
+      "sequence": 27,
+      "address": "2203 W 48th Ave",
+      "buildingId": "osm-way-800790915",
+      "locationHint": {
+        "latitude": 61.177400399999996,
+        "longitude": -149.9244048
+      },
+      "networkAccess": {
+        "latitude": 61.177400399999996,
+        "longitude": -149.9244048
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-028-osm800791292",
+      "sequence": 28,
+      "address": "4701 Van Buren Street",
+      "buildingId": "osm-way-800791292",
+      "locationHint": {
+        "latitude": 61.177834000000004,
+        "longitude": -149.9232644
+      },
+      "networkAccess": {
+        "latitude": 61.177834000000004,
+        "longitude": -149.9232644
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-029-osm800790951",
+      "sequence": 29,
+      "address": "2110 West 47th Avenue",
+      "buildingId": "osm-way-800790951",
+      "locationHint": {
+        "latitude": 61.177901,
+        "longitude": -149.9229654
+      },
+      "networkAccess": {
+        "latitude": 61.177901,
+        "longitude": -149.9229654
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-030-osm800791289",
+      "sequence": 30,
+      "address": "2109 West 47th Avenue",
+      "buildingId": "osm-way-800791289",
+      "locationHint": {
+        "latitude": 61.178307999999994,
+        "longitude": -149.9226118
+      },
+      "networkAccess": {
+        "latitude": 61.178307999999994,
+        "longitude": -149.9226118
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-031-osm800791288",
+      "sequence": 31,
+      "address": "2105 West 47th Avenue",
+      "buildingId": "osm-way-800791288",
+      "locationHint": {
+        "latitude": 61.178326625000004,
+        "longitude": -149.92228974999998
+      },
+      "networkAccess": {
+        "latitude": 61.178326625000004,
+        "longitude": -149.92228974999998
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-032-osm800791287",
+      "sequence": 32,
+      "address": "2103 West 47th Avenue",
+      "buildingId": "osm-way-800791287",
+      "locationHint": {
+        "latitude": 61.17828959999999,
+        "longitude": -149.9218488
+      },
+      "networkAccess": {
+        "latitude": 61.17828959999999,
+        "longitude": -149.9218488
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-033-osm800791290",
+      "sequence": 33,
+      "address": "2111 West 47th Avenue",
+      "buildingId": "osm-way-800791290",
+      "locationHint": {
+        "latitude": 61.17839311111111,
+        "longitude": -149.92299611111113
+      },
+      "networkAccess": {
+        "latitude": 61.17839311111111,
+        "longitude": -149.92299611111113
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-034-osm800791291",
+      "sequence": 34,
+      "address": "2213 West 47th Avenue",
+      "buildingId": "osm-way-800791291",
+      "locationHint": {
+        "latitude": 61.17834739999999,
+        "longitude": -149.92334780000002
+      },
+      "networkAccess": {
+        "latitude": 61.17834739999999,
+        "longitude": -149.92334780000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-035-osm800790852",
+      "sequence": 35,
+      "address": "2201 West 47th Avenue",
+      "buildingId": "osm-way-800790852",
+      "locationHint": {
+        "latitude": 61.178292,
+        "longitude": -149.9240136
+      },
+      "networkAccess": {
+        "latitude": 61.178292,
+        "longitude": -149.9240136
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-036-osm800791504",
+      "sequence": 36,
+      "address": "2011 West 46th Ave",
+      "buildingId": "osm-way-800791504",
+      "locationHint": {
+        "latitude": 61.1791894,
+        "longitude": -149.9212916
+      },
+      "networkAccess": {
+        "latitude": 61.1791894,
+        "longitude": -149.9212916
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-037-osm800791502",
+      "sequence": 37,
+      "address": "2007 West 46th Avenue",
+      "buildingId": "osm-way-800791502",
+      "locationHint": {
+        "latitude": 61.17919128571429,
+        "longitude": -149.9206137142857
+      },
+      "networkAccess": {
+        "latitude": 61.17919128571429,
+        "longitude": -149.9206137142857
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-038-osm800791501",
+      "sequence": 38,
+      "address": "2005 West 46th Avenue",
+      "buildingId": "osm-way-800791501",
+      "locationHint": {
+        "latitude": 61.17921577777778,
+        "longitude": -149.92038633333334
+      },
+      "networkAccess": {
+        "latitude": 61.17921577777778,
+        "longitude": -149.92038633333334
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-039-osm800791500",
+      "sequence": 39,
+      "address": "2003 West 46th Avenue",
+      "buildingId": "osm-way-800791500",
+      "locationHint": {
+        "latitude": 61.179193,
+        "longitude": -149.9200738
+      },
+      "networkAccess": {
+        "latitude": 61.179193,
+        "longitude": -149.9200738
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-040-osm800790114",
+      "sequence": 40,
+      "address": "4500 Taft St",
+      "buildingId": "osm-way-800790114",
+      "locationHint": {
+        "latitude": 61.179642,
+        "longitude": -149.9198266
+      },
+      "networkAccess": {
+        "latitude": 61.179642,
+        "longitude": -149.9198266
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-041-osm800790115",
+      "sequence": 41,
+      "address": "2004 W 45th Ave",
+      "buildingId": "osm-way-800790115",
+      "locationHint": {
+        "latitude": 61.1796418,
+        "longitude": -149.92041360000002
+      },
+      "networkAccess": {
+        "latitude": 61.1796418,
+        "longitude": -149.92041360000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-042-osm800790116",
+      "sequence": 42,
+      "address": "2006 W 45th Ave",
+      "buildingId": "osm-way-800790116",
+      "locationHint": {
+        "latitude": 61.179601000000005,
+        "longitude": -149.9206872
+      },
+      "networkAccess": {
+        "latitude": 61.179601000000005,
+        "longitude": -149.9206872
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-043-osm800790117",
+      "sequence": 43,
+      "address": "2010 W 45th Ave",
+      "buildingId": "osm-way-800790117",
+      "locationHint": {
+        "latitude": 61.17967671428572,
+        "longitude": -149.92111642857142
+      },
+      "networkAccess": {
+        "latitude": 61.17967671428572,
+        "longitude": -149.92111642857142
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-044-osm800790119",
+      "sequence": 44,
+      "address": "2100 West 45th Avenue",
+      "buildingId": "osm-way-800790119",
+      "locationHint": {
+        "latitude": 61.179656888888886,
+        "longitude": -149.92155833333334
+      },
+      "networkAccess": {
+        "latitude": 61.179656888888886,
+        "longitude": -149.92155833333334
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-045-osm800790102",
+      "sequence": 45,
+      "address": "2060 Wenmatt Circle",
+      "buildingId": "osm-way-800790102",
+      "locationHint": {
+        "latitude": 61.1801364,
+        "longitude": -149.9208788
+      },
+      "networkAccess": {
+        "latitude": 61.1801364,
+        "longitude": -149.9208788
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-046-osm800790103",
+      "sequence": 46,
+      "address": "2050 Wenmatt Circle",
+      "buildingId": "osm-way-800790103",
+      "locationHint": {
+        "latitude": 61.1800696,
+        "longitude": -149.9207096
+      },
+      "networkAccess": {
+        "latitude": 61.1800696,
+        "longitude": -149.9207096
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-047-osm800790104",
+      "sequence": 47,
+      "address": "2040 Wenmatt Circle",
+      "buildingId": "osm-way-800790104",
+      "locationHint": {
+        "latitude": 61.18007239999999,
+        "longitude": -149.92046020000004
+      },
+      "networkAccess": {
+        "latitude": 61.18007239999999,
+        "longitude": -149.92046020000004
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-048-osm800790106",
+      "sequence": 48,
+      "address": "2010,2020 Wenmatt Circle",
+      "buildingId": "osm-way-800790106",
+      "locationHint": {
+        "latitude": 61.180132,
+        "longitude": -149.9199224
+      },
+      "networkAccess": {
+        "latitude": 61.180132,
+        "longitude": -149.9199224
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-049-osm800790107",
+      "sequence": 49,
+      "address": "2000,2001 Wenmatt Circle",
+      "buildingId": "osm-way-800790107",
+      "locationHint": {
+        "latitude": 61.180357400000005,
+        "longitude": -149.9198956
+      },
+      "networkAccess": {
+        "latitude": 61.180357400000005,
+        "longitude": -149.9198956
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-050-osm800790110",
+      "sequence": 50,
+      "address": "2041 2051",
+      "buildingId": "osm-way-800790110",
+      "locationHint": {
+        "latitude": 61.1806004,
+        "longitude": -149.92048880000002
+      },
+      "networkAccess": {
+        "latitude": 61.1806004,
+        "longitude": -149.92048880000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-051-osm800790112",
+      "sequence": 51,
+      "address": "2061 Wenmatt Circle",
+      "buildingId": "osm-way-800790112",
+      "locationHint": {
+        "latitude": 61.18054540000001,
+        "longitude": -149.9209378
+      },
+      "networkAccess": {
+        "latitude": 61.18054540000001,
+        "longitude": -149.9209378
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-052-osm800791283",
+      "sequence": 52,
+      "address": "2005 West 47th Avenue",
+      "buildingId": "osm-way-800791283",
+      "locationHint": {
+        "latitude": 61.17830719999999,
+        "longitude": -149.9205072
+      },
+      "networkAccess": {
+        "latitude": 61.17830719999999,
+        "longitude": -149.9205072
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-053-osm800791280",
+      "sequence": 53,
+      "address": "4620 Taft St",
+      "buildingId": "osm-way-800791280",
+      "locationHint": {
+        "latitude": 61.1783096,
+        "longitude": -149.91981520000002
+      },
+      "networkAccess": {
+        "latitude": 61.1783096,
+        "longitude": -149.91981520000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-054-osm800790940",
+      "sequence": 54,
+      "address": "4700 Taft St",
+      "buildingId": "osm-way-800790940",
+      "locationHint": {
+        "latitude": 61.1778141111111,
+        "longitude": -149.91981144444443
+      },
+      "networkAccess": {
+        "latitude": 61.1778141111111,
+        "longitude": -149.91981144444443
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-055-osm800790938",
+      "sequence": 55,
+      "address": "2001 W 48th Ave",
+      "buildingId": "osm-way-800790938",
+      "locationHint": {
+        "latitude": 61.1773996,
+        "longitude": -149.9197672
+      },
+      "networkAccess": {
+        "latitude": 61.1773996,
+        "longitude": -149.9197672
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-056-osm800790933",
+      "sequence": 56,
+      "address": "2009 W 48th Ave",
+      "buildingId": "osm-way-800790933",
+      "locationHint": {
+        "latitude": 61.1774136,
+        "longitude": -149.9211714
+      },
+      "networkAccess": {
+        "latitude": 61.1774136,
+        "longitude": -149.9211714
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-057-osm800790906",
+      "sequence": 57,
+      "address": "2313 W 48th Ave",
+      "buildingId": "osm-way-800790906",
+      "locationHint": {
+        "latitude": 61.17742499999999,
+        "longitude": -149.9274254
+      },
+      "networkAccess": {
+        "latitude": 61.17742499999999,
+        "longitude": -149.9274254
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-058-osm800789787",
+      "sequence": 58,
+      "address": "2414 Aspen Drive",
+      "buildingId": "osm-way-800789787",
+      "locationHint": {
+        "latitude": 61.17588980000001,
+        "longitude": -149.92865
+      },
+      "networkAccess": {
+        "latitude": 61.17588980000001,
+        "longitude": -149.92865
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-059-osm800789786",
+      "sequence": 59,
+      "address": "2426 Aspen Drive",
+      "buildingId": "osm-way-800789786",
+      "locationHint": {
+        "latitude": 61.1758866,
+        "longitude": -149.9291752
+      },
+      "networkAccess": {
+        "latitude": 61.1758866,
+        "longitude": -149.9291752
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-060-osm800789784",
+      "sequence": 60,
+      "address": "2510 Aspen Drive",
+      "buildingId": "osm-way-800789784",
+      "locationHint": {
+        "latitude": 61.175917857142856,
+        "longitude": -149.93006542857145
+      },
+      "networkAccess": {
+        "latitude": 61.175917857142856,
+        "longitude": -149.93006542857145
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-061-osm800789783",
+      "sequence": 61,
+      "address": "2520 Aspen Drive",
+      "buildingId": "osm-way-800789783",
+      "locationHint": {
+        "latitude": 61.17590438461539,
+        "longitude": -149.9304993846154
+      },
+      "networkAccess": {
+        "latitude": 61.17590438461539,
+        "longitude": -149.9304993846154
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-062-osm800788054",
+      "sequence": 62,
+      "address": "2800 Aspen Drive",
+      "buildingId": "osm-way-800788054",
+      "locationHint": {
+        "latitude": 61.17721228571428,
+        "longitude": -149.935432
+      },
+      "networkAccess": {
+        "latitude": 61.17721228571428,
+        "longitude": -149.935432
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-063-osm800788056",
+      "sequence": 63,
+      "address": "2804 Aspen Drive",
+      "buildingId": "osm-way-800788056",
+      "locationHint": {
+        "latitude": 61.177294999999994,
+        "longitude": -149.936124
+      },
+      "networkAccess": {
+        "latitude": 61.177294999999994,
+        "longitude": -149.936124
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-064-osm800788058",
+      "sequence": 64,
+      "address": "2808 Aspen Drive",
+      "buildingId": "osm-way-800788058",
+      "locationHint": {
+        "latitude": 61.17738528571429,
+        "longitude": -149.93694785714283
+      },
+      "networkAccess": {
+        "latitude": 61.17738528571429,
+        "longitude": -149.93694785714283
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-065-osm800788047",
+      "sequence": 65,
+      "address": "2813 Tundra Circle",
+      "buildingId": "osm-way-800788047",
+      "locationHint": {
+        "latitude": 61.177847,
+        "longitude": -149.93733
+      },
+      "networkAccess": {
+        "latitude": 61.177847,
+        "longitude": -149.93733
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-066-osm800788038",
+      "sequence": 66,
+      "address": "2825 Tundra Court",
+      "buildingId": "osm-way-800788038",
+      "locationHint": {
+        "latitude": 61.1781716,
+        "longitude": -149.9364128
+      },
+      "networkAccess": {
+        "latitude": 61.1781716,
+        "longitude": -149.9364128
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-067-osm800788040",
+      "sequence": 67,
+      "address": "2817 Tundra Court",
+      "buildingId": "osm-way-800788040",
+      "locationHint": {
+        "latitude": 61.178095000000006,
+        "longitude": -149.9359136
+      },
+      "networkAccess": {
+        "latitude": 61.178095000000006,
+        "longitude": -149.9359136
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-068-osm800788041",
+      "sequence": 68,
+      "address": "2813 Tundra Court",
+      "buildingId": "osm-way-800788041",
+      "locationHint": {
+        "latitude": 61.1780782,
+        "longitude": -149.9356664
+      },
+      "networkAccess": {
+        "latitude": 61.1780782,
+        "longitude": -149.9356664
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-069-osm800788020",
+      "sequence": 69,
+      "address": "4361 Spenard Road",
+      "buildingId": "osm-way-800788020",
+      "locationHint": {
+        "latitude": 61.1809448,
+        "longitude": -149.9355589
+      },
+      "networkAccess": {
+        "latitude": 61.1809448,
+        "longitude": -149.9355589
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-070-osm800787716",
+      "sequence": 70,
+      "address": "4333 Spenard Road, Anchorage 99517",
+      "buildingId": "osm-way-800787716",
+      "locationHint": {
+        "latitude": 61.181809387499996,
+        "longitude": -149.93269934999998
+      },
+      "networkAccess": {
+        "latitude": 61.181809387499996,
+        "longitude": -149.93269934999998
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-071-osm800812936",
+      "sequence": 71,
+      "address": "4334 Spenard Road, Anchorage",
+      "buildingId": "osm-way-800812936",
+      "locationHint": {
+        "latitude": 61.18243765,
+        "longitude": -149.9330583875
+      },
+      "networkAccess": {
+        "latitude": 61.18243765,
+        "longitude": -149.9330583875
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-072-osm1461499636",
+      "sequence": 72,
+      "address": "3608 Minnesota Drive",
+      "buildingId": "osm-way-1461499636",
+      "locationHint": {
+        "latitude": 61.187228014285715,
+        "longitude": -149.91393188571428
+      },
+      "networkAccess": {
+        "latitude": 61.187228014285715,
+        "longitude": -149.91393188571428
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-073-osm428289407",
+      "sequence": 73,
+      "address": "1406 West 33rd Avenue, Anchorage 99503",
+      "buildingId": "osm-way-428289407",
+      "locationHint": {
+        "latitude": 61.19009064000001,
+        "longitude": -149.91032995999998
+      },
+      "networkAccess": {
+        "latitude": 61.19009064000001,
+        "longitude": -149.91032995999998
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-074-osm800784421",
+      "sequence": 74,
+      "address": "3104 Spenard Road, Anchorage 99503",
+      "buildingId": "osm-way-800784421",
+      "locationHint": {
+        "latitude": 61.19197857692309,
+        "longitude": -149.9066167615385
+      },
+      "networkAccess": {
+        "latitude": 61.19197857692309,
+        "longitude": -149.9066167615385
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-075-osm1125256146",
+      "sequence": 75,
+      "address": "2819 Spenard Road, Anchorage 99503",
+      "buildingId": "osm-way-1125256146",
+      "locationHint": {
+        "latitude": 61.1944922,
+        "longitude": -149.90473690000002
+      },
+      "networkAccess": {
+        "latitude": 61.1944922,
+        "longitude": -149.90473690000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-076-osm255745861",
+      "sequence": 76,
+      "address": "1049 West Northern Lights Boulevard, Anchorage 99503",
+      "buildingId": "osm-way-255745861",
+      "locationHint": {
+        "latitude": 61.195545440000004,
+        "longitude": -149.90329118
+      },
+      "networkAccess": {
+        "latitude": 61.195545440000004,
+        "longitude": -149.90329118
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-077-osm255745862",
+      "sequence": 77,
+      "address": "1035 West Northern Lights Boulevard, 99503",
+      "buildingId": "osm-way-255745862",
+      "locationHint": {
+        "latitude": 61.195611500000005,
+        "longitude": -149.90263302
+      },
+      "networkAccess": {
+        "latitude": 61.195611500000005,
+        "longitude": -149.90263302
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-078-osm255745860",
+      "sequence": 78,
+      "address": "2633 Spenard Road, Anchorage 99503-2308",
+      "buildingId": "osm-way-255745860",
+      "locationHint": {
+        "latitude": 61.196626322222215,
+        "longitude": -149.9048208222222
+      },
+      "networkAccess": {
+        "latitude": 61.196626322222215,
+        "longitude": -149.9048208222222
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-079-osm255745858",
+      "sequence": 79,
+      "address": "1230 West 27th Avenue, Anchorage 99503",
+      "buildingId": "osm-way-255745858",
+      "locationHint": {
+        "latitude": 61.19601588333334,
+        "longitude": -149.90730491666667
+      },
+      "networkAccess": {
+        "latitude": 61.19601588333334,
+        "longitude": -149.90730491666667
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-080-osm371314973",
+      "sequence": 80,
+      "address": "1231 West Northern Lights Boulevard, Anchorage 99503",
+      "buildingId": "osm-way-371314973",
+      "locationHint": {
+        "latitude": 61.19560588181819,
+        "longitude": -149.90740228181818
+      },
+      "networkAccess": {
+        "latitude": 61.19560588181819,
+        "longitude": -149.90740228181818
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-081-osm88084543",
+      "sequence": 81,
+      "address": "1500 West Benson Boulevard, Anchorage 99503",
+      "buildingId": "osm-way-88084543",
+      "locationHint": {
+        "latitude": 61.19316045999998,
+        "longitude": -149.912115652
+      },
+      "networkAccess": {
+        "latitude": 61.19316045999998,
+        "longitude": -149.912115652
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-082-osm288388627",
+      "sequence": 82,
+      "address": "814 West Northern Lights Boulevard, Anchorage 99503",
+      "buildingId": "osm-way-288388627",
+      "locationHint": {
+        "latitude": 61.19488332142856,
+        "longitude": -149.8997596642857
+      },
+      "networkAccess": {
+        "latitude": 61.19488332142856,
+        "longitude": -149.8997596642857
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-083-osm656038453",
+      "sequence": 83,
+      "address": "2914 Arctic Blvd, Anchorage 99503",
+      "buildingId": "osm-way-656038453",
+      "locationHint": {
+        "latitude": 61.193491555555546,
+        "longitude": -149.89845523333332
+      },
+      "networkAccess": {
+        "latitude": 61.193491555555546,
+        "longitude": -149.89845523333332
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-084-osm583331128",
+      "sequence": 84,
+      "address": "3700 Centerpoint Drive, Anchorage 99503",
+      "buildingId": "osm-way-583331128",
+      "locationHint": {
+        "latitude": 61.18690822,
+        "longitude": -149.8911802
+      },
+      "networkAccess": {
+        "latitude": 61.18690822,
+        "longitude": -149.8911802
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-085-osm772505980",
+      "sequence": 85,
+      "address": "3801 Centerpoint Drive, Anchorage 99503",
+      "buildingId": "osm-way-772505980",
+      "locationHint": {
+        "latitude": 61.186677812121225,
+        "longitude": -149.8879506090909
+      },
+      "networkAccess": {
+        "latitude": 61.186677812121225,
+        "longitude": -149.8879506090909
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-086-osm589076060",
+      "sequence": 86,
+      "address": "3900 C Street, Anchorage 99503",
+      "buildingId": "osm-way-589076060",
+      "locationHint": {
+        "latitude": 61.18498919047619,
+        "longitude": -149.8879478047619
+      },
+      "networkAccess": {
+        "latitude": 61.18498919047619,
+        "longitude": -149.8879478047619
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-087-osm794865714",
+      "sequence": 87,
+      "address": "4215 Credit Union Drive, Anchorage 99503",
+      "buildingId": "osm-way-794865714",
+      "locationHint": {
+        "latitude": 61.1823578,
+        "longitude": -149.888623
+      },
+      "networkAccess": {
+        "latitude": 61.1823578,
+        "longitude": -149.888623
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-088-osm794865712",
+      "sequence": 88,
+      "address": "4301 Credit Union Drive, Anchorage 99503",
+      "buildingId": "osm-way-794865712",
+      "locationHint": {
+        "latitude": 61.181896790476195,
+        "longitude": -149.88787023333336
+      },
+      "networkAccess": {
+        "latitude": 61.181896790476195,
+        "longitude": -149.88787023333336
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-089-osm653410290",
+      "sequence": 89,
+      "address": "4333 Bering Street, Anchorage 99503",
+      "buildingId": "osm-way-653410290",
+      "locationHint": {
+        "latitude": 61.18162587142857,
+        "longitude": -149.89291022857145
+      },
+      "networkAccess": {
+        "latitude": 61.18162587142857,
+        "longitude": -149.89291022857145
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-090-osm544468442",
+      "sequence": 90,
+      "address": "625 West 46th Avenue, Anchorage 99503",
+      "buildingId": "osm-way-544468442",
+      "locationHint": {
+        "latitude": 61.17930904137932,
+        "longitude": -149.89536451724138
+      },
+      "networkAccess": {
+        "latitude": 61.17930904137932,
+        "longitude": -149.89536451724138
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-091-osm579991745",
+      "sequence": 91,
+      "address": "700 West 46th Avenue, Anchorage 99503",
+      "buildingId": "osm-way-579991745",
+      "locationHint": {
+        "latitude": 61.1785905235294,
+        "longitude": -149.89530828235297
+      },
+      "networkAccess": {
+        "latitude": 61.1785905235294,
+        "longitude": -149.89530828235297
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-092-osm793937113",
+      "sequence": 92,
+      "address": "1048 West International Airport Road, Anchorage 99518",
+      "buildingId": "osm-way-793937113",
+      "locationHint": {
+        "latitude": 61.173286857142855,
+        "longitude": -149.90417242857143
+      },
+      "networkAccess": {
+        "latitude": 61.173286857142855,
+        "longitude": -149.90417242857143
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-093-osm800781304",
+      "sequence": 93,
+      "address": "1010 Chugach Way",
+      "buildingId": "osm-way-800781304",
+      "locationHint": {
+        "latitude": 61.18584400000001,
+        "longitude": -149.90279420000002
+      },
+      "networkAccess": {
+        "latitude": 61.18584400000001,
+        "longitude": -149.90279420000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-094-osm800781303",
+      "sequence": 94,
+      "address": "1008 Chugach Way",
+      "buildingId": "osm-way-800781303",
+      "locationHint": {
+        "latitude": 61.18583742857144,
+        "longitude": -149.90253342857142
+      },
+      "networkAccess": {
+        "latitude": 61.18583742857144,
+        "longitude": -149.90253342857142
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-095-osm800781302",
+      "sequence": 95,
+      "address": "1006 Chugach Way",
+      "buildingId": "osm-way-800781302",
+      "locationHint": {
+        "latitude": 61.18586900000001,
+        "longitude": -149.90216114285712
+      },
+      "networkAccess": {
+        "latitude": 61.18586900000001,
+        "longitude": -149.90216114285712
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-096-osm800781301",
+      "sequence": 96,
+      "address": "1002 Chugach Way",
+      "buildingId": "osm-way-800781301",
+      "locationHint": {
+        "latitude": 61.18586744444445,
+        "longitude": -149.901875
+      },
+      "networkAccess": {
+        "latitude": 61.18586744444445,
+        "longitude": -149.901875
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-097-osm800781298",
+      "sequence": 97,
+      "address": "910 Chugach Way",
+      "buildingId": "osm-way-800781298",
+      "locationHint": {
+        "latitude": 61.185886571428576,
+        "longitude": -149.90129299999998
+      },
+      "networkAccess": {
+        "latitude": 61.185886571428576,
+        "longitude": -149.90129299999998
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-098-osm800781291",
+      "sequence": 98,
+      "address": "904 Chugach Way",
+      "buildingId": "osm-way-800781291",
+      "locationHint": {
+        "latitude": 61.18581972727272,
+        "longitude": -149.90036890000002
+      },
+      "networkAccess": {
+        "latitude": 61.18581972727272,
+        "longitude": -149.90036890000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-099-osm1342555306",
+      "sequence": 99,
+      "address": "3802 Indiana Street",
+      "buildingId": "osm-way-1342555306",
+      "locationHint": {
+        "latitude": 61.185796,
+        "longitude": -149.90003842000002
+      },
+      "networkAccess": {
+        "latitude": 61.185796,
+        "longitude": -149.90003842000002
+      },
+      "networkAccessSnapped": false
+    },
+    {
+      "id": "anchorage-shift-100-100-osm800782043",
+      "sequence": 100,
+      "address": "1102 Chugach Way",
+      "buildingId": "osm-way-800782043",
+      "locationHint": {
+        "latitude": 61.185917,
+        "longitude": -149.9037242
+      },
+      "networkAccess": {
+        "latitude": 61.185917,
+        "longitude": -149.9037242
+      },
+      "networkAccessSnapped": false
+    }
+  ],
+  "footprints": [
+    {
+      "id": "osm-way-800784954",
+      "exterior": [
+        {
+          "latitude": 61.18601,
+          "longitude": -149.916199
+        },
+        {
+          "latitude": 61.186082,
+          "longitude": -149.916242
+        },
+        {
+          "latitude": 61.186041,
+          "longitude": -149.916506
+        },
+        {
+          "latitude": 61.185974,
+          "longitude": -149.916459
+        },
+        {
+          "latitude": 61.18601,
+          "longitude": -149.916199
+        }
+      ]
+    },
+    {
+      "id": "osm-way-1473393034",
+      "exterior": [
+        {
+          "latitude": 61.1858208,
+          "longitude": -149.9181431
+        },
+        {
+          "latitude": 61.1858275,
+          "longitude": -149.9181042
+        },
+        {
+          "latitude": 61.1857773,
+          "longitude": -149.9180671
+        },
+        {
+          "latitude": 61.1857706,
+          "longitude": -149.9181061
+        },
+        {
+          "latitude": 61.1858208,
+          "longitude": -149.9181431
+        }
+      ]
+    },
+    {
+      "id": "osm-way-589076086",
+      "exterior": [
+        {
+          "latitude": 61.1860713,
+          "longitude": -149.9216852
+        },
+        {
+          "latitude": 61.1859116,
+          "longitude": -149.9215791
+        },
+        {
+          "latitude": 61.1858116,
+          "longitude": -149.9221692
+        },
+        {
+          "latitude": 61.1859816,
+          "longitude": -149.9222762
+        },
+        {
+          "latitude": 61.1860713,
+          "longitude": -149.9216852
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800815402",
+      "exterior": [
+        {
+          "latitude": 61.184979,
+          "longitude": -149.925337
+        },
+        {
+          "latitude": 61.184904,
+          "longitude": -149.925528
+        },
+        {
+          "latitude": 61.184695,
+          "longitude": -149.925176
+        },
+        {
+          "latitude": 61.184769,
+          "longitude": -149.924985
+        },
+        {
+          "latitude": 61.184979,
+          "longitude": -149.925337
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790096",
+      "exterior": [
+        {
+          "latitude": 61.180617,
+          "longitude": -149.923286
+        },
+        {
+          "latitude": 61.18047,
+          "longitude": -149.922868
+        },
+        {
+          "latitude": 61.180543,
+          "longitude": -149.922758
+        },
+        {
+          "latitude": 61.18069,
+          "longitude": -149.923176
+        },
+        {
+          "latitude": 61.180617,
+          "longitude": -149.923286
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790094",
+      "exterior": [
+        {
+          "latitude": 61.180017,
+          "longitude": -149.924089
+        },
+        {
+          "latitude": 61.179962,
+          "longitude": -149.923954
+        },
+        {
+          "latitude": 61.180045,
+          "longitude": -149.923808
+        },
+        {
+          "latitude": 61.180032,
+          "longitude": -149.923776
+        },
+        {
+          "latitude": 61.180078,
+          "longitude": -149.923697
+        },
+        {
+          "latitude": 61.180146,
+          "longitude": -149.923864
+        },
+        {
+          "latitude": 61.180017,
+          "longitude": -149.924089
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790125",
+      "exterior": [
+        {
+          "latitude": 61.179501,
+          "longitude": -149.92326
+        },
+        {
+          "latitude": 61.179738,
+          "longitude": -149.92325
+        },
+        {
+          "latitude": 61.17974,
+          "longitude": -149.923425
+        },
+        {
+          "latitude": 61.179503,
+          "longitude": -149.923434
+        },
+        {
+          "latitude": 61.179501,
+          "longitude": -149.92326
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790124",
+      "exterior": [
+        {
+          "latitude": 61.179703,
+          "longitude": -149.92302
+        },
+        {
+          "latitude": 61.179703,
+          "longitude": -149.923146
+        },
+        {
+          "latitude": 61.179577,
+          "longitude": -149.923146
+        },
+        {
+          "latitude": 61.179577,
+          "longitude": -149.92302
+        },
+        {
+          "latitude": 61.179703,
+          "longitude": -149.92302
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790122",
+      "exterior": [
+        {
+          "latitude": 61.179673,
+          "longitude": -149.922333
+        },
+        {
+          "latitude": 61.179674,
+          "longitude": -149.922489
+        },
+        {
+          "latitude": 61.179505,
+          "longitude": -149.922494
+        },
+        {
+          "latitude": 61.179504,
+          "longitude": -149.922395
+        },
+        {
+          "latitude": 61.179585,
+          "longitude": -149.922393
+        },
+        {
+          "latitude": 61.179585,
+          "longitude": -149.922335
+        },
+        {
+          "latitude": 61.179673,
+          "longitude": -149.922333
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791506",
+      "exterior": [
+        {
+          "latitude": 61.179385,
+          "longitude": -149.921984
+        },
+        {
+          "latitude": 61.179144,
+          "longitude": -149.921985
+        },
+        {
+          "latitude": 61.179144,
+          "longitude": -149.921816
+        },
+        {
+          "latitude": 61.179384,
+          "longitude": -149.921815
+        },
+        {
+          "latitude": 61.179385,
+          "longitude": -149.921984
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791507",
+      "exterior": [
+        {
+          "latitude": 61.179171,
+          "longitude": -149.922325
+        },
+        {
+          "latitude": 61.179253,
+          "longitude": -149.922325
+        },
+        {
+          "latitude": 61.179253,
+          "longitude": -149.922566
+        },
+        {
+          "latitude": 61.179115,
+          "longitude": -149.922566
+        },
+        {
+          "latitude": 61.179115,
+          "longitude": -149.922414
+        },
+        {
+          "latitude": 61.179171,
+          "longitude": -149.922414
+        },
+        {
+          "latitude": 61.179171,
+          "longitude": -149.922325
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791510",
+      "exterior": [
+        {
+          "latitude": 61.179236,
+          "longitude": -149.922667
+        },
+        {
+          "latitude": 61.179236,
+          "longitude": -149.922734
+        },
+        {
+          "latitude": 61.179335,
+          "longitude": -149.922733
+        },
+        {
+          "latitude": 61.179335,
+          "longitude": -149.922902
+        },
+        {
+          "latitude": 61.17916,
+          "longitude": -149.922903
+        },
+        {
+          "latitude": 61.17916,
+          "longitude": -149.922806
+        },
+        {
+          "latitude": 61.179121,
+          "longitude": -149.922806
+        },
+        {
+          "latitude": 61.179121,
+          "longitude": -149.922667
+        },
+        {
+          "latitude": 61.179236,
+          "longitude": -149.922667
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791509",
+      "exterior": [
+        {
+          "latitude": 61.179255,
+          "longitude": -149.922932
+        },
+        {
+          "latitude": 61.179255,
+          "longitude": -149.923158
+        },
+        {
+          "latitude": 61.179136,
+          "longitude": -149.923157
+        },
+        {
+          "latitude": 61.179136,
+          "longitude": -149.922931
+        },
+        {
+          "latitude": 61.179255,
+          "longitude": -149.922932
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791511",
+      "exterior": [
+        {
+          "latitude": 61.179355,
+          "longitude": -149.92332
+        },
+        {
+          "latitude": 61.179355,
+          "longitude": -149.923497
+        },
+        {
+          "latitude": 61.179157,
+          "longitude": -149.923498
+        },
+        {
+          "latitude": 61.179157,
+          "longitude": -149.923278
+        },
+        {
+          "latitude": 61.179232,
+          "longitude": -149.923278
+        },
+        {
+          "latitude": 61.179232,
+          "longitude": -149.923215
+        },
+        {
+          "latitude": 61.179288,
+          "longitude": -149.923215
+        },
+        {
+          "latitude": 61.179288,
+          "longitude": -149.92332
+        },
+        {
+          "latitude": 61.179355,
+          "longitude": -149.92332
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790827",
+      "exterior": [
+        {
+          "latitude": 61.179231,
+          "longitude": -149.924161
+        },
+        {
+          "latitude": 61.179231,
+          "longitude": -149.924191
+        },
+        {
+          "latitude": 61.179323,
+          "longitude": -149.924189
+        },
+        {
+          "latitude": 61.179323,
+          "longitude": -149.924321
+        },
+        {
+          "latitude": 61.179233,
+          "longitude": -149.924322
+        },
+        {
+          "latitude": 61.179233,
+          "longitude": -149.924392
+        },
+        {
+          "latitude": 61.179145,
+          "longitude": -149.924393
+        },
+        {
+          "latitude": 61.179145,
+          "longitude": -149.924162
+        },
+        {
+          "latitude": 61.179231,
+          "longitude": -149.924161
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790825",
+      "exterior": [
+        {
+          "latitude": 61.179151,
+          "longitude": -149.924814
+        },
+        {
+          "latitude": 61.179171,
+          "longitude": -149.924813
+        },
+        {
+          "latitude": 61.179171,
+          "longitude": -149.924736
+        },
+        {
+          "latitude": 61.179244,
+          "longitude": -149.924734
+        },
+        {
+          "latitude": 61.179245,
+          "longitude": -149.924812
+        },
+        {
+          "latitude": 61.17932,
+          "longitude": -149.924811
+        },
+        {
+          "latitude": 61.17932,
+          "longitude": -149.924993
+        },
+        {
+          "latitude": 61.179152,
+          "longitude": -149.924996
+        },
+        {
+          "latitude": 61.179151,
+          "longitude": -149.924814
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790824",
+      "exterior": [
+        {
+          "latitude": 61.179151,
+          "longitude": -149.925042
+        },
+        {
+          "latitude": 61.179247,
+          "longitude": -149.925042
+        },
+        {
+          "latitude": 61.179247,
+          "longitude": -149.92527
+        },
+        {
+          "latitude": 61.179151,
+          "longitude": -149.92527
+        },
+        {
+          "latitude": 61.179151,
+          "longitude": -149.925042
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790822",
+      "exterior": [
+        {
+          "latitude": 61.179117,
+          "longitude": -149.925635
+        },
+        {
+          "latitude": 61.179318,
+          "longitude": -149.925638
+        },
+        {
+          "latitude": 61.179318,
+          "longitude": -149.925737
+        },
+        {
+          "latitude": 61.179263,
+          "longitude": -149.925736
+        },
+        {
+          "latitude": 61.179263,
+          "longitude": -149.925889
+        },
+        {
+          "latitude": 61.179183,
+          "longitude": -149.925888
+        },
+        {
+          "latitude": 61.179183,
+          "longitude": -149.925813
+        },
+        {
+          "latitude": 61.179116,
+          "longitude": -149.925812
+        },
+        {
+          "latitude": 61.179117,
+          "longitude": -149.925635
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790819",
+      "exterior": [
+        {
+          "latitude": 61.17927,
+          "longitude": -149.926775
+        },
+        {
+          "latitude": 61.17916,
+          "longitude": -149.926778
+        },
+        {
+          "latitude": 61.179159,
+          "longitude": -149.926604
+        },
+        {
+          "latitude": 61.179222,
+          "longitude": -149.926602
+        },
+        {
+          "latitude": 61.179221,
+          "longitude": -149.926532
+        },
+        {
+          "latitude": 61.179268,
+          "longitude": -149.926531
+        },
+        {
+          "latitude": 61.17927,
+          "longitude": -149.926775
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790818",
+      "exterior": [
+        {
+          "latitude": 61.179203,
+          "longitude": -149.92681
+        },
+        {
+          "latitude": 61.17927,
+          "longitude": -149.92681
+        },
+        {
+          "latitude": 61.17927,
+          "longitude": -149.927089
+        },
+        {
+          "latitude": 61.179158,
+          "longitude": -149.927089
+        },
+        {
+          "latitude": 61.179158,
+          "longitude": -149.926917
+        },
+        {
+          "latitude": 61.179203,
+          "longitude": -149.926917
+        },
+        {
+          "latitude": 61.179203,
+          "longitude": -149.92681
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790817",
+      "exterior": [
+        {
+          "latitude": 61.17912,
+          "longitude": -149.927142
+        },
+        {
+          "latitude": 61.1793,
+          "longitude": -149.927142
+        },
+        {
+          "latitude": 61.1793,
+          "longitude": -149.92726
+        },
+        {
+          "latitude": 61.17926,
+          "longitude": -149.92726
+        },
+        {
+          "latitude": 61.17926,
+          "longitude": -149.927394
+        },
+        {
+          "latitude": 61.179176,
+          "longitude": -149.927394
+        },
+        {
+          "latitude": 61.179176,
+          "longitude": -149.927327
+        },
+        {
+          "latitude": 61.179156,
+          "longitude": -149.927327
+        },
+        {
+          "latitude": 61.179156,
+          "longitude": -149.927263
+        },
+        {
+          "latitude": 61.17912,
+          "longitude": -149.927263
+        },
+        {
+          "latitude": 61.17912,
+          "longitude": -149.927142
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790816",
+      "exterior": [
+        {
+          "latitude": 61.179273,
+          "longitude": -149.927682
+        },
+        {
+          "latitude": 61.179135,
+          "longitude": -149.927688
+        },
+        {
+          "latitude": 61.179132,
+          "longitude": -149.927428
+        },
+        {
+          "latitude": 61.17927,
+          "longitude": -149.927422
+        },
+        {
+          "latitude": 61.179273,
+          "longitude": -149.927682
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790862",
+      "exterior": [
+        {
+          "latitude": 61.17825,
+          "longitude": -149.926721
+        },
+        {
+          "latitude": 61.178337,
+          "longitude": -149.926721
+        },
+        {
+          "latitude": 61.178337,
+          "longitude": -149.926973
+        },
+        {
+          "latitude": 61.17825,
+          "longitude": -149.926973
+        },
+        {
+          "latitude": 61.17825,
+          "longitude": -149.926721
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790860",
+      "exterior": [
+        {
+          "latitude": 61.178253,
+          "longitude": -149.926309
+        },
+        {
+          "latitude": 61.178342,
+          "longitude": -149.926312
+        },
+        {
+          "latitude": 61.178341,
+          "longitude": -149.92652
+        },
+        {
+          "latitude": 61.178394,
+          "longitude": -149.926522
+        },
+        {
+          "latitude": 61.178393,
+          "longitude": -149.92657
+        },
+        {
+          "latitude": 61.178251,
+          "longitude": -149.926565
+        },
+        {
+          "latitude": 61.178253,
+          "longitude": -149.926309
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790859",
+      "exterior": [
+        {
+          "latitude": 61.178377,
+          "longitude": -149.92596
+        },
+        {
+          "latitude": 61.178378,
+          "longitude": -149.926129
+        },
+        {
+          "latitude": 61.178246,
+          "longitude": -149.926132
+        },
+        {
+          "latitude": 61.178245,
+          "longitude": -149.925963
+        },
+        {
+          "latitude": 61.178377,
+          "longitude": -149.92596
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790911",
+      "exterior": [
+        {
+          "latitude": 61.177369,
+          "longitude": -149.925667
+        },
+        {
+          "latitude": 61.17749,
+          "longitude": -149.925667
+        },
+        {
+          "latitude": 61.17749,
+          "longitude": -149.925833
+        },
+        {
+          "latitude": 61.17745,
+          "longitude": -149.925833
+        },
+        {
+          "latitude": 61.17745,
+          "longitude": -149.925908
+        },
+        {
+          "latitude": 61.177369,
+          "longitude": -149.925908
+        },
+        {
+          "latitude": 61.177369,
+          "longitude": -149.925667
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790915",
+      "exterior": [
+        {
+          "latitude": 61.177366,
+          "longitude": -149.92451
+        },
+        {
+          "latitude": 61.177367,
+          "longitude": -149.924246
+        },
+        {
+          "latitude": 61.177452,
+          "longitude": -149.924247
+        },
+        {
+          "latitude": 61.177451,
+          "longitude": -149.924511
+        },
+        {
+          "latitude": 61.177366,
+          "longitude": -149.92451
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791292",
+      "exterior": [
+        {
+          "latitude": 61.17774,
+          "longitude": -149.923189
+        },
+        {
+          "latitude": 61.177974,
+          "longitude": -149.923183
+        },
+        {
+          "latitude": 61.177975,
+          "longitude": -149.923378
+        },
+        {
+          "latitude": 61.177741,
+          "longitude": -149.923383
+        },
+        {
+          "latitude": 61.17774,
+          "longitude": -149.923189
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790951",
+      "exterior": [
+        {
+          "latitude": 61.177865,
+          "longitude": -149.922861
+        },
+        {
+          "latitude": 61.177955,
+          "longitude": -149.922861
+        },
+        {
+          "latitude": 61.177955,
+          "longitude": -149.923122
+        },
+        {
+          "latitude": 61.177865,
+          "longitude": -149.923122
+        },
+        {
+          "latitude": 61.177865,
+          "longitude": -149.922861
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791289",
+      "exterior": [
+        {
+          "latitude": 61.178344,
+          "longitude": -149.922711
+        },
+        {
+          "latitude": 61.178255,
+          "longitude": -149.922713
+        },
+        {
+          "latitude": 61.178254,
+          "longitude": -149.922463
+        },
+        {
+          "latitude": 61.178343,
+          "longitude": -149.922461
+        },
+        {
+          "latitude": 61.178344,
+          "longitude": -149.922711
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791288",
+      "exterior": [
+        {
+          "latitude": 61.178386,
+          "longitude": -149.922177
+        },
+        {
+          "latitude": 61.178386,
+          "longitude": -149.922319
+        },
+        {
+          "latitude": 61.178338,
+          "longitude": -149.922319
+        },
+        {
+          "latitude": 61.178339,
+          "longitude": -149.922432
+        },
+        {
+          "latitude": 61.17826,
+          "longitude": -149.922433
+        },
+        {
+          "latitude": 61.178259,
+          "longitude": -149.922283
+        },
+        {
+          "latitude": 61.178259,
+          "longitude": -149.922178
+        },
+        {
+          "latitude": 61.178386,
+          "longitude": -149.922177
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791287",
+      "exterior": [
+        {
+          "latitude": 61.178256,
+          "longitude": -149.921746
+        },
+        {
+          "latitude": 61.17834,
+          "longitude": -149.921746
+        },
+        {
+          "latitude": 61.17834,
+          "longitude": -149.922003
+        },
+        {
+          "latitude": 61.178256,
+          "longitude": -149.922003
+        },
+        {
+          "latitude": 61.178256,
+          "longitude": -149.921746
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791290",
+      "exterior": [
+        {
+          "latitude": 61.178279,
+          "longitude": -149.922886
+        },
+        {
+          "latitude": 61.178464,
+          "longitude": -149.922894
+        },
+        {
+          "latitude": 61.178463,
+          "longitude": -149.922975
+        },
+        {
+          "latitude": 61.178495,
+          "longitude": -149.922976
+        },
+        {
+          "latitude": 61.178494,
+          "longitude": -149.923121
+        },
+        {
+          "latitude": 61.178393,
+          "longitude": -149.923117
+        },
+        {
+          "latitude": 61.178394,
+          "longitude": -149.923058
+        },
+        {
+          "latitude": 61.178277,
+          "longitude": -149.923052
+        },
+        {
+          "latitude": 61.178279,
+          "longitude": -149.922886
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791291",
+      "exterior": [
+        {
+          "latitude": 61.178395,
+          "longitude": -149.923417
+        },
+        {
+          "latitude": 61.178276,
+          "longitude": -149.923417
+        },
+        {
+          "latitude": 61.178276,
+          "longitude": -149.923244
+        },
+        {
+          "latitude": 61.178395,
+          "longitude": -149.923244
+        },
+        {
+          "latitude": 61.178395,
+          "longitude": -149.923417
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790852",
+      "exterior": [
+        {
+          "latitude": 61.178259,
+          "longitude": -149.923912
+        },
+        {
+          "latitude": 61.178341,
+          "longitude": -149.923911
+        },
+        {
+          "latitude": 61.178342,
+          "longitude": -149.924166
+        },
+        {
+          "latitude": 61.178259,
+          "longitude": -149.924167
+        },
+        {
+          "latitude": 61.178259,
+          "longitude": -149.923912
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791504",
+      "exterior": [
+        {
+          "latitude": 61.179145,
+          "longitude": -149.92137
+        },
+        {
+          "latitude": 61.179145,
+          "longitude": -149.921174
+        },
+        {
+          "latitude": 61.179256,
+          "longitude": -149.921174
+        },
+        {
+          "latitude": 61.179256,
+          "longitude": -149.92137
+        },
+        {
+          "latitude": 61.179145,
+          "longitude": -149.92137
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791502",
+      "exterior": [
+        {
+          "latitude": 61.179149,
+          "longitude": -149.920574
+        },
+        {
+          "latitude": 61.179191,
+          "longitude": -149.920574
+        },
+        {
+          "latitude": 61.179191,
+          "longitude": -149.920523
+        },
+        {
+          "latitude": 61.179255,
+          "longitude": -149.920523
+        },
+        {
+          "latitude": 61.179255,
+          "longitude": -149.920764
+        },
+        {
+          "latitude": 61.179149,
+          "longitude": -149.920764
+        },
+        {
+          "latitude": 61.179149,
+          "longitude": -149.920574
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791501",
+      "exterior": [
+        {
+          "latitude": 61.179162,
+          "longitude": -149.92049
+        },
+        {
+          "latitude": 61.179161,
+          "longitude": -149.920264
+        },
+        {
+          "latitude": 61.179236,
+          "longitude": -149.920262
+        },
+        {
+          "latitude": 61.179236,
+          "longitude": -149.920329
+        },
+        {
+          "latitude": 61.179257,
+          "longitude": -149.920329
+        },
+        {
+          "latitude": 61.179257,
+          "longitude": -149.920412
+        },
+        {
+          "latitude": 61.179235,
+          "longitude": -149.920412
+        },
+        {
+          "latitude": 61.179236,
+          "longitude": -149.920489
+        },
+        {
+          "latitude": 61.179162,
+          "longitude": -149.92049
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791500",
+      "exterior": [
+        {
+          "latitude": 61.179148,
+          "longitude": -149.92014
+        },
+        {
+          "latitude": 61.179148,
+          "longitude": -149.919976
+        },
+        {
+          "latitude": 61.17926,
+          "longitude": -149.919975
+        },
+        {
+          "latitude": 61.179261,
+          "longitude": -149.920138
+        },
+        {
+          "latitude": 61.179148,
+          "longitude": -149.92014
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790114",
+      "exterior": [
+        {
+          "latitude": 61.179756,
+          "longitude": -149.919909
+        },
+        {
+          "latitude": 61.17947,
+          "longitude": -149.919903
+        },
+        {
+          "latitude": 61.179471,
+          "longitude": -149.919703
+        },
+        {
+          "latitude": 61.179757,
+          "longitude": -149.919709
+        },
+        {
+          "latitude": 61.179756,
+          "longitude": -149.919909
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790115",
+      "exterior": [
+        {
+          "latitude": 61.179754,
+          "longitude": -149.920476
+        },
+        {
+          "latitude": 61.179475,
+          "longitude": -149.920489
+        },
+        {
+          "latitude": 61.179473,
+          "longitude": -149.92032
+        },
+        {
+          "latitude": 61.179753,
+          "longitude": -149.920307
+        },
+        {
+          "latitude": 61.179754,
+          "longitude": -149.920476
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790116",
+      "exterior": [
+        {
+          "latitude": 61.179549,
+          "longitude": -149.920782
+        },
+        {
+          "latitude": 61.179545,
+          "longitude": -149.920555
+        },
+        {
+          "latitude": 61.179679,
+          "longitude": -149.920545
+        },
+        {
+          "latitude": 61.179683,
+          "longitude": -149.920772
+        },
+        {
+          "latitude": 61.179549,
+          "longitude": -149.920782
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790117",
+      "exterior": [
+        {
+          "latitude": 61.179707,
+          "longitude": -149.921038
+        },
+        {
+          "latitude": 61.17971,
+          "longitude": -149.921349
+        },
+        {
+          "latitude": 61.179623,
+          "longitude": -149.921352
+        },
+        {
+          "latitude": 61.179619,
+          "longitude": -149.921001
+        },
+        {
+          "latitude": 61.179685,
+          "longitude": -149.920998
+        },
+        {
+          "latitude": 61.179686,
+          "longitude": -149.921039
+        },
+        {
+          "latitude": 61.179707,
+          "longitude": -149.921038
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790119",
+      "exterior": [
+        {
+          "latitude": 61.179595,
+          "longitude": -149.921672
+        },
+        {
+          "latitude": 61.179593,
+          "longitude": -149.921548
+        },
+        {
+          "latitude": 61.179579,
+          "longitude": -149.921549
+        },
+        {
+          "latitude": 61.179577,
+          "longitude": -149.921415
+        },
+        {
+          "latitude": 61.179724,
+          "longitude": -149.921404
+        },
+        {
+          "latitude": 61.179727,
+          "longitude": -149.921553
+        },
+        {
+          "latitude": 61.17976,
+          "longitude": -149.921551
+        },
+        {
+          "latitude": 61.179762,
+          "longitude": -149.921661
+        },
+        {
+          "latitude": 61.179595,
+          "longitude": -149.921672
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790102",
+      "exterior": [
+        {
+          "latitude": 61.18018,
+          "longitude": -149.920818
+        },
+        {
+          "latitude": 61.18018,
+          "longitude": -149.92097
+        },
+        {
+          "latitude": 61.180071,
+          "longitude": -149.92097
+        },
+        {
+          "latitude": 61.180071,
+          "longitude": -149.920818
+        },
+        {
+          "latitude": 61.18018,
+          "longitude": -149.920818
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790103",
+      "exterior": [
+        {
+          "latitude": 61.180118,
+          "longitude": -149.920772
+        },
+        {
+          "latitude": 61.179997,
+          "longitude": -149.920772
+        },
+        {
+          "latitude": 61.179997,
+          "longitude": -149.920616
+        },
+        {
+          "latitude": 61.180118,
+          "longitude": -149.920616
+        },
+        {
+          "latitude": 61.180118,
+          "longitude": -149.920772
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790104",
+      "exterior": [
+        {
+          "latitude": 61.180126,
+          "longitude": -149.920408
+        },
+        {
+          "latitude": 61.180119,
+          "longitude": -149.920564
+        },
+        {
+          "latitude": 61.179992,
+          "longitude": -149.920539
+        },
+        {
+          "latitude": 61.179999,
+          "longitude": -149.920382
+        },
+        {
+          "latitude": 61.180126,
+          "longitude": -149.920408
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790106",
+      "exterior": [
+        {
+          "latitude": 61.180141,
+          "longitude": -149.919768
+        },
+        {
+          "latitude": 61.180224,
+          "longitude": -149.919961
+        },
+        {
+          "latitude": 61.180118,
+          "longitude": -149.920154
+        },
+        {
+          "latitude": 61.180036,
+          "longitude": -149.919961
+        },
+        {
+          "latitude": 61.180141,
+          "longitude": -149.919768
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790107",
+      "exterior": [
+        {
+          "latitude": 61.180415,
+          "longitude": -149.92
+        },
+        {
+          "latitude": 61.180273,
+          "longitude": -149.920004
+        },
+        {
+          "latitude": 61.180271,
+          "longitude": -149.919739
+        },
+        {
+          "latitude": 61.180413,
+          "longitude": -149.919735
+        },
+        {
+          "latitude": 61.180415,
+          "longitude": -149.92
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790110",
+      "exterior": [
+        {
+          "latitude": 61.180556,
+          "longitude": -149.920568
+        },
+        {
+          "latitude": 61.180543,
+          "longitude": -149.920418
+        },
+        {
+          "latitude": 61.180667,
+          "longitude": -149.92037
+        },
+        {
+          "latitude": 61.18068,
+          "longitude": -149.92052
+        },
+        {
+          "latitude": 61.180556,
+          "longitude": -149.920568
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790112",
+      "exterior": [
+        {
+          "latitude": 61.180486,
+          "longitude": -149.920997
+        },
+        {
+          "latitude": 61.180487,
+          "longitude": -149.920844
+        },
+        {
+          "latitude": 61.180635,
+          "longitude": -149.920849
+        },
+        {
+          "latitude": 61.180633,
+          "longitude": -149.921002
+        },
+        {
+          "latitude": 61.180486,
+          "longitude": -149.920997
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791283",
+      "exterior": [
+        {
+          "latitude": 61.17834,
+          "longitude": -149.920606
+        },
+        {
+          "latitude": 61.178258,
+          "longitude": -149.920606
+        },
+        {
+          "latitude": 61.178258,
+          "longitude": -149.920359
+        },
+        {
+          "latitude": 61.17834,
+          "longitude": -149.920359
+        },
+        {
+          "latitude": 61.17834,
+          "longitude": -149.920606
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800791280",
+      "exterior": [
+        {
+          "latitude": 61.17826,
+          "longitude": -149.919882
+        },
+        {
+          "latitude": 61.17826,
+          "longitude": -149.919715
+        },
+        {
+          "latitude": 61.178384,
+          "longitude": -149.919715
+        },
+        {
+          "latitude": 61.178384,
+          "longitude": -149.919882
+        },
+        {
+          "latitude": 61.17826,
+          "longitude": -149.919882
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790940",
+      "exterior": [
+        {
+          "latitude": 61.177783,
+          "longitude": -149.919725
+        },
+        {
+          "latitude": 61.177976,
+          "longitude": -149.919724
+        },
+        {
+          "latitude": 61.177976,
+          "longitude": -149.919921
+        },
+        {
+          "latitude": 61.177819,
+          "longitude": -149.919922
+        },
+        {
+          "latitude": 61.177819,
+          "longitude": -149.919951
+        },
+        {
+          "latitude": 61.177694,
+          "longitude": -149.919951
+        },
+        {
+          "latitude": 61.177694,
+          "longitude": -149.919692
+        },
+        {
+          "latitude": 61.177783,
+          "longitude": -149.919692
+        },
+        {
+          "latitude": 61.177783,
+          "longitude": -149.919725
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790938",
+      "exterior": [
+        {
+          "latitude": 61.177366,
+          "longitude": -149.919671
+        },
+        {
+          "latitude": 61.177449,
+          "longitude": -149.919669
+        },
+        {
+          "latitude": 61.17745,
+          "longitude": -149.919912
+        },
+        {
+          "latitude": 61.177367,
+          "longitude": -149.919913
+        },
+        {
+          "latitude": 61.177366,
+          "longitude": -149.919671
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790933",
+      "exterior": [
+        {
+          "latitude": 61.177445,
+          "longitude": -149.921066
+        },
+        {
+          "latitude": 61.177446,
+          "longitude": -149.921328
+        },
+        {
+          "latitude": 61.177367,
+          "longitude": -149.92133
+        },
+        {
+          "latitude": 61.177365,
+          "longitude": -149.921067
+        },
+        {
+          "latitude": 61.177445,
+          "longitude": -149.921066
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800790906",
+      "exterior": [
+        {
+          "latitude": 61.177457,
+          "longitude": -149.927319
+        },
+        {
+          "latitude": 61.177457,
+          "longitude": -149.927585
+        },
+        {
+          "latitude": 61.177377,
+          "longitude": -149.927585
+        },
+        {
+          "latitude": 61.177377,
+          "longitude": -149.927319
+        },
+        {
+          "latitude": 61.177457,
+          "longitude": -149.927319
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800789787",
+      "exterior": [
+        {
+          "latitude": 61.175852,
+          "longitude": -149.928508
+        },
+        {
+          "latitude": 61.175947,
+          "longitude": -149.928508
+        },
+        {
+          "latitude": 61.175946,
+          "longitude": -149.928863
+        },
+        {
+          "latitude": 61.175852,
+          "longitude": -149.928863
+        },
+        {
+          "latitude": 61.175852,
+          "longitude": -149.928508
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800789786",
+      "exterior": [
+        {
+          "latitude": 61.175851,
+          "longitude": -149.929336
+        },
+        {
+          "latitude": 61.175851,
+          "longitude": -149.928934
+        },
+        {
+          "latitude": 61.17594,
+          "longitude": -149.928934
+        },
+        {
+          "latitude": 61.17594,
+          "longitude": -149.929336
+        },
+        {
+          "latitude": 61.175851,
+          "longitude": -149.929336
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800789784",
+      "exterior": [
+        {
+          "latitude": 61.175863,
+          "longitude": -149.930217
+        },
+        {
+          "latitude": 61.175852,
+          "longitude": -149.929941
+        },
+        {
+          "latitude": 61.175912,
+          "longitude": -149.929931
+        },
+        {
+          "latitude": 61.175914,
+          "longitude": -149.929988
+        },
+        {
+          "latitude": 61.176006,
+          "longitude": -149.929973
+        },
+        {
+          "latitude": 61.176015,
+          "longitude": -149.930191
+        },
+        {
+          "latitude": 61.175863,
+          "longitude": -149.930217
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800789783",
+      "exterior": [
+        {
+          "latitude": 61.17587,
+          "longitude": -149.930282
+        },
+        {
+          "latitude": 61.17598,
+          "longitude": -149.930387
+        },
+        {
+          "latitude": 61.175959,
+          "longitude": -149.93048
+        },
+        {
+          "latitude": 61.17602,
+          "longitude": -149.930539
+        },
+        {
+          "latitude": 61.175978,
+          "longitude": -149.930724
+        },
+        {
+          "latitude": 61.175906,
+          "longitude": -149.930655
+        },
+        {
+          "latitude": 61.175918,
+          "longitude": -149.930602
+        },
+        {
+          "latitude": 61.17587,
+          "longitude": -149.930556
+        },
+        {
+          "latitude": 61.175861,
+          "longitude": -149.930596
+        },
+        {
+          "latitude": 61.175826,
+          "longitude": -149.930562
+        },
+        {
+          "latitude": 61.175857,
+          "longitude": -149.930421
+        },
+        {
+          "latitude": 61.175842,
+          "longitude": -149.930406
+        },
+        {
+          "latitude": 61.17587,
+          "longitude": -149.930282
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800788054",
+      "exterior": [
+        {
+          "latitude": 61.177148,
+          "longitude": -149.935367
+        },
+        {
+          "latitude": 61.177216,
+          "longitude": -149.93531
+        },
+        {
+          "latitude": 61.177227,
+          "longitude": -149.935365
+        },
+        {
+          "latitude": 61.177246,
+          "longitude": -149.93535
+        },
+        {
+          "latitude": 61.177294,
+          "longitude": -149.935596
+        },
+        {
+          "latitude": 61.177207,
+          "longitude": -149.935669
+        },
+        {
+          "latitude": 61.177148,
+          "longitude": -149.935367
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800788056",
+      "exterior": [
+        {
+          "latitude": 61.177237,
+          "longitude": -149.936057
+        },
+        {
+          "latitude": 61.177324,
+          "longitude": -149.93597
+        },
+        {
+          "latitude": 61.177382,
+          "longitude": -149.936225
+        },
+        {
+          "latitude": 61.177295,
+          "longitude": -149.936311
+        },
+        {
+          "latitude": 61.177237,
+          "longitude": -149.936057
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800788058",
+      "exterior": [
+        {
+          "latitude": 61.177333,
+          "longitude": -149.937121
+        },
+        {
+          "latitude": 61.177278,
+          "longitude": -149.936845
+        },
+        {
+          "latitude": 61.177432,
+          "longitude": -149.936715
+        },
+        {
+          "latitude": 61.177465,
+          "longitude": -149.936881
+        },
+        {
+          "latitude": 61.177417,
+          "longitude": -149.936921
+        },
+        {
+          "latitude": 61.177439,
+          "longitude": -149.937031
+        },
+        {
+          "latitude": 61.177333,
+          "longitude": -149.937121
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800788047",
+      "exterior": [
+        {
+          "latitude": 61.177848,
+          "longitude": -149.937403
+        },
+        {
+          "latitude": 61.177803,
+          "longitude": -149.937301
+        },
+        {
+          "latitude": 61.177846,
+          "longitude": -149.937221
+        },
+        {
+          "latitude": 61.17789,
+          "longitude": -149.937322
+        },
+        {
+          "latitude": 61.177848,
+          "longitude": -149.937403
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800788038",
+      "exterior": [
+        {
+          "latitude": 61.178142,
+          "longitude": -149.936468
+        },
+        {
+          "latitude": 61.178131,
+          "longitude": -149.936371
+        },
+        {
+          "latitude": 61.178216,
+          "longitude": -149.93633
+        },
+        {
+          "latitude": 61.178227,
+          "longitude": -149.936427
+        },
+        {
+          "latitude": 61.178142,
+          "longitude": -149.936468
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800788040",
+      "exterior": [
+        {
+          "latitude": 61.178055,
+          "longitude": -149.935882
+        },
+        {
+          "latitude": 61.178137,
+          "longitude": -149.935832
+        },
+        {
+          "latitude": 61.178155,
+          "longitude": -149.935961
+        },
+        {
+          "latitude": 61.178073,
+          "longitude": -149.936011
+        },
+        {
+          "latitude": 61.178055,
+          "longitude": -149.935882
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800788041",
+      "exterior": [
+        {
+          "latitude": 61.178105,
+          "longitude": -149.935588
+        },
+        {
+          "latitude": 61.178125,
+          "longitude": -149.935732
+        },
+        {
+          "latitude": 61.178038,
+          "longitude": -149.935784
+        },
+        {
+          "latitude": 61.178018,
+          "longitude": -149.93564
+        },
+        {
+          "latitude": 61.178105,
+          "longitude": -149.935588
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800788020",
+      "exterior": [
+        {
+          "latitude": 61.1808788,
+          "longitude": -149.9353265
+        },
+        {
+          "latitude": 61.1810448,
+          "longitude": -149.9353275
+        },
+        {
+          "latitude": 61.1810438,
+          "longitude": -149.9359075
+        },
+        {
+          "latitude": 61.1808778,
+          "longitude": -149.9359065
+        },
+        {
+          "latitude": 61.1808788,
+          "longitude": -149.9353265
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800787716",
+      "exterior": [
+        {
+          "latitude": 61.1816885,
+          "longitude": -149.9325826
+        },
+        {
+          "latitude": 61.1819565,
+          "longitude": -149.9325826
+        },
+        {
+          "latitude": 61.1819565,
+          "longitude": -149.9327126
+        },
+        {
+          "latitude": 61.1818775,
+          "longitude": -149.9327126
+        },
+        {
+          "latitude": 61.1818775,
+          "longitude": -149.9328076
+        },
+        {
+          "latitude": 61.1817416,
+          "longitude": -149.9328056
+        },
+        {
+          "latitude": 61.1816885,
+          "longitude": -149.9328086
+        },
+        {
+          "latitude": 61.1816885,
+          "longitude": -149.9325826
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800812936",
+      "exterior": [
+        {
+          "latitude": 61.182284,
+          "longitude": -149.932758
+        },
+        {
+          "latitude": 61.182624,
+          "longitude": -149.932749
+        },
+        {
+          "latitude": 61.182628,
+          "longitude": -149.9333
+        },
+        {
+          "latitude": 61.182554,
+          "longitude": -149.933302
+        },
+        {
+          "latitude": 61.182554,
+          "longitude": -149.933329
+        },
+        {
+          "latitude": 61.182288,
+          "longitude": -149.933336
+        },
+        {
+          "latitude": 61.1822852,
+          "longitude": -149.9329351
+        },
+        {
+          "latitude": 61.182284,
+          "longitude": -149.932758
+        }
+      ]
+    },
+    {
+      "id": "osm-way-1461499636",
+      "exterior": [
+        {
+          "latitude": 61.1873297,
+          "longitude": -149.9139676
+        },
+        {
+          "latitude": 61.1873298,
+          "longitude": -149.9138006
+        },
+        {
+          "latitude": 61.1870956,
+          "longitude": -149.9137996
+        },
+        {
+          "latitude": 61.1870954,
+          "longitude": -149.9140101
+        },
+        {
+          "latitude": 61.1872079,
+          "longitude": -149.9140106
+        },
+        {
+          "latitude": 61.187208,
+          "longitude": -149.9139671
+        },
+        {
+          "latitude": 61.1873297,
+          "longitude": -149.9139676
+        }
+      ]
+    },
+    {
+      "id": "osm-way-428289407",
+      "exterior": [
+        {
+          "latitude": 61.1902199,
+          "longitude": -149.9104897
+        },
+        {
+          "latitude": 61.1902199,
+          "longitude": -149.9100867
+        },
+        {
+          "latitude": 61.189895,
+          "longitude": -149.910094
+        },
+        {
+          "latitude": 61.1898985,
+          "longitude": -149.9104897
+        },
+        {
+          "latitude": 61.1902199,
+          "longitude": -149.9104897
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800784421",
+      "exterior": [
+        {
+          "latitude": 61.191958,
+          "longitude": -149.906415
+        },
+        {
+          "latitude": 61.191959,
+          "longitude": -149.90619
+        },
+        {
+          "latitude": 61.192037,
+          "longitude": -149.906191
+        },
+        {
+          "latitude": 61.192034,
+          "longitude": -149.906857
+        },
+        {
+          "latitude": 61.192016,
+          "longitude": -149.906857
+        },
+        {
+          "latitude": 61.192016,
+          "longitude": -149.906968
+        },
+        {
+          "latitude": 61.191957,
+          "longitude": -149.906967
+        },
+        {
+          "latitude": 61.191957,
+          "longitude": -149.906791
+        },
+        {
+          "latitude": 61.1919578,
+          "longitude": -149.9067189
+        },
+        {
+          "latitude": 61.1919559,
+          "longitude": -149.9066368
+        },
+        {
+          "latitude": 61.1919569,
+          "longitude": -149.9065674
+        },
+        {
+          "latitude": 61.1919589,
+          "longitude": -149.9064438
+        },
+        {
+          "latitude": 61.191958,
+          "longitude": -149.906415
+        }
+      ]
+    },
+    {
+      "id": "osm-way-1125256146",
+      "exterior": [
+        {
+          "latitude": 61.1945132,
+          "longitude": -149.9048322
+        },
+        {
+          "latitude": 61.1944598,
+          "longitude": -149.9048314
+        },
+        {
+          "latitude": 61.1944607,
+          "longitude": -149.9045939
+        },
+        {
+          "latitude": 61.1945141,
+          "longitude": -149.9045948
+        },
+        {
+          "latitude": 61.1945132,
+          "longitude": -149.9048322
+        }
+      ]
+    },
+    {
+      "id": "osm-way-255745861",
+      "exterior": [
+        {
+          "latitude": 61.195627,
+          "longitude": -149.9034838
+        },
+        {
+          "latitude": 61.195627,
+          "longitude": -149.9030023
+        },
+        {
+          "latitude": 61.1954231,
+          "longitude": -149.9030022
+        },
+        {
+          "latitude": 61.1954231,
+          "longitude": -149.9034838
+        },
+        {
+          "latitude": 61.195627,
+          "longitude": -149.9034838
+        }
+      ]
+    },
+    {
+      "id": "osm-way-255745862",
+      "exterior": [
+        {
+          "latitude": 61.1957235,
+          "longitude": -149.9027429
+        },
+        {
+          "latitude": 61.1957238,
+          "longitude": -149.9024694
+        },
+        {
+          "latitude": 61.1954435,
+          "longitude": -149.9024682
+        },
+        {
+          "latitude": 61.1954432,
+          "longitude": -149.9027417
+        },
+        {
+          "latitude": 61.1957235,
+          "longitude": -149.9027429
+        }
+      ]
+    },
+    {
+      "id": "osm-way-255745860",
+      "exterior": [
+        {
+          "latitude": 61.1966619,
+          "longitude": -149.9050971
+        },
+        {
+          "latitude": 61.1965477,
+          "longitude": -149.9050951
+        },
+        {
+          "latitude": 61.1965487,
+          "longitude": -149.9047991
+        },
+        {
+          "latitude": 61.1966058,
+          "longitude": -149.9048001
+        },
+        {
+          "latitude": 61.1966035,
+          "longitude": -149.9044472
+        },
+        {
+          "latitude": 61.1966695,
+          "longitude": -149.9044533
+        },
+        {
+          "latitude": 61.196675,
+          "longitude": -149.9047973
+        },
+        {
+          "latitude": 61.1966629,
+          "longitude": -149.9048011
+        },
+        {
+          "latitude": 61.1966619,
+          "longitude": -149.9050971
+        }
+      ]
+    },
+    {
+      "id": "osm-way-255745858",
+      "exterior": [
+        {
+          "latitude": 61.1960622,
+          "longitude": -149.907752
+        },
+        {
+          "latitude": 61.1959259,
+          "longitude": -149.907753
+        },
+        {
+          "latitude": 61.1959235,
+          "longitude": -149.906785
+        },
+        {
+          "latitude": 61.1960612,
+          "longitude": -149.9067824
+        },
+        {
+          "latitude": 61.1960603,
+          "longitude": -149.9070051
+        },
+        {
+          "latitude": 61.1960622,
+          "longitude": -149.907752
+        }
+      ]
+    },
+    {
+      "id": "osm-way-371314973",
+      "exterior": [
+        {
+          "latitude": 61.1955851,
+          "longitude": -149.9071754
+        },
+        {
+          "latitude": 61.1955873,
+          "longitude": -149.9075724
+        },
+        {
+          "latitude": 61.1953993,
+          "longitude": -149.907577
+        },
+        {
+          "latitude": 61.1954011,
+          "longitude": -149.9079021
+        },
+        {
+          "latitude": 61.1957071,
+          "longitude": -149.9078948
+        },
+        {
+          "latitude": 61.1957064,
+          "longitude": -149.9077548
+        },
+        {
+          "latitude": 61.195764,
+          "longitude": -149.9077535
+        },
+        {
+          "latitude": 61.1957623,
+          "longitude": -149.9067849
+        },
+        {
+          "latitude": 61.1955826,
+          "longitude": -149.9067818
+        },
+        {
+          "latitude": 61.1955844,
+          "longitude": -149.907053
+        },
+        {
+          "latitude": 61.1955851,
+          "longitude": -149.9071754
+        }
+      ]
+    },
+    {
+      "id": "osm-way-88084543",
+      "exterior": [
+        {
+          "latitude": 61.1933685,
+          "longitude": -149.9124023
+        },
+        {
+          "latitude": 61.1932858,
+          "longitude": -149.9125686
+        },
+        {
+          "latitude": 61.1932554,
+          "longitude": -149.9125019
+        },
+        {
+          "latitude": 61.1931578,
+          "longitude": -149.9123031
+        },
+        {
+          "latitude": 61.1930661,
+          "longitude": -149.9124854
+        },
+        {
+          "latitude": 61.1930415,
+          "longitude": -149.9124828
+        },
+        {
+          "latitude": 61.1930415,
+          "longitude": -149.9124479
+        },
+        {
+          "latitude": 61.1929498,
+          "longitude": -149.9124399
+        },
+        {
+          "latitude": 61.1929536,
+          "longitude": -149.9123433
+        },
+        {
+          "latitude": 61.1929123,
+          "longitude": -149.912346
+        },
+        {
+          "latitude": 61.1929123,
+          "longitude": -149.9121421
+        },
+        {
+          "latitude": 61.1929795,
+          "longitude": -149.9120134
+        },
+        {
+          "latitude": 61.1929795,
+          "longitude": -149.9118149
+        },
+        {
+          "latitude": 61.193026,
+          "longitude": -149.9117317
+        },
+        {
+          "latitude": 61.1931178,
+          "longitude": -149.9117371
+        },
+        {
+          "latitude": 61.1931811,
+          "longitude": -149.9116003
+        },
+        {
+          "latitude": 61.1932742,
+          "longitude": -149.9116084
+        },
+        {
+          "latitude": 61.1932755,
+          "longitude": -149.9116808
+        },
+        {
+          "latitude": 61.1933181,
+          "longitude": -149.9116808
+        },
+        {
+          "latitude": 61.1933155,
+          "longitude": -149.9118873
+        },
+        {
+          "latitude": 61.193331,
+          "longitude": -149.91189
+        },
+        {
+          "latitude": 61.193331,
+          "longitude": -149.9119383
+        },
+        {
+          "latitude": 61.1932367,
+          "longitude": -149.912118
+        },
+        {
+          "latitude": 61.1933325,
+          "longitude": -149.9123247
+        },
+        {
+          "latitude": 61.1933685,
+          "longitude": -149.9124023
+        }
+      ]
+    },
+    {
+      "id": "osm-way-288388627",
+      "exterior": [
+        {
+          "latitude": 61.1951498,
+          "longitude": -149.8991238
+        },
+        {
+          "latitude": 61.1945327,
+          "longitude": -149.899134
+        },
+        {
+          "latitude": 61.1945348,
+          "longitude": -149.8996853
+        },
+        {
+          "latitude": 61.1944576,
+          "longitude": -149.8996866
+        },
+        {
+          "latitude": 61.1944594,
+          "longitude": -149.9001597
+        },
+        {
+          "latitude": 61.1947178,
+          "longitude": -149.9001551
+        },
+        {
+          "latitude": 61.1948553,
+          "longitude": -149.9001532
+        },
+        {
+          "latitude": 61.194856,
+          "longitude": -149.9003346
+        },
+        {
+          "latitude": 61.1950375,
+          "longitude": -149.9003316
+        },
+        {
+          "latitude": 61.1950361,
+          "longitude": -149.8999857
+        },
+        {
+          "latitude": 61.1952156,
+          "longitude": -149.8999827
+        },
+        {
+          "latitude": 61.1952133,
+          "longitude": -149.8993891
+        },
+        {
+          "latitude": 61.1951508,
+          "longitude": -149.8993901
+        },
+        {
+          "latitude": 61.1951498,
+          "longitude": -149.8991238
+        }
+      ]
+    },
+    {
+      "id": "osm-way-656038453",
+      "exterior": [
+        {
+          "latitude": 61.1936181,
+          "longitude": -149.8988244
+        },
+        {
+          "latitude": 61.1934012,
+          "longitude": -149.8988235
+        },
+        {
+          "latitude": 61.1934027,
+          "longitude": -149.8984011
+        },
+        {
+          "latitude": 61.1933636,
+          "longitude": -149.8984037
+        },
+        {
+          "latitude": 61.1933635,
+          "longitude": -149.898148
+        },
+        {
+          "latitude": 61.193519,
+          "longitude": -149.8981491
+        },
+        {
+          "latitude": 61.1935188,
+          "longitude": -149.8982611
+        },
+        {
+          "latitude": 61.193619,
+          "longitude": -149.8982618
+        },
+        {
+          "latitude": 61.1936181,
+          "longitude": -149.8988244
+        }
+      ]
+    },
+    {
+      "id": "osm-way-583331128",
+      "exterior": [
+        {
+          "latitude": 61.1866784,
+          "longitude": -149.8909041
+        },
+        {
+          "latitude": 61.1866773,
+          "longitude": -149.8915901
+        },
+        {
+          "latitude": 61.1872529,
+          "longitude": -149.8915942
+        },
+        {
+          "latitude": 61.1872541,
+          "longitude": -149.8909085
+        },
+        {
+          "latitude": 61.1866784,
+          "longitude": -149.8909041
+        }
+      ]
+    },
+    {
+      "id": "osm-way-772505980",
+      "exterior": [
+        {
+          "latitude": 61.1863799,
+          "longitude": -149.8883913
+        },
+        {
+          "latitude": 61.1863798,
+          "longitude": -149.8879326
+        },
+        {
+          "latitude": 61.186351,
+          "longitude": -149.8878946
+        },
+        {
+          "latitude": 61.1863858,
+          "longitude": -149.8877809
+        },
+        {
+          "latitude": 61.1864302,
+          "longitude": -149.8876771
+        },
+        {
+          "latitude": 61.1864795,
+          "longitude": -149.887576
+        },
+        {
+          "latitude": 61.186536,
+          "longitude": -149.8874899
+        },
+        {
+          "latitude": 61.1865919,
+          "longitude": -149.8874277
+        },
+        {
+          "latitude": 61.1866555,
+          "longitude": -149.8873753
+        },
+        {
+          "latitude": 61.1867187,
+          "longitude": -149.8873364
+        },
+        {
+          "latitude": 61.1867207,
+          "longitude": -149.8872544
+        },
+        {
+          "latitude": 61.186872,
+          "longitude": -149.8872561
+        },
+        {
+          "latitude": 61.1868728,
+          "longitude": -149.8877427
+        },
+        {
+          "latitude": 61.1868296,
+          "longitude": -149.8877993
+        },
+        {
+          "latitude": 61.1868499,
+          "longitude": -149.8878495
+        },
+        {
+          "latitude": 61.1868559,
+          "longitude": -149.8878981
+        },
+        {
+          "latitude": 61.1868594,
+          "longitude": -149.8879455
+        },
+        {
+          "latitude": 61.1868572,
+          "longitude": -149.8880071
+        },
+        {
+          "latitude": 61.1868508,
+          "longitude": -149.8880611
+        },
+        {
+          "latitude": 61.1868405,
+          "longitude": -149.8881126
+        },
+        {
+          "latitude": 61.1868286,
+          "longitude": -149.8881165
+        },
+        {
+          "latitude": 61.1868216,
+          "longitude": -149.888144
+        },
+        {
+          "latitude": 61.1868171,
+          "longitude": -149.8881677
+        },
+        {
+          "latitude": 61.1868059,
+          "longitude": -149.888186
+        },
+        {
+          "latitude": 61.1867913,
+          "longitude": -149.8881937
+        },
+        {
+          "latitude": 61.1867825,
+          "longitude": -149.8882043
+        },
+        {
+          "latitude": 61.1867835,
+          "longitude": -149.8883015
+        },
+        {
+          "latitude": 61.1867218,
+          "longitude": -149.8883329
+        },
+        {
+          "latitude": 61.1866573,
+          "longitude": -149.8883619
+        },
+        {
+          "latitude": 61.1866067,
+          "longitude": -149.8883819
+        },
+        {
+          "latitude": 61.1865537,
+          "longitude": -149.8883889
+        },
+        {
+          "latitude": 61.1865008,
+          "longitude": -149.8883913
+        },
+        {
+          "latitude": 61.1863799,
+          "longitude": -149.8883913
+        }
+      ]
+    },
+    {
+      "id": "osm-way-589076060",
+      "exterior": [
+        {
+          "latitude": 61.1851856,
+          "longitude": -149.8877953
+        },
+        {
+          "latitude": 61.185174,
+          "longitude": -149.8877419
+        },
+        {
+          "latitude": 61.185261,
+          "longitude": -149.8876514
+        },
+        {
+          "latitude": 61.1852065,
+          "longitude": -149.8874289
+        },
+        {
+          "latitude": 61.1851495,
+          "longitude": -149.8874517
+        },
+        {
+          "latitude": 61.1850975,
+          "longitude": -149.8874847
+        },
+        {
+          "latitude": 61.1850335,
+          "longitude": -149.8875454
+        },
+        {
+          "latitude": 61.1849892,
+          "longitude": -149.8876088
+        },
+        {
+          "latitude": 61.1849544,
+          "longitude": -149.8876727
+        },
+        {
+          "latitude": 61.1849126,
+          "longitude": -149.8877601
+        },
+        {
+          "latitude": 61.1848591,
+          "longitude": -149.8878929
+        },
+        {
+          "latitude": 61.1848322,
+          "longitude": -149.8879811
+        },
+        {
+          "latitude": 61.1848101,
+          "longitude": -149.8880913
+        },
+        {
+          "latitude": 61.1847962,
+          "longitude": -149.8881811
+        },
+        {
+          "latitude": 61.1847827,
+          "longitude": -149.8883024
+        },
+        {
+          "latitude": 61.184779,
+          "longitude": -149.8883923
+        },
+        {
+          "latitude": 61.1847781,
+          "longitude": -149.8884941
+        },
+        {
+          "latitude": 61.1849613,
+          "longitude": -149.8885517
+        },
+        {
+          "latitude": 61.1849667,
+          "longitude": -149.8885114
+        },
+        {
+          "latitude": 61.1850582,
+          "longitude": -149.8885694
+        },
+        {
+          "latitude": 61.1851856,
+          "longitude": -149.8877953
+        }
+      ]
+    },
+    {
+      "id": "osm-way-794865714",
+      "exterior": [
+        {
+          "latitude": 61.182257,
+          "longitude": -149.888974
+        },
+        {
+          "latitude": 61.182254,
+          "longitude": -149.8881
+        },
+        {
+          "latitude": 61.182509,
+          "longitude": -149.888097
+        },
+        {
+          "latitude": 61.182512,
+          "longitude": -149.88897
+        },
+        {
+          "latitude": 61.182257,
+          "longitude": -149.888974
+        }
+      ]
+    },
+    {
+      "id": "osm-way-794865712",
+      "exterior": [
+        {
+          "latitude": 61.1820323,
+          "longitude": -149.8871153
+        },
+        {
+          "latitude": 61.1820311,
+          "longitude": -149.8885651
+        },
+        {
+          "latitude": 61.1820011,
+          "longitude": -149.888565
+        },
+        {
+          "latitude": 61.1820011,
+          "longitude": -149.8886227
+        },
+        {
+          "latitude": 61.1818813,
+          "longitude": -149.8886223
+        },
+        {
+          "latitude": 61.1818814,
+          "longitude": -149.8885691
+        },
+        {
+          "latitude": 61.1818248,
+          "longitude": -149.8885689
+        },
+        {
+          "latitude": 61.1818251,
+          "longitude": -149.8882645
+        },
+        {
+          "latitude": 61.1818608,
+          "longitude": -149.8882646
+        },
+        {
+          "latitude": 61.181861,
+          "longitude": -149.8879962
+        },
+        {
+          "latitude": 61.1817874,
+          "longitude": -149.8879965
+        },
+        {
+          "latitude": 61.1817478,
+          "longitude": -149.8879966
+        },
+        {
+          "latitude": 61.1817476,
+          "longitude": -149.8878389
+        },
+        {
+          "latitude": 61.1817882,
+          "longitude": -149.8878376
+        },
+        {
+          "latitude": 61.1818612,
+          "longitude": -149.8878352
+        },
+        {
+          "latitude": 61.1818617,
+          "longitude": -149.8871349
+        },
+        {
+          "latitude": 61.1818902,
+          "longitude": -149.887135
+        },
+        {
+          "latitude": 61.1818903,
+          "longitude": -149.8870578
+        },
+        {
+          "latitude": 61.182013,
+          "longitude": -149.8870582
+        },
+        {
+          "latitude": 61.1820129,
+          "longitude": -149.8871152
+        },
+        {
+          "latitude": 61.1820323,
+          "longitude": -149.8871153
+        }
+      ]
+    },
+    {
+      "id": "osm-way-653410290",
+      "exterior": [
+        {
+          "latitude": 61.1817307,
+          "longitude": -149.8920697
+        },
+        {
+          "latitude": 61.1816299,
+          "longitude": -149.8920685
+        },
+        {
+          "latitude": 61.1816267,
+          "longitude": -149.8931854
+        },
+        {
+          "latitude": 61.1814698,
+          "longitude": -149.8931835
+        },
+        {
+          "latitude": 61.1814678,
+          "longitude": -149.8938958
+        },
+        {
+          "latitude": 61.1817255,
+          "longitude": -149.893899
+        },
+        {
+          "latitude": 61.1817307,
+          "longitude": -149.8920697
+        }
+      ]
+    },
+    {
+      "id": "osm-way-544468442",
+      "exterior": [
+        {
+          "latitude": 61.179262,
+          "longitude": -149.8960364
+        },
+        {
+          "latitude": 61.1793254,
+          "longitude": -149.896037
+        },
+        {
+          "latitude": 61.1793256,
+          "longitude": -149.8959683
+        },
+        {
+          "latitude": 61.1794122,
+          "longitude": -149.8959691
+        },
+        {
+          "latitude": 61.1794133,
+          "longitude": -149.8954094
+        },
+        {
+          "latitude": 61.1793227,
+          "longitude": -149.8954086
+        },
+        {
+          "latitude": 61.179323,
+          "longitude": -149.8952741
+        },
+        {
+          "latitude": 61.1794135,
+          "longitude": -149.8952749
+        },
+        {
+          "latitude": 61.1794147,
+          "longitude": -149.8947067
+        },
+        {
+          "latitude": 61.1793301,
+          "longitude": -149.8947059
+        },
+        {
+          "latitude": 61.1793303,
+          "longitude": -149.8946386
+        },
+        {
+          "latitude": 61.1792566,
+          "longitude": -149.8946379
+        },
+        {
+          "latitude": 61.1792561,
+          "longitude": -149.8948632
+        },
+        {
+          "latitude": 61.1792789,
+          "longitude": -149.8948634
+        },
+        {
+          "latitude": 61.1792788,
+          "longitude": -149.8949064
+        },
+        {
+          "latitude": 61.1793226,
+          "longitude": -149.8949069
+        },
+        {
+          "latitude": 61.1793221,
+          "longitude": -149.8950831
+        },
+        {
+          "latitude": 61.1792799,
+          "longitude": -149.8950826
+        },
+        {
+          "latitude": 61.1792797,
+          "longitude": -149.8951284
+        },
+        {
+          "latitude": 61.1792566,
+          "longitude": -149.8951281
+        },
+        {
+          "latitude": 61.1792555,
+          "longitude": -149.8955536
+        },
+        {
+          "latitude": 61.1792815,
+          "longitude": -149.8955539
+        },
+        {
+          "latitude": 61.1792814,
+          "longitude": -149.8955957
+        },
+        {
+          "latitude": 61.1793247,
+          "longitude": -149.8955961
+        },
+        {
+          "latitude": 61.1793242,
+          "longitude": -149.8957741
+        },
+        {
+          "latitude": 61.1792833,
+          "longitude": -149.8957736
+        },
+        {
+          "latitude": 61.1792831,
+          "longitude": -149.8958294
+        },
+        {
+          "latitude": 61.1792624,
+          "longitude": -149.8958292
+        },
+        {
+          "latitude": 61.179262,
+          "longitude": -149.8960364
+        }
+      ]
+    },
+    {
+      "id": "osm-way-579991745",
+      "exterior": [
+        {
+          "latitude": 61.1786183,
+          "longitude": -149.8959533
+        },
+        {
+          "latitude": 61.1786178,
+          "longitude": -149.8958357
+        },
+        {
+          "latitude": 61.1786966,
+          "longitude": -149.8958342
+        },
+        {
+          "latitude": 61.1786958,
+          "longitude": -149.8956298
+        },
+        {
+          "latitude": 61.1787505,
+          "longitude": -149.8956288
+        },
+        {
+          "latitude": 61.1787493,
+          "longitude": -149.8953389
+        },
+        {
+          "latitude": 61.1787026,
+          "longitude": -149.8953397
+        },
+        {
+          "latitude": 61.1786994,
+          "longitude": -149.8945786
+        },
+        {
+          "latitude": 61.1786198,
+          "longitude": -149.89458
+        },
+        {
+          "latitude": 61.1786192,
+          "longitude": -149.8944309
+        },
+        {
+          "latitude": 61.1784696,
+          "longitude": -149.8944335
+        },
+        {
+          "latitude": 61.1784701,
+          "longitude": -149.8945397
+        },
+        {
+          "latitude": 61.1783762,
+          "longitude": -149.8945413
+        },
+        {
+          "latitude": 61.1783813,
+          "longitude": -149.8958345
+        },
+        {
+          "latitude": 61.1784768,
+          "longitude": -149.8958329
+        },
+        {
+          "latitude": 61.1784773,
+          "longitude": -149.8959557
+        },
+        {
+          "latitude": 61.1786183,
+          "longitude": -149.8959533
+        }
+      ]
+    },
+    {
+      "id": "osm-way-793937113",
+      "exterior": [
+        {
+          "latitude": 61.173165,
+          "longitude": -149.904373
+        },
+        {
+          "latitude": 61.173164,
+          "longitude": -149.90396
+        },
+        {
+          "latitude": 61.173313,
+          "longitude": -149.903959
+        },
+        {
+          "latitude": 61.173313,
+          "longitude": -149.904086
+        },
+        {
+          "latitude": 61.173444,
+          "longitude": -149.904085
+        },
+        {
+          "latitude": 61.173444,
+          "longitude": -149.904371
+        },
+        {
+          "latitude": 61.173165,
+          "longitude": -149.904373
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800781304",
+      "exterior": [
+        {
+          "latitude": 61.185874,
+          "longitude": -149.902879
+        },
+        {
+          "latitude": 61.185799,
+          "longitude": -149.902879
+        },
+        {
+          "latitude": 61.185799,
+          "longitude": -149.902667
+        },
+        {
+          "latitude": 61.185874,
+          "longitude": -149.902667
+        },
+        {
+          "latitude": 61.185874,
+          "longitude": -149.902879
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800781303",
+      "exterior": [
+        {
+          "latitude": 61.185778,
+          "longitude": -149.902617
+        },
+        {
+          "latitude": 61.185778,
+          "longitude": -149.90251
+        },
+        {
+          "latitude": 61.185805,
+          "longitude": -149.902509
+        },
+        {
+          "latitude": 61.185805,
+          "longitude": -149.902433
+        },
+        {
+          "latitude": 61.185959,
+          "longitude": -149.902432
+        },
+        {
+          "latitude": 61.185959,
+          "longitude": -149.902616
+        },
+        {
+          "latitude": 61.185778,
+          "longitude": -149.902617
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800781302",
+      "exterior": [
+        {
+          "latitude": 61.185935,
+          "longitude": -149.902066
+        },
+        {
+          "latitude": 61.185935,
+          "longitude": -149.902246
+        },
+        {
+          "latitude": 61.185837,
+          "longitude": -149.902246
+        },
+        {
+          "latitude": 61.185837,
+          "longitude": -149.902219
+        },
+        {
+          "latitude": 61.185802,
+          "longitude": -149.902219
+        },
+        {
+          "latitude": 61.185802,
+          "longitude": -149.902066
+        },
+        {
+          "latitude": 61.185935,
+          "longitude": -149.902066
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800781301",
+      "exterior": [
+        {
+          "latitude": 61.185937,
+          "longitude": -149.901754
+        },
+        {
+          "latitude": 61.185938,
+          "longitude": -149.901936
+        },
+        {
+          "latitude": 61.185859,
+          "longitude": -149.901937
+        },
+        {
+          "latitude": 61.185859,
+          "longitude": -149.902029
+        },
+        {
+          "latitude": 61.185786,
+          "longitude": -149.90203
+        },
+        {
+          "latitude": 61.185785,
+          "longitude": -149.90184
+        },
+        {
+          "latitude": 61.185853,
+          "longitude": -149.901839
+        },
+        {
+          "latitude": 61.185853,
+          "longitude": -149.901756
+        },
+        {
+          "latitude": 61.185937,
+          "longitude": -149.901754
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800781298",
+      "exterior": [
+        {
+          "latitude": 61.185948,
+          "longitude": -149.901369
+        },
+        {
+          "latitude": 61.185818,
+          "longitude": -149.901371
+        },
+        {
+          "latitude": 61.185818,
+          "longitude": -149.901272
+        },
+        {
+          "latitude": 61.185864,
+          "longitude": -149.901271
+        },
+        {
+          "latitude": 61.185863,
+          "longitude": -149.9012
+        },
+        {
+          "latitude": 61.185947,
+          "longitude": -149.901199
+        },
+        {
+          "latitude": 61.185948,
+          "longitude": -149.901369
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800781291",
+      "exterior": [
+        {
+          "latitude": 61.185686,
+          "longitude": -149.900648
+        },
+        {
+          "latitude": 61.185685,
+          "longitude": -149.9001952
+        },
+        {
+          "latitude": 61.185739,
+          "longitude": -149.9001927
+        },
+        {
+          "latitude": 61.185863,
+          "longitude": -149.90019
+        },
+        {
+          "latitude": 61.185885,
+          "longitude": -149.900189
+        },
+        {
+          "latitude": 61.185885,
+          "longitude": -149.900265
+        },
+        {
+          "latitude": 61.18594,
+          "longitude": -149.900265
+        },
+        {
+          "latitude": 61.185941,
+          "longitude": -149.900409
+        },
+        {
+          "latitude": 61.185853,
+          "longitude": -149.90041
+        },
+        {
+          "latitude": 61.185854,
+          "longitude": -149.900646
+        },
+        {
+          "latitude": 61.185686,
+          "longitude": -149.900648
+        }
+      ]
+    },
+    {
+      "id": "osm-way-1342555306",
+      "exterior": [
+        {
+          "latitude": 61.1858527,
+          "longitude": -149.9001063
+        },
+        {
+          "latitude": 61.1857114,
+          "longitude": -149.9001079
+        },
+        {
+          "latitude": 61.185711,
+          "longitude": -149.8999366
+        },
+        {
+          "latitude": 61.1858522,
+          "longitude": -149.899935
+        },
+        {
+          "latitude": 61.1858527,
+          "longitude": -149.9001063
+        }
+      ]
+    },
+    {
+      "id": "osm-way-800782043",
+      "exterior": [
+        {
+          "latitude": 61.18596,
+          "longitude": -149.903603
+        },
+        {
+          "latitude": 61.185966,
+          "longitude": -149.903896
+        },
+        {
+          "latitude": 61.185853,
+          "longitude": -149.903906
+        },
+        {
+          "latitude": 61.185846,
+          "longitude": -149.903613
+        },
+        {
+          "latitude": 61.18596,
+          "longitude": -149.903603
+        }
+      ]
+    }
+  ]
+}

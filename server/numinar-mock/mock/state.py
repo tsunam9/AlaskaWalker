@@ -166,7 +166,15 @@ def _restore():
                         project[key] = restored[key]
         restored_voters = payload.get("voters") or []
         if restored_voters:
-            VOTERS.clear(); VOTERS.update({str(v["id"]): v for v in restored_voters})
+            # Fixture identity/address data is authoritative so a newly generated
+            # shift list takes effect after restart. Runtime state only owns the
+            # one voter field the mock mutates; retaining whole old rows would
+            # silently pin the previous synthetic map forever.
+            restored_by_id = {str(v["id"]): v for v in restored_voters}
+            for voter_id, voter in VOTERS.items():
+                restored = restored_by_id.get(voter_id, {})
+                if "has_interaction" in restored:
+                    voter["has_interaction"] = restored["has_interaction"]
         interactions.extend(payload.get("interactions") or [])
         interaction_ids.update(str(x["id"]) for x in interactions if x.get("id") is not None)
         notes.update(payload.get("notes") or {})

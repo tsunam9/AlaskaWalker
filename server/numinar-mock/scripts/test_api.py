@@ -136,6 +136,7 @@ def core_gate(client):
     first = voters[0]
     check(all(key in first for key in ("house_hold_id", "registration_address_latitude", "registered_party_roll_up", "vh_24_g", "abev_elections", "has_interaction")), "full voter schema")
     check(voters[0]["house_hold_id"] == voters[1]["house_hold_id"] and voters[0]["registration_address_latitude"] == voters[1]["registration_address_latitude"], "household clustering")
+    check(len({voter["house_hold_id"] for voter in voters}) == 100, "100-house shift walklist")
     status, nearby, _ = client.request("GET", f"/api/v1/nearby-voters?latitude={first['registration_address_latitude']}&longitude={first['registration_address_longitude']}"); check(status == 200 and nearby, "nearby voters")
     status, found, _ = client.request("GET", "/api/v1/mobile-voter-search?first_name=" + urllib.parse.quote(first["first_name"]) + "&limit=100&offset=0"); check(status == 200 and any(v["id"] == first["id"] for v in found), "voter search")
     for path, label in [(f"/api/v1/voters/{first['id']}/notes", "notes"), (f"/api/v1/voters/{first['id']}/interactions", "activity"), (f"/api/v2/voter_tags/{first['id']}", "tags"), (f"/api/v1/projects/{project['id']}/voters/{first['id']}", "single voter")]:
@@ -145,11 +146,11 @@ def core_gate(client):
 def interaction_samples(prefix="gate"):
     def iid(n): return f"{prefix}-{n}-{uuid.uuid4()}"
     return [
-        {"id": iid(1), "user_id": "usr_alaska_001", "project_id": "project_canvass_001", "voter_id": "voter_0001", "household_id": "household_0001", "latitude": 61.171, "longitude": -149.913, "user_latitude": "61.172", "user_longitude": "-149.914", "disposition": "canvassed", "survey_type": "canvass", "created_at": "2026-09-22T12:00:00Z", "device_id": "device-test", "is_using_emulator": False, "device_geolocation_enabled": True, "device_geolocation_permission_status": "granted", "call_length": 9},
-        {"id": iid(2), "user_id": "usr_alaska_001", "project_id": "project_call_001", "voter_id": "voter_0002", "disposition": "answered", "call_length": 42, "survey_type": "call", "created_at": "2026-09-22T12:00:00Z", "responses": []},
-        {"id": iid(3), "user_id": "usr_alaska_001", "project_id": "project_relational_001", "voter_id": "voter_0003", "survey_type": "relational", "survey_id": "survey_relational_001", "responses": [], "created_at": "2026-09-22T12:00:00Z"},
-        {"id": iid(4), "user_id": "usr_alaska_001", "org_id": "org_alaska_001", "voter_id": "voter_0004", "tag_id": "tag_support", "value": "Yes", "created_at": "2026-09-22T12:00:00Z", "updated_at": "2026-09-22T12:00:00Z"},
-        {"id": iid(5), "project_id": "project_canvass_001", "voter_id": "voter_0005", "value": "Strong supporter", "created_at": "2026-09-22T12:00:00Z"},
+        {"id": iid(1), "user_id": "usr_alaska_001", "project_id": "project_canvass_001", "voter_id": "shift26_voter_0001", "household_id": "shift26_household_0001", "latitude": 61.171, "longitude": -149.913, "user_latitude": "61.172", "user_longitude": "-149.914", "disposition": "canvassed", "survey_type": "canvass", "created_at": "2026-09-22T12:00:00Z", "device_id": "device-test", "is_using_emulator": False, "device_geolocation_enabled": True, "device_geolocation_permission_status": "granted", "call_length": 9},
+        {"id": iid(2), "user_id": "usr_alaska_001", "project_id": "project_call_001", "voter_id": "shift26_voter_0002", "disposition": "answered", "call_length": 42, "survey_type": "call", "created_at": "2026-09-22T12:00:00Z", "responses": []},
+        {"id": iid(3), "user_id": "usr_alaska_001", "project_id": "project_relational_001", "voter_id": "shift26_voter_0003", "survey_type": "relational", "survey_id": "survey_relational_001", "responses": [], "created_at": "2026-09-22T12:00:00Z"},
+        {"id": iid(4), "user_id": "usr_alaska_001", "org_id": "org_alaska_001", "voter_id": "shift26_voter_0004", "tag_id": "tag_support", "value": "Yes", "created_at": "2026-09-22T12:00:00Z", "updated_at": "2026-09-22T12:00:00Z"},
+        {"id": iid(5), "project_id": "project_canvass_001", "voter_id": "shift26_voter_0005", "value": "Strong supporter", "created_at": "2026-09-22T12:00:00Z"},
     ]
 
 
@@ -163,9 +164,9 @@ def interactions_gate(client):
     mixed = []
     for n in range(2): mixed.extend(interaction_samples(f"mixed{n}"))
     status, body, _ = client.request("POST", "/api/v1/interactions/batch", mixed); check(status == 200 and body["accepted"] == 10 and body["types"] == expected * 2, "10-item mixed offline drain")
-    status, voter, _ = client.request("GET", "/api/v1/projects/project_canvass_001/voters/voter_0001"); check(status == 200 and voter["has_interaction"] is True, "has_interaction flips server-side")
-    status, notes, _ = client.request("GET", "/api/v1/voters/voter_0005/notes"); check(status == 200 and "Strong supporter" in notes, "notes read-back")
-    status, tags, _ = client.request("GET", "/api/v2/voter_tags/voter_0004"); check(status == 200 and tags["tags"], "tags read-back")
+    status, voter, _ = client.request("GET", "/api/v1/projects/project_canvass_001/voters/shift26_voter_0001"); check(status == 200 and voter["has_interaction"] is True, "has_interaction flips server-side")
+    status, notes, _ = client.request("GET", "/api/v1/voters/shift26_voter_0005/notes"); check(status == 200 and "Strong supporter" in notes, "notes read-back")
+    status, tags, _ = client.request("GET", "/api/v2/voter_tags/shift26_voter_0004"); check(status == 200 and tags["tags"], "tags read-back")
     status, _, _ = client.request("POST", "/api/v1/canvassing-qa/tracking", {"project_id": "project_canvass_001", "latitude": 61.2, "longitude": -149.8, "device_id": "device-test", "device_geolocation_enabled": True, "device_geolocation_permission_status": "granted", "is_using_emulator": True}); check(status == 200, "QA beacon accepted without emulator gating")
     status, dash, _ = client.request("GET", "/__mock/state", auth=False, basic=True); check(status == 200 and dash["qa_pings"][-1]["is_using_emulator"] is True, "QA beacon stored")
 

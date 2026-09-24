@@ -1,0 +1,2413 @@
+{
+  "lists": [
+    {
+      "wid": "project_canvass_001",
+      "name": "Anchorage Shift Test - 100 Doors",
+      "form_id": "survey_canvass_001",
+      "created_at": "2026-09-24T02:56:07.394Z",
+      "updated_at": "2026-09-24T02:56:07.394Z",
+      "addresses": [
+        {
+          "aid": "shift26_household_0001",
+          "street": "3811 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1860234,
+          "lng": -149.916321,
+          "leg": 1,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 18,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 19,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 20,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0002",
+          "street": "3831 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1858034,
+          "lng": -149.9181127,
+          "leg": 2,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 21,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 22,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 23,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0003",
+          "street": "3902 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1859695,
+          "lng": -149.921879,
+          "leg": 3,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 24,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 25,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 26,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0004",
+          "street": "3944 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1848652,
+          "lng": -149.9252726,
+          "leg": 4,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 27,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 28,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 29,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0005",
+          "street": "2107 W 44th Ct",
+          "city": "Anchorage",
+          "lat": 61.1805874,
+          "lng": -149.9230748,
+          "leg": 5,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 30,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 31,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 32,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0006",
+          "street": "4440 Van Buren St",
+          "city": "Anchorage",
+          "lat": 61.1800424,
+          "lng": -149.9238967,
+          "leg": 6,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 33,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 34,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 35,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0007",
+          "street": "4509 Van Buren St",
+          "city": "Anchorage",
+          "lat": 61.1795966,
+          "lng": -149.9233258,
+          "leg": 7,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 36,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 37,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 38,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0008",
+          "street": "2110 West 45th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1796526,
+          "lng": -149.9230704,
+          "leg": 8,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 39,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 40,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 41,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0009",
+          "street": "2106 West 45th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1795999,
+          "lng": -149.922396,
+          "leg": 9,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 42,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 43,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 44,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0010",
+          "street": "2103 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792884,
+          "lng": -149.9219168,
+          "leg": 10,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 45,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 46,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 47,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0011",
+          "street": "2107 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1791784,
+          "lng": -149.9224193,
+          "leg": 11,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 48,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 49,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 50,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0012",
+          "street": "2109 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792156,
+          "lng": -149.922765,
+          "leg": 12,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 51,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 52,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 53,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0013",
+          "street": "2111 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792074,
+          "lng": -149.923022,
+          "leg": 13,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 54,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 55,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 56,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0014",
+          "street": "2113 Van Buren St",
+          "city": "Anchorage",
+          "lat": 61.1792688,
+          "lng": -149.9233268,
+          "leg": 14,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 57,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 58,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 59,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0015",
+          "street": "2203 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792328,
+          "lng": -149.9242547,
+          "leg": 15,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 60,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 61,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 62,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0016",
+          "street": "2207 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792139,
+          "lng": -149.9248359,
+          "leg": 16,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 63,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 64,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 65,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0017",
+          "street": "2209 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1791894,
+          "lng": -149.9251332,
+          "leg": 17,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 66,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 67,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 68,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0018",
+          "street": "2213 West 46th Ave",
+          "city": "Anchorage",
+          "lat": 61.1792087,
+          "lng": -149.9257537,
+          "leg": 18,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 69,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 70,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 71,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0019",
+          "street": "2219 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792243,
+          "lng": -149.9266567,
+          "leg": 19,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 72,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 73,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 74,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0020",
+          "street": "2221 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792093,
+          "lng": -149.9269203,
+          "leg": 20,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 75,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 76,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 77,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0021",
+          "street": "2223 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1791949,
+          "lng": -149.9272649,
+          "leg": 21,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 78,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 79,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 80,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0022",
+          "street": "2225 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792166,
+          "lng": -149.9275804,
+          "leg": 22,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 81,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 82,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 83,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0023",
+          "street": "2307 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1782848,
+          "lng": -149.9268218,
+          "leg": 23,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 84,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 85,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 18,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0024",
+          "street": "2305 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1783181,
+          "lng": -149.9264439,
+          "leg": 24,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 19,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 20,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 21,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0025",
+          "street": "2303 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1783246,
+          "lng": -149.9260288,
+          "leg": 25,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 22,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 23,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 24,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0026",
+          "street": "2301 W 48th Ave",
+          "city": "Anchorage",
+          "lat": 61.1774267,
+          "lng": -149.9257833,
+          "leg": 26,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 25,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 26,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 27,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0027",
+          "street": "2203 W 48th Ave",
+          "city": "Anchorage",
+          "lat": 61.1774004,
+          "lng": -149.9244048,
+          "leg": 27,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 28,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 29,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 30,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0028",
+          "street": "4701 Van Buren Street",
+          "city": "Anchorage",
+          "lat": 61.177834,
+          "lng": -149.9232644,
+          "leg": 28,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 31,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 32,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 33,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0029",
+          "street": "2110 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.177901,
+          "lng": -149.9229654,
+          "leg": 29,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 34,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 35,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 36,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0030",
+          "street": "2109 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.178308,
+          "lng": -149.9226118,
+          "leg": 30,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 37,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 38,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 39,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0031",
+          "street": "2105 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1783266,
+          "lng": -149.9222897,
+          "leg": 31,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 40,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 41,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 42,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0032",
+          "street": "2103 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1782896,
+          "lng": -149.9218488,
+          "leg": 32,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 43,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 44,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 45,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0033",
+          "street": "2111 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1783931,
+          "lng": -149.9229961,
+          "leg": 33,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 46,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 47,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 48,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0034",
+          "street": "2213 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1783474,
+          "lng": -149.9233478,
+          "leg": 34,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 49,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 50,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 51,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0035",
+          "street": "2201 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.178292,
+          "lng": -149.9240136,
+          "leg": 35,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 52,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 53,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 54,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0036",
+          "street": "2011 West 46th Ave",
+          "city": "Anchorage",
+          "lat": 61.1791894,
+          "lng": -149.9212916,
+          "leg": 36,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 55,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 56,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 57,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0037",
+          "street": "2007 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1791913,
+          "lng": -149.9206137,
+          "leg": 37,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 58,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 59,
+              "gender": "F"
+            },
+            {
+              "first_name": "Morgan",
+              "age": 60,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0038",
+          "street": "2005 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1792158,
+          "lng": -149.9203863,
+          "leg": 38,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Riley",
+              "age": 61,
+              "gender": "F"
+            },
+            {
+              "first_name": "Casey",
+              "age": 62,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 63,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0039",
+          "street": "2003 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.179193,
+          "lng": -149.9200738,
+          "leg": 39,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 64,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 65,
+              "gender": "F"
+            },
+            {
+              "first_name": "Rowan",
+              "age": 66,
+              "gender": "M"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0040",
+          "street": "4500 Taft St",
+          "city": "Anchorage",
+          "lat": 61.179642,
+          "lng": -149.9198266,
+          "leg": 40,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Parker",
+              "age": 67,
+              "gender": "F"
+            },
+            {
+              "first_name": "Harper",
+              "age": 68,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 69,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0041",
+          "street": "2004 W 45th Ave",
+          "city": "Anchorage",
+          "lat": 61.1796418,
+          "lng": -149.9204136,
+          "leg": 41,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 70,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 71,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0042",
+          "street": "2006 W 45th Ave",
+          "city": "Anchorage",
+          "lat": 61.179601,
+          "lng": -149.9206872,
+          "leg": 42,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 72,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 73,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0043",
+          "street": "2010 W 45th Ave",
+          "city": "Anchorage",
+          "lat": 61.1796767,
+          "lng": -149.9211164,
+          "leg": 43,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 74,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 75,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0044",
+          "street": "2100 West 45th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1796569,
+          "lng": -149.9215583,
+          "leg": 44,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 76,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 77,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0045",
+          "street": "2060 Wenmatt Circle",
+          "city": "Anchorage",
+          "lat": 61.1801364,
+          "lng": -149.9208788,
+          "leg": 45,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 78,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 79,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0046",
+          "street": "2050 Wenmatt Circle",
+          "city": "Anchorage",
+          "lat": 61.1800696,
+          "lng": -149.9207096,
+          "leg": 46,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 80,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 81,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0047",
+          "street": "2040 Wenmatt Circle",
+          "city": "Anchorage",
+          "lat": 61.1800724,
+          "lng": -149.9204602,
+          "leg": 47,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 82,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 83,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0048",
+          "street": "2010",
+          "city": "Anchorage",
+          "lat": 61.180132,
+          "lng": -149.9199224,
+          "leg": 48,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 84,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 85,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0049",
+          "street": "2000",
+          "city": "Anchorage",
+          "lat": 61.1803574,
+          "lng": -149.9198956,
+          "leg": 49,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 18,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 19,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0050",
+          "street": "2041 2051",
+          "city": "Anchorage",
+          "lat": 61.1806004,
+          "lng": -149.9204888,
+          "leg": 50,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 20,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 21,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0051",
+          "street": "2061 Wenmatt Circle",
+          "city": "Anchorage",
+          "lat": 61.1805454,
+          "lng": -149.9209378,
+          "leg": 51,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 22,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 23,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0052",
+          "street": "2005 West 47th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1783072,
+          "lng": -149.9205072,
+          "leg": 52,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 24,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 25,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0053",
+          "street": "4620 Taft St",
+          "city": "Anchorage",
+          "lat": 61.1783096,
+          "lng": -149.9198152,
+          "leg": 53,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 26,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 27,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0054",
+          "street": "4700 Taft St",
+          "city": "Anchorage",
+          "lat": 61.1778141,
+          "lng": -149.9198114,
+          "leg": 54,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 28,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 29,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0055",
+          "street": "2001 W 48th Ave",
+          "city": "Anchorage",
+          "lat": 61.1773996,
+          "lng": -149.9197672,
+          "leg": 55,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 30,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 31,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0056",
+          "street": "2009 W 48th Ave",
+          "city": "Anchorage",
+          "lat": 61.1774136,
+          "lng": -149.9211714,
+          "leg": 56,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 32,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 33,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0057",
+          "street": "2313 W 48th Ave",
+          "city": "Anchorage",
+          "lat": 61.177425,
+          "lng": -149.9274254,
+          "leg": 57,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 34,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 35,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0058",
+          "street": "2414 Aspen Drive",
+          "city": "Anchorage",
+          "lat": 61.1758898,
+          "lng": -149.92865,
+          "leg": 58,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 36,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 37,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0059",
+          "street": "2426 Aspen Drive",
+          "city": "Anchorage",
+          "lat": 61.1758866,
+          "lng": -149.9291752,
+          "leg": 59,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 38,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 39,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0060",
+          "street": "2510 Aspen Drive",
+          "city": "Anchorage",
+          "lat": 61.1759179,
+          "lng": -149.9300654,
+          "leg": 60,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 40,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 41,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0061",
+          "street": "2520 Aspen Drive",
+          "city": "Anchorage",
+          "lat": 61.1759044,
+          "lng": -149.9304994,
+          "leg": 61,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 42,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 43,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0062",
+          "street": "2800 Aspen Drive",
+          "city": "Anchorage",
+          "lat": 61.1772123,
+          "lng": -149.935432,
+          "leg": 62,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 44,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 45,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0063",
+          "street": "2804 Aspen Drive",
+          "city": "Anchorage",
+          "lat": 61.177295,
+          "lng": -149.936124,
+          "leg": 63,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 46,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 47,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0064",
+          "street": "2808 Aspen Drive",
+          "city": "Anchorage",
+          "lat": 61.1773853,
+          "lng": -149.9369479,
+          "leg": 64,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 48,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 49,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0065",
+          "street": "2813 Tundra Circle",
+          "city": "Anchorage",
+          "lat": 61.177847,
+          "lng": -149.93733,
+          "leg": 65,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 50,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 51,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0066",
+          "street": "2825 Tundra Court",
+          "city": "Anchorage",
+          "lat": 61.1781716,
+          "lng": -149.9364128,
+          "leg": 66,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 52,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 53,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0067",
+          "street": "2817 Tundra Court",
+          "city": "Anchorage",
+          "lat": 61.178095,
+          "lng": -149.9359136,
+          "leg": 67,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 54,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 55,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0068",
+          "street": "2813 Tundra Court",
+          "city": "Anchorage",
+          "lat": 61.1780782,
+          "lng": -149.9356664,
+          "leg": 68,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 56,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 57,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0069",
+          "street": "4361 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1809448,
+          "lng": -149.9355589,
+          "leg": 69,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 58,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 59,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0070",
+          "street": "4333 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1818094,
+          "lng": -149.9326993,
+          "leg": 70,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 60,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 61,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0071",
+          "street": "4334 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1824376,
+          "lng": -149.9330584,
+          "leg": 71,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 62,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 63,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0072",
+          "street": "3608 Minnesota Drive",
+          "city": "Anchorage",
+          "lat": 61.187228,
+          "lng": -149.9139319,
+          "leg": 72,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 64,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 65,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0073",
+          "street": "1406 West 33rd Avenue",
+          "city": "Anchorage",
+          "lat": 61.1900906,
+          "lng": -149.91033,
+          "leg": 73,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 66,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 67,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0074",
+          "street": "3104 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1919786,
+          "lng": -149.9066168,
+          "leg": 74,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 68,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 69,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0075",
+          "street": "2819 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1944922,
+          "lng": -149.9047369,
+          "leg": 75,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 70,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 71,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0076",
+          "street": "1049 West Northern Lights Boulevard",
+          "city": "Anchorage",
+          "lat": 61.1955454,
+          "lng": -149.9032912,
+          "leg": 76,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 72,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 73,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0077",
+          "street": "1035 West Northern Lights Boulevard",
+          "city": "Anchorage",
+          "lat": 61.1956115,
+          "lng": -149.902633,
+          "leg": 77,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 74,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 75,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0078",
+          "street": "2633 Spenard Road",
+          "city": "Anchorage",
+          "lat": 61.1966263,
+          "lng": -149.9048208,
+          "leg": 78,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 76,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 77,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0079",
+          "street": "1230 West 27th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1960159,
+          "lng": -149.9073049,
+          "leg": 79,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 78,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 79,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0080",
+          "street": "1231 West Northern Lights Boulevard",
+          "city": "Anchorage",
+          "lat": 61.1956059,
+          "lng": -149.9074023,
+          "leg": 80,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 80,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 81,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0081",
+          "street": "1500 West Benson Boulevard",
+          "city": "Anchorage",
+          "lat": 61.1931605,
+          "lng": -149.9121157,
+          "leg": 81,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 82,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 83,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0082",
+          "street": "814 West Northern Lights Boulevard",
+          "city": "Anchorage",
+          "lat": 61.1948833,
+          "lng": -149.8997597,
+          "leg": 82,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 84,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 85,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0083",
+          "street": "2914 Arctic Blvd",
+          "city": "Anchorage",
+          "lat": 61.1934916,
+          "lng": -149.8984552,
+          "leg": 83,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 18,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 19,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0084",
+          "street": "3700 Centerpoint Drive",
+          "city": "Anchorage",
+          "lat": 61.1869082,
+          "lng": -149.8911802,
+          "leg": 84,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 20,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 21,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0085",
+          "street": "3801 Centerpoint Drive",
+          "city": "Anchorage",
+          "lat": 61.1866778,
+          "lng": -149.8879506,
+          "leg": 85,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 22,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 23,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0086",
+          "street": "3900 C Street",
+          "city": "Anchorage",
+          "lat": 61.1849892,
+          "lng": -149.8879478,
+          "leg": 86,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 24,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 25,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0087",
+          "street": "4215 Credit Union Drive",
+          "city": "Anchorage",
+          "lat": 61.1823578,
+          "lng": -149.888623,
+          "leg": 87,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 26,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 27,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0088",
+          "street": "4301 Credit Union Drive",
+          "city": "Anchorage",
+          "lat": 61.1818968,
+          "lng": -149.8878702,
+          "leg": 88,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 28,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 29,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0089",
+          "street": "4333 Bering Street",
+          "city": "Anchorage",
+          "lat": 61.1816259,
+          "lng": -149.8929102,
+          "leg": 89,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 30,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 31,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0090",
+          "street": "625 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.179309,
+          "lng": -149.8953645,
+          "leg": 90,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 32,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 33,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0091",
+          "street": "700 West 46th Avenue",
+          "city": "Anchorage",
+          "lat": 61.1785905,
+          "lng": -149.8953083,
+          "leg": 91,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 34,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 35,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0092",
+          "street": "1048 West International Airport Road",
+          "city": "Anchorage",
+          "lat": 61.1732869,
+          "lng": -149.9041724,
+          "leg": 92,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 36,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 37,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0093",
+          "street": "1010 Chugach Way",
+          "city": "Anchorage",
+          "lat": 61.185844,
+          "lng": -149.9027942,
+          "leg": 93,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 38,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 39,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0094",
+          "street": "1008 Chugach Way",
+          "city": "Anchorage",
+          "lat": 61.1858374,
+          "lng": -149.9025334,
+          "leg": 94,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 40,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 41,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0095",
+          "street": "1006 Chugach Way",
+          "city": "Anchorage",
+          "lat": 61.185869,
+          "lng": -149.9021611,
+          "leg": 95,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Avery",
+              "age": 42,
+              "gender": "M"
+            },
+            {
+              "first_name": "Jordan",
+              "age": 43,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0096",
+          "street": "1002 Chugach Way",
+          "city": "Anchorage",
+          "lat": 61.1858674,
+          "lng": -149.901875,
+          "leg": 96,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Morgan",
+              "age": 44,
+              "gender": "M"
+            },
+            {
+              "first_name": "Riley",
+              "age": 45,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0097",
+          "street": "910 Chugach Way",
+          "city": "Anchorage",
+          "lat": 61.1858866,
+          "lng": -149.901293,
+          "leg": 97,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Casey",
+              "age": 46,
+              "gender": "M"
+            },
+            {
+              "first_name": "Taylor",
+              "age": 47,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0098",
+          "street": "904 Chugach Way",
+          "city": "Anchorage",
+          "lat": 61.1858197,
+          "lng": -149.9003689,
+          "leg": 98,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Quinn",
+              "age": 48,
+              "gender": "M"
+            },
+            {
+              "first_name": "Skyler",
+              "age": 49,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0099",
+          "street": "3802 Indiana Street",
+          "city": "Anchorage",
+          "lat": 61.185796,
+          "lng": -149.9000384,
+          "leg": 99,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Rowan",
+              "age": 50,
+              "gender": "M"
+            },
+            {
+              "first_name": "Parker",
+              "age": 51,
+              "gender": "F"
+            }
+          ]
+        },
+        {
+          "aid": "shift26_household_0100",
+          "street": "1102 Chugach Way",
+          "city": "Anchorage",
+          "lat": 61.185917,
+          "lng": -149.9037242,
+          "leg": 100,
+          "knocked": false,
+          "has_voter": true,
+          "voters": [
+            {
+              "first_name": "Harper",
+              "age": 52,
+              "gender": "M"
+            },
+            {
+              "first_name": "Cameron",
+              "age": 53,
+              "gender": "F"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
