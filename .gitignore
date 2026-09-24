@@ -10,8 +10,12 @@ __pycache__/
 
 # Local traffic-capture tooling and sensitive runtime output.
 .traffic-capture/
+traffic_capture/.venv/
+traffic_capture/captures/
+traffic_capture/packages/
 patriot_grassroots/instrumentation/build/
 patriot_grassroots/instrumentation/build-repointed/
+patriot_grassroots/instrumentation/build-stock-capture/
 patriot_grassroots/instrumentation/captures/
 .playwright-cli/
 patriot_grassroots/instrumentation/.venv/
@@ -21,6 +25,7 @@ patriot_grassroots/instrumentation/__pycache__/
 # Numinar repointed-build outputs and local tooling
 numinar/instrumentation/build/
 numinar/instrumentation/build-repointed/
+numinar/instrumentation/build-stock-capture/
 numinar/instrumentation/captures/
 numinar/instrumentation/.tools/
 numinar/instrumentation/__pycache__/

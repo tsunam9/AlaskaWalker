@@ -1,0 +1,272 @@
+#!/usr/bin/env bash
+# Build a stock-derived Patriot APK set for pass-through capture of real backends.
+# Frozen stock APKs and the existing mock/repoint build are never used as work input.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+STOCK_DIR="$REPO_ROOT/patriot_grassroots/stock"
+BUILD_DIR="$SCRIPT_DIR/build-stock-capture"
+WORK_TREE="$BUILD_DIR/apktool"
+OUT_DIR="$BUILD_DIR/out"
+TOOLS_DIR="$SCRIPT_DIR/.tools"
+APKTOOL_VERSION="3.0.3"
+APKTOOL_JAR="$TOOLS_DIR/apktool_${APKTOOL_VERSION}.jar"
+APKTOOL_SHA256="dbf930b076c6b9be08d57c449cacefc3bdd6b71ebd59b3066fc0e1f5b14f9423"
+FRAME_DIR="${APKTOOL_FRAME_DIR:-$TOOLS_DIR/framework-device}"
+SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-$HOME/Android/Sdk}}"
+
+declare -A EXPECTED_SHA256=(
+  [base.apk]="47b19ff8bee2b7f3742253e741273dbeb589c5f04ce864c8b90c7241ecf44bb1"
+  [split_config.arm64_v8a.apk]="2144bffb8a6df9186f249c4926734e011d3e42efc5ff572d00b3cce9738dd383"
+  [split_config.en.apk]="67a398197358845961c35539a0104444edf04f494996f7f5c167294f7a7ecb4b"
+  [split_config.xxhdpi.apk]="87e730ff88cc9225805d36f0b4f33672f2f00f55faff782368fdd7d58ec5e281"
+)
+for name in "${!EXPECTED_SHA256[@]}"; do
+  printf '%s  %s\n' "${EXPECTED_SHA256[$name]}" "$STOCK_DIR/$name" \
+    | sha256sum --check --status || {
+      printf 'Frozen stock hash mismatch: %s\n' "$name" >&2
+      exit 1
+    }
+done
+
+BUILD_TOOLS="$(find "$SDK_ROOT/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
+APKSIGNER="$BUILD_TOOLS/apksigner"
+ZIPALIGN="$BUILD_TOOLS/zipalign"
+if [[ ! -x "$APKSIGNER" || ! -x "$ZIPALIGN" ]]; then
+  printf 'Android build-tools not found under %s.\n' "$SDK_ROOT" >&2
+  exit 1
+fi
+
+mkdir -p "$TOOLS_DIR" "$BUILD_DIR" "$OUT_DIR"
+if [[ ! -f "$APKTOOL_JAR" ]]; then
+  curl -fL --retry 3 -o "$APKTOOL_JAR" \
+    "https://github.com/iBotPeaches/Apktool/releases/download/v${APKTOOL_VERSION}/apktool_${APKTOOL_VERSION}.jar"
+fi
+printf '%s  %s\n' "$APKTOOL_SHA256" "$APKTOOL_JAR" | sha256sum --check --status
+
+if [[ -d "$WORK_TREE" ]]; then
+  mv "$WORK_TREE" "$BUILD_DIR/apktool.previous.$(date +%s)"
+fi
+java -jar "$APKTOOL_JAR" decode --frame-path "$FRAME_DIR" --force \
+  --output "$WORK_TREE" "$STOCK_DIR/base.apk"
+
+# Freeze the shipped web runtime before the audited Sentry configuration change.
+find "$WORK_TREE/assets/public" -type f -print0 | sort -z \
+  | xargs -0 sha256sum > "$BUILD_DIR/runtime-before.sha256"
+
+python3 - "$WORK_TREE/AndroidManifest.xml" "$WORK_TREE/res/values/public.xml" <<'PY'
+from pathlib import Path
+import sys
+import xml.etree.ElementTree as ET
+
+manifest = Path(sys.argv[1])
+text = manifest.read_text(encoding="utf-8")
+needle = "<application "
+attribute = 'android:networkSecurityConfig="@xml/stock_capture_network_security_config"'
+if attribute in text or needle not in text:
+    raise SystemExit("unexpected application/network security manifest state")
+text = text.replace(needle, f"<application {attribute} ", 1)
+
+# This resource lives only in the density split. Restore the stock reference so
+# Apktool can round-trip the base manifest, exactly as the existing builder does.
+missing_icon = (
+    '<meta-data android:name="com.google.firebase.messaging.default_notification_icon" '
+    'android:resource="@null"/>'
+)
+stock_icon = (
+    '<meta-data android:name="com.google.firebase.messaging.default_notification_icon" '
+    'android:resource="@drawable/ic_stat_patriot_notifications"/>'
+)
+if text.count(missing_icon) != 1:
+    raise SystemExit("split notification icon placeholder not found exactly once")
+text = text.replace(missing_icon, stock_icon, 1)
+
+android = "http://schemas.android.com/apk/res/android"
+ET.register_namespace("android", android)
+root = ET.fromstring(text)
+application = root.find("application")
+if application is None:
+    raise SystemExit("application element not found")
+
+metadata = {
+    "firebase_messaging_auto_init_enabled": "false",
+    "firebase_analytics_collection_enabled": "false",
+    "firebase_data_collection_default_enabled": "false",
+    "io.sentry.auto-init": "false",
+}
+for name, value in metadata.items():
+    node = next(
+        (item for item in application.findall("meta-data")
+         if item.get(f"{{{android}}}name") == name),
+        None,
+    )
+    if node is None:
+        node = ET.SubElement(application, "meta-data")
+        node.set(f"{{{android}}}name", name)
+    node.set(f"{{{android}}}value", value)
+
+disabled_components = {
+    "io.capawesome.capacitorjs.plugins.firebase.messaging.MessagingService",
+    "com.google.firebase.iid.FirebaseInstanceIdReceiver",
+    "com.google.firebase.messaging.FirebaseMessagingService",
+    "com.google.firebase.components.ComponentDiscoveryService",
+    "com.google.android.gms.measurement.AppMeasurementReceiver",
+    "com.google.android.gms.measurement.AppMeasurementService",
+    "com.google.android.gms.measurement.AppMeasurementJobService",
+    "com.google.firebase.provider.FirebaseInitProvider",
+    "io.sentry.android.core.SentryInitProvider",
+    "io.sentry.android.core.SentryPerformanceProvider",
+    "com.google.android.datatransport.runtime.backends.TransportBackendDiscovery",
+    "com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService",
+    "com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver",
+}
+disabled = set()
+for node in application.iter():
+    name = node.get(f"{{{android}}}name")
+    if name in disabled_components:
+        node.set(f"{{{android}}}enabled", "false")
+        disabled.add(name)
+missing = disabled_components - disabled
+if missing:
+    raise SystemExit(f"expected Firebase/Sentry components missing: {sorted(missing)}")
+
+manifest.write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
+
+public_xml = Path(sys.argv[2])
+public = public_xml.read_text(encoding="utf-8")
+entry = '    <public type="drawable" name="ic_stat_patriot_notifications" id="0x7f0800b4" />\n'
+if entry not in public:
+    public = public.replace("</resources>", entry + "</resources>", 1)
+public_xml.write_text(public, encoding="utf-8")
+PY
+
+cp "$SCRIPT_DIR/stock_capture_network_security_config.xml" \
+  "$WORK_TREE/res/xml/stock_capture_network_security_config.xml"
+mkdir -p "$WORK_TREE/res/drawable"
+unzip -p "$STOCK_DIR/split_config.xxhdpi.apk" \
+  res/drawable-xxhdpi-v4/ic_stat_patriot_notifications.png \
+  > "$WORK_TREE/res/drawable/ic_stat_patriot_notifications.png"
+
+# PairIP binds startup to the Play-installed vendor signature. A locally signed APK
+# cannot pass that gate. This is the only executable-code change in this variant.
+PAIRIP_FILE="$(find "$WORK_TREE" -path '*/com/pairip/licensecheck/LicenseClient.smali' -print -quit)"
+if [[ -z "$PAIRIP_FILE" ]]; then
+  printf 'PairIP LicenseClient.smali was not found.\n' >&2
+  exit 1
+fi
+python3 - "$PAIRIP_FILE" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+target = Path(sys.argv[1])
+text = target.read_text(encoding="utf-8")
+pattern = re.compile(
+    r"\.method public static checkLicense\(Landroid/content/Context;\)V\n.*?\n\.end method",
+    re.DOTALL,
+)
+replacement = """.method public static checkLicense(Landroid/content/Context;)V
+    .locals 0
+
+    return-void
+.end method"""
+text, count = pattern.subn(replacement, text, count=1)
+if count != 1:
+    raise SystemExit(f"PairIP checkLicense patch count was {count}, expected 1")
+target.write_text(text, encoding="utf-8")
+PY
+
+# Patriot's browser Sentry DSN is already empty in stock. Its native plugin
+# explicitly treats an empty platform DSN as "skip init", so blank only those
+# two runtime fields and preserve every real backend origin.
+python3 - "$WORK_TREE/assets/public" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+root = Path(sys.argv[1])
+patterns = {
+    "dsnIos": re.compile(r'dsnIos:"[^"]*"'),
+    "dsnAndroid": re.compile(r'dsnAndroid:"[^"]*"'),
+}
+counts = {name: 0 for name in patterns}
+for path in root.rglob("*"):
+    if not path.is_file() or path.suffix not in {".html", ".js", ".json", ".webmanifest"}:
+        continue
+    raw = path.read_text(encoding="utf-8")
+    changed = raw
+    for name, pattern in patterns.items():
+        changed, count = pattern.subn(f'{name}:""', changed)
+        counts[name] += count
+    if changed != raw:
+        path.write_text(changed, encoding="utf-8")
+if not all(counts.values()):
+    raise SystemExit(f"Sentry platform DSNs were not found: {counts}")
+print(f"blanked Patriot native Sentry DSNs: {counts}")
+PY
+
+find "$WORK_TREE/assets/public" -type f -print0 | sort -z \
+  | xargs -0 sha256sum > "$BUILD_DIR/runtime-after.sha256"
+grep -Rqs 'https://api.validnation.ai' "$WORK_TREE/assets/public"
+grep -Rqs 'https://tfnnpqpvdjisoizvciyr.supabase.co' "$WORK_TREE/assets/public"
+if grep -RqsE 'dsn(Ios|Android):"https://' "$WORK_TREE/assets/public"; then
+  printf 'A native Patriot Sentry DSN remains enabled.\n' >&2
+  exit 1
+fi
+if find "$WORK_TREE/assets/public" -name capture-inbound.js -print -quit | grep -q .; then
+  printf 'Unexpected capture hook found in stock runtime.\n' >&2
+  exit 1
+fi
+printf 'Verified only the native Sentry DSNs changed in web runtime; real origins retained.\n'
+
+java -jar "$APKTOOL_JAR" build --frame-path "$FRAME_DIR" \
+  "$WORK_TREE" -o "$BUILD_DIR/base-unsigned.apk"
+"$ZIPALIGN" -f 4 "$BUILD_DIR/base-unsigned.apk" "$OUT_DIR/base-aligned.apk"
+
+KEYSTORE="$BUILD_DIR/stock-capture.keystore"
+if [[ ! -f "$KEYSTORE" ]]; then
+  keytool -genkeypair -noprompt \
+    -keystore "$KEYSTORE" -storepass android -keypass android \
+    -alias stockcapture -keyalg RSA -keysize 2048 -validity 10000 \
+    -dname "CN=Patriot Stock Capture,OU=Instrumentation,O=AlaskaWalker,C=US"
+fi
+"$APKSIGNER" sign --ks "$KEYSTORE" --ks-key-alias stockcapture \
+  --ks-pass pass:android --key-pass pass:android \
+  --out "$OUT_DIR/base.apk" "$OUT_DIR/base-aligned.apk"
+
+for split in "$STOCK_DIR"/split_*.apk; do
+  name="$(basename "$split")"
+  aligned="$OUT_DIR/${name%.apk}-aligned.apk"
+  "$ZIPALIGN" -f 4 "$split" "$aligned"
+  zip -q -d "$aligned" \
+    'META-INF/*.RSA' 'META-INF/*.DSA' 'META-INF/*.EC' \
+    'META-INF/*.SF' 'META-INF/MANIFEST.MF' 2>/dev/null || true
+  "$APKSIGNER" sign --ks "$KEYSTORE" --ks-key-alias stockcapture \
+    --ks-pass pass:android --key-pass pass:android \
+    --out "$OUT_DIR/$name" "$aligned"
+done
+
+"$APKSIGNER" verify --verbose "$OUT_DIR/base.apk" >/dev/null
+for split in "$STOCK_DIR"/split_*.apk; do
+  "$APKSIGNER" verify --verbose "$OUT_DIR/$(basename "$split")" >/dev/null
+done
+{
+  printf 'variant=patriot-stock-derived-real-backend-capture\n'
+  printf 'built_at=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  printf 'runtime_assets=stock-except-empty-native-sentry-dsns\n'
+  printf 'differences=user-ca-trust,pairip-checkLicense-noop,firebase-disabled,sentry-disabled,local-signature\n'
+  sha256sum "$STOCK_DIR"/*.apk "$OUT_DIR/base.apk"
+  for split in "$STOCK_DIR"/split_*.apk; do
+    sha256sum "$OUT_DIR/$(basename "$split")"
+  done
+  "$APKSIGNER" verify --print-certs "$OUT_DIR/base.apk"
+} > "$BUILD_DIR/BUILD-MANIFEST.txt"
+
+printf '\nBuilt stock-derived real-backend capture APKs:\n'
+find "$OUT_DIR" -maxdepth 1 -type f -name '*.apk' ! -name '*-aligned.apk' -printf '  %p\n' | sort
+printf '\nThis build is locally signed and observable; it is not literally stock.\n'
+printf 'Remove the vendor-signed app before adb install-multiple.\n'
+printf 'Install command:\n'
+printf '  adb install-multiple %q/base.apk %q/split_config.arm64_v8a.apk %q/split_config.en.apk %q/split_config.xxhdpi.apk\n' \
+  "$OUT_DIR" "$OUT_DIR" "$OUT_DIR" "$OUT_DIR"
