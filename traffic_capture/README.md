@@ -61,8 +61,10 @@ export LOGGER_UPLOAD_TOKEN='dedicated-logger-token'
 ```
 
 `LOGGER_UPLOAD_URL` accepts only an empty value or an `http://`/`https://` URL. HTTPS
-is preferred because the records are sensitive. The token is embedded in the local
-test APK but is never printed in `BUILD-MANIFEST.txt`.
+is preferred because the records are sensitive. When Numinar is built with an
+`http://` logger URL, its builder explicitly enables Android cleartext traffic for
+that build; this does not repoint or downgrade its HTTPS vendor origins. The token is
+embedded in the local test APK but is never printed in `BUILD-MANIFEST.txt`.
 
 ## Fidelity boundary
 

@@ -120,12 +120,13 @@ ADJUST_FUNC=33115
 cmp "$BUILD_DIR/f${ADJUST_FUNC}.stock.hasm" "$BUILD_DIR/f${ADJUST_FUNC}.capture.hasm"
 grep -q '"initSdk"' "$BUILD_DIR/f${ADJUST_FUNC}.capture.hasm"
 
-python3 - "$WORK_TREE/AndroidManifest.xml" <<'PY'
+python3 - "$WORK_TREE/AndroidManifest.xml" "$LOGGER_UPLOAD_URL" <<'PY'
 from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
 
 manifest = Path(sys.argv[1])
+logger_url = sys.argv[2]
 text = manifest.read_text(encoding="utf-8")
 if '<meta-data android:name="expo.modules.updates.ENABLED" android:value="true"/>' not in text:
     raise SystemExit("stock Expo Updates enablement not found")
@@ -138,6 +139,10 @@ root = ET.fromstring(text)
 application = root.find("application")
 if application is None:
     raise SystemExit("application element not found")
+if logger_url.startswith("http://"):
+    # The dedicated capture receiver currently uses cleartext HTTP. This affects
+    # transport policy only; vendor origins and requests remain unchanged.
+    application.set(f"{{{android}}}usesCleartextTraffic", "true")
 
 metadata = {
     "firebase_messaging_auto_init_enabled": "false",
@@ -381,6 +386,11 @@ cmp \
   printf 'differences=in-app-network-recorder,private-delayed-upload,firebase-disabled,sentry-disabled,local-signature\n'
   if [[ -n "$LOGGER_UPLOAD_URL" ]]; then
     printf 'logger_upload=configured\n'
+    if [[ "$LOGGER_UPLOAD_URL" == http://* ]]; then
+      printf 'logger_transport=cleartext-http-explicitly-enabled\n'
+    else
+      printf 'logger_transport=https\n'
+    fi
   else
     printf 'logger_upload=disabled-local-queue-only\n'
   fi
