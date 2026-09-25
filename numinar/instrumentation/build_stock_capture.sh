@@ -19,6 +19,7 @@ SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-$HOME/Android/Sdk}}"
 HERMES_DECOMP="${HERMES_DECOMP:-/tmp/hermes-decomp/target/release/hermes-decomp}"
 LOGGER_UPLOAD_URL="${LOGGER_UPLOAD_URL:-}"
 LOGGER_UPLOAD_TOKEN="${LOGGER_UPLOAD_TOKEN:-}"
+PULLABLE_LOGS="${PULLABLE_LOGS:-0}"
 
 case "$LOGGER_UPLOAD_URL" in
   ""|http://*|https://*) ;;
@@ -27,6 +28,10 @@ case "$LOGGER_UPLOAD_URL" in
     exit 1
     ;;
 esac
+if [[ "$PULLABLE_LOGS" != 0 && "$PULLABLE_LOGS" != 1 ]]; then
+  printf 'PULLABLE_LOGS must be 0 or 1.\n' >&2
+  exit 1
+fi
 
 declare -A EXPECTED_SHA256=(
   [base.apk]="d4e5370dcd970ac463cf6cc1c6b8e3426a2994b09e69e6a6711c4ad15ebf2e94"
@@ -120,13 +125,14 @@ ADJUST_FUNC=33115
 cmp "$BUILD_DIR/f${ADJUST_FUNC}.stock.hasm" "$BUILD_DIR/f${ADJUST_FUNC}.capture.hasm"
 grep -q '"initSdk"' "$BUILD_DIR/f${ADJUST_FUNC}.capture.hasm"
 
-python3 - "$WORK_TREE/AndroidManifest.xml" "$LOGGER_UPLOAD_URL" <<'PY'
+python3 - "$WORK_TREE/AndroidManifest.xml" "$LOGGER_UPLOAD_URL" "$PULLABLE_LOGS" <<'PY'
 from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
 
 manifest = Path(sys.argv[1])
 logger_url = sys.argv[2]
+pullable_logs = sys.argv[3] == "1"
 text = manifest.read_text(encoding="utf-8")
 if '<meta-data android:name="expo.modules.updates.ENABLED" android:value="true"/>' not in text:
     raise SystemExit("stock Expo Updates enablement not found")
@@ -143,6 +149,8 @@ if logger_url.startswith("http://"):
     # The dedicated capture receiver currently uses cleartext HTTP. This affects
     # transport policy only; vendor origins and requests remain unchanged.
     application.set(f"{{{android}}}usesCleartextTraffic", "true")
+if pullable_logs:
+    application.set(f"{{{android}}}debuggable", "true")
 
 metadata = {
     "firebase_messaging_auto_init_enabled": "false",
@@ -393,6 +401,11 @@ cmp \
     fi
   else
     printf 'logger_upload=disabled-local-queue-only\n'
+  fi
+  if [[ "$PULLABLE_LOGS" == 1 ]]; then
+    printf 'pullable_logs=android-debuggable\n'
+  else
+    printf 'pullable_logs=disabled\n'
   fi
   printf 'adjust=stock-token-init-function-native-signer-and-components-retained\n'
   sha256sum "$STOCK_DIR"/*.apk "$OUT_DIR/base.apk"

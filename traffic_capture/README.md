@@ -66,6 +66,12 @@ is preferred because the records are sensitive. When Numinar is built with an
 that build; this does not repoint or downgrade its HTTPS vendor origins. The token is
 embedded in the local test APK but is never printed in `BUILD-MANIFEST.txt`.
 
+For an authorized device-side export of an existing private queue, rebuild with
+`PULLABLE_LOGS=1` and install the same-signed APK set using `adb install-multiple
+-r`. This temporarily sets `android:debuggable=true`, preserves application data,
+and permits `adb exec-out run-as <package> ...`. Leave the option at its default
+`0` for normal test runs.
+
 ## Fidelity boundary
 
 Both APKs are locally signed and therefore are stock-derived, not vendor-identical.

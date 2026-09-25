@@ -17,6 +17,7 @@ FRAME_DIR="${APKTOOL_FRAME_DIR:-$TOOLS_DIR/framework-device}"
 SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-$HOME/Android/Sdk}}"
 LOGGER_UPLOAD_URL="${LOGGER_UPLOAD_URL:-}"
 LOGGER_UPLOAD_TOKEN="${LOGGER_UPLOAD_TOKEN:-}"
+PULLABLE_LOGS="${PULLABLE_LOGS:-0}"
 
 case "$LOGGER_UPLOAD_URL" in
   ""|http://*|https://*) ;;
@@ -25,6 +26,10 @@ case "$LOGGER_UPLOAD_URL" in
     exit 1
     ;;
 esac
+if [[ "$PULLABLE_LOGS" != 0 && "$PULLABLE_LOGS" != 1 ]]; then
+  printf 'PULLABLE_LOGS must be 0 or 1.\n' >&2
+  exit 1
+fi
 
 declare -A EXPECTED_SHA256=(
   [base.apk]="47b19ff8bee2b7f3742253e741273dbeb589c5f04ce864c8b90c7241ecf44bb1"
@@ -65,7 +70,7 @@ java -jar "$APKTOOL_JAR" decode --frame-path "$FRAME_DIR" --force \
 find "$WORK_TREE/assets/public" -type f -print0 | sort -z \
   | xargs -0 sha256sum > "$BUILD_DIR/runtime-before.sha256"
 
-python3 - "$WORK_TREE/AndroidManifest.xml" "$WORK_TREE/res/values/public.xml" <<'PY'
+python3 - "$WORK_TREE/AndroidManifest.xml" "$WORK_TREE/res/values/public.xml" "$PULLABLE_LOGS" <<'PY'
 from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
@@ -93,6 +98,8 @@ root = ET.fromstring(text)
 application = root.find("application")
 if application is None:
     raise SystemExit("application element not found")
+if sys.argv[3] == "1":
+    application.set(f"{{{android}}}debuggable", "true")
 
 metadata = {
     "firebase_messaging_auto_init_enabled": "false",
@@ -346,6 +353,11 @@ done
     printf 'logger_upload=configured\n'
   else
     printf 'logger_upload=disabled-local-queue-only\n'
+  fi
+  if [[ "$PULLABLE_LOGS" == 1 ]]; then
+    printf 'pullable_logs=android-debuggable\n'
+  else
+    printf 'pullable_logs=disabled\n'
   fi
   sha256sum "$STOCK_DIR"/*.apk "$OUT_DIR/base.apk"
   for split in "$STOCK_DIR"/split_*.apk; do
